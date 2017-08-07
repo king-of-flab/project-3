@@ -1,4 +1,4 @@
-# Your Project Name
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #3: Gift Loop
 
 This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
 
@@ -55,11 +55,11 @@ Did you write user stories, draw wireframes, use task tracking, produce ERDs? Di
 
 ## Authors
 
-Did you collaborate with others on this project, list them here
-
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
+* **Nawas** - *Team Leader* - [king-of-flab](https://github.com/king-of-flab)
+* **Daniel** - *Git Master* - [ddanielnp](https://github.com/ddanielnp)
+* **Jocelyn** - [dreamz89](https://github.com/dreamz89)
+* **Shumin** - [shumin13](https://github.com/shumin13)
 
 ## Acknowledgments
 
 * Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
-
