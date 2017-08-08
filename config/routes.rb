@@ -3,10 +3,10 @@ Rails.application.routes.draw do
 
   root 'main#index'
 
-  resources :users
+  devise_for :accounts
 
-  resources :organisations
+  resources :rewards
 
-  resources :events
+  resources :requests
 
 end
