@@ -19,6 +19,33 @@
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
 
+    <!-- Modal Trigger Start -->
+<button data-target="modal1" class="btn modal-trigger">Signup</button>
+<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Login</a>
+
+<!-- Modal signup -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>Signup here</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
+<!-- Modal login -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>Login here</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
+<!-- modals end -->
+
+
     <%= yield %>
 
     <footer class="page-footer">
@@ -29,6 +56,15 @@
       </div>
 
     </footer>
+
+<!-- modals signup -->
+<script type="text/javascript">
+$(document).ready(function(){
+  // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+  $('.modal').modal();
+});
+</script>
+<!-- modals signup -->
 
   </body>
 
