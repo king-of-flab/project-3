@@ -12,7 +12,7 @@
     <div class="col s12 m5">
       <h3><%= @current_reward.name %></h3>
       <p>Date:
-        <%= @current_reward.date.strftime('%d-%m-%Y, %A') %>
+        <%= @current_reward.date.strftime('%d %B %Y (%A)') %>
         <p>Time:
           <%= @current_reward.start_time.strftime('%I:%M%p') %>
           to
@@ -33,3 +33,4 @@
       <i class="material-icons right">redeem</i>
     </button>
   </div>
+  <br>

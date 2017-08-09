@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+
+    <h4 class="center">Create Request</h4>
+
+    <%= form_for @new_request, url: requests_path do |f| %>
+
+    <div class="input-field col s6 offset-s3">
+      <%= f.text_field :name %>
+      <%= f.label :name %>
+    </div>
+
+    <div class="input-field col s6 offset-s3">
+      <%= f.text_field :date, class: 'datepicker' %>
+      <%= f.label :date %>
+    </div>
+
+    <div class="input-field col s6 offset-s3">
+      <%= f.text_field :start_time, class: 'timepicker' %>
+      <%= f.label :start_time, "Start Time" %>
+    </div>
+
+    <div class="input-field col s6 offset-s3">
+      <%= f.text_field :end_time, class: 'timepicker' %>
+      <%= f.label :end_time, "End Time" %>
+    </div>
+
+    <div class="input-field col s6 offset-s3">
+      <%= f.text_field :address %>
+      <%= f.label :address %>
+    </div>
+
+    <div class="input-field col s6 offset-s3">
+      <%= f.text_field :area %>
+      <%= f.label :area %>
+    </div>
+
+    <div class="input-field col s6 offset-s3">
+      <%= f.number_field :opening, in: 1..500 %>
+      <%= f.label :opening, "No. of Openings" %>
+    </div>
+
+    <div class="input-field col s6 offset-s3">
+      <%= f.number_field :unit_time_credit, in: 1..50 %>
+      <%= f.label :unit_time_credit, "Time Credit Per Pax" %>
+    </div>
+
+    <div class="input-field col s6 offset-s3">
+      <%= f.text_area :description, class: 'materialize-textarea' %>
+      <%= f.label :description %>
+    </div>
+
+    <div class="file-field input-field col s6 offset-s3">
+      <div class="btn">
+        <span>Image</span>
+        <%= f.file_field :image %>
+      </div>
+
+      <div class="file-path-wrapper">
+        <%= f.text_field :image, class: 'file-path' %>
+      </div>
+    </div>
+
+    <div class="input-field col s6 offset-s3">
+      <%= f.submit "Create", class: 'btn waves-effect waves-light right' %>
+    </div>
+    <% end %>
+
+  </div>
+</div>

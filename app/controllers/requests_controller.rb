@@ -4,9 +4,15 @@ class RequestsController < ApplicationController
   end
 
   def create
+    @new_request = Request.create(params.require(:request).permit!)
+    @new_request.created_by = current_account.id
+    current_account.time_credit -= @new_request.opening * @new_request.unit_time_credit
+    current_account.save
+    redirect_to request_path(@new_request) if @new_request.save
   end
 
   def new
+    @new_request = Request.new
   end
 
   def edit
