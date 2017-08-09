@@ -5,9 +5,60 @@
 }
 
 .logo-img img{
-    max-height: 64px!important;
-    padding: 10px 0!important;
+    max-height: 35px!important;
+    margin-top: 15px;
+    margin-bottom: -15px;
 }
+
+.page-footer {
+  background-color: #308693 !important;
+}
+
+.container {
+  margin: 0 auto !important;
+  max-width: 1280px !important;
+  width: 80% !important;
+}
+
+.foot ul {
+  margin-left: -15px;
+}
+.foot ul li {
+  list-style-type: none;
+  margin-bottom: 15px;
+  font-size: 16px;
+  display: flex;
+}
+.foot ul li i {
+  margin-right: 10px;
+}
+.foot ul li p {
+  margin: 0;
+}
+
+.card-image{
+  padding: 10px
+}
+
+.card-content, .card-action {
+  padding: 10px !important;
+}
+
+.card-content h5{
+  text-align: center
+}
+
+.card-content p {
+  text-align: center;
+  font-size: 15px
+}
+
+.card-action p {
+  text-align: center;
+  margin: 10px !important;
+  font-size: 15px
+}
+
 
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import "materialize";
