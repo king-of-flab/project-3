@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col s12 m7">
+      <div class="card">
+        <div class="card-image">
+          <img src="<%= @current_request.image%>">
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m5">
+      <h3><%= @current_request.name %></h3>
+      <p>Date:
+        <%= @current_request.date.strftime('%d-%m-%Y, %A') %>
+        <p>Time:
+          <%= @current_request.start_time.strftime('%I:%M%p') %>
+          to
+          <%= @current_request.end_time.strftime('%I:%M%p') %></p>
+        <p>Address:
+          <%= @current_request.address %></p>
+        <p>Openings:
+          <%= @current_request.opening %></p>
+        <p>Time Credits:
+          <%= @current_request.unit_time_credit %></p>
+        <p>By:
+          <%= @creator.name %></p>
+      </div>
+    </div>
+
+    <p><%= @current_request.description %></p>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Register
+      <i class="material-icons right">create</i>
+    </button>
+  </div>

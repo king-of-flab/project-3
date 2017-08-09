@@ -11,7 +11,7 @@ class CreateRequests < ActiveRecord::Migration[5.1]
       t.string :image
       t.integer :opening
       t.integer :unit_time_credit
-      t.string :created_by
+      t.bigint :created_by
       t.timestamps
     end
   end
