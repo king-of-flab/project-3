@@ -6,10 +6,36 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   </head>
 
   <body>
+
+    <div class="navbar-fixed">
+      <!-- Dropdown Structure -->
+          <ul id="dropdown1" class="dropdown-content">
+            <li><a href="#!">Update Particulars</a></li>
+            <li><a href="#!">Create Event</a></li>
+            <li><a href="#!">Requests done</a></li>
+            <li><a href="#!">Rewards redeemed</a></li>
+          </ul>
+      <nav>
+        <div class="nav-wrapper">
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="/" class="logo-img"><img src="/assets/Logo.png"></a></li>
+            <li class="active"><a href="/requests">Requests</a></li>
+            <li class="active"><a href="/rewards">Rewards</a></li>
+          </ul>
+
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Your Name<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li class="active"><a href="/accounts/sign_up">Signup</a></li>
+            <li class="active"><a href="/accounts/sign_in">Login</a></li>
+            <li class="active"><a href="/accounts/sign_out">Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
 
     <!-- devise configuration -->
     <% if notice %>
@@ -19,36 +45,43 @@
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
 
-    <!-- Modal Trigger Start -->
-<button data-target="modal1" class="btn modal-trigger">Signup</button>
-<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Login</a>
-
-<!-- Modal signup -->
-
-<!-- Modal login -->
-<!-- <div id="modal1" class="modal">
-  <div class="modal-content">
-    <h4>Modal Header</h4>
-    <p>Login here</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-  </div>
-</div> -->
-<!-- modals end -->
-
-
     <%= yield %>
 
     <footer class="page-footer">
-      <div class="footer-copyright">
-        <div class="container">
-          Footer here
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Contact</h5>
+            <div class = "foot">
+              <ul>
+                <li>
+                  <i class="small material-icons">location_on</i>
+                  <p>8 Claymore Hill</p>
+                </li>
+                <li>
+                  <i class="small material-icons">email</i>
+                  <p>admin@giftloop.com</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col l4 s12">
+            <h5 class="white-text">Our Team</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="https://github.com/king-of-flab">Nawas</a></li>
+              <li><a class="grey-text text-lighten-3" href="https://github.com/ddanielnp">Daniel</a></li>
+              <li><a class="grey-text text-lighten-3" href="https://github.com/dreamz89">Jocelyn</a></li>
+              <li><a class="grey-text text-lighten-3" href="https://github.com/shumin13">Shumin</a></li>
+            </ul>
+          </div>
         </div>
       </div>
-
+      <div class="footer-copyright">
+        <div class="container">
+          @2017 General Assembly WDI 11
+        </div>
+      </div>
     </footer>
 
   </body>
-
 </html>

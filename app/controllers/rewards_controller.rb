@@ -13,6 +13,8 @@ class RewardsController < ApplicationController
   end
 
   def show
+    @current_reward = Reward.find(params[:id])
+    @creator = Account.find(@current_reward.created_by)
   end
 
   def update
