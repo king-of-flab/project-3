@@ -1,3 +1,13 @@
 @import "materialize/components/color";
+
+.nav-wrapper {
+  background-color: #46BFD2 !important;
+}
+
+.logo-img img{
+    max-height: 64px!important;
+    padding: 10px 0!important;
+}
+
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import "materialize";
