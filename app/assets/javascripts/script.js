@@ -1,4 +1,3 @@
-$(document).on('ready page:load', function() {
-  $('.dropdown-button').dropdown({ hover: false })
+$(document).on('turbolinks:load', function() {  $('.dropdown-button').dropdown({ hover: false })
   $('.modal').modal()
 })
