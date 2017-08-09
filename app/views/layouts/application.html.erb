@@ -11,16 +11,24 @@
 
   <body>
 
+    <!-- devise configuration -->
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+
     <%= yield %>
 
-<footer class="page-footer">
-  <div class="footer-copyright">
-    <div class="container">
-      Footer here
-    </div>
-  </div>
+    <footer class="page-footer">
+      <div class="footer-copyright">
+        <div class="container">
+          Footer here
+        </div>
+      </div>
 
-</footer>
+    </footer>
 
   </body>
 
