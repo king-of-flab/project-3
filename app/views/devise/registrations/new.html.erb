@@ -25,11 +25,11 @@
     <div class="file-field input-field col s6 offset-s3">
       <div class="btn">
         <span>Upload Identification</span>
-        <%= f.file_field :image %>
+        <%= f.file_field :verify_image %>
       </div>
 
       <div class="file-path-wrapper">
-        <%= f.text_field :image, class: 'file-path' %>
+        <%= f.text_field :verify_image, class: 'file-path' %>
       </div>
     </div>
 
@@ -50,6 +50,8 @@
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
       <%= f.label :password_confirmation %><br/>
     </div>
+
+    <%= f.hidden_field(:account_type, :value => params[:account_type]) %>
 
     <div class="input-field actions col s6 offset-s3">
       <%= f.submit "Submit", class: 'btn waves-effect waves-light right'%>
