@@ -12,7 +12,7 @@
     <div class="col s12 m5">
       <h3><%= @current_request.name %></h3>
       <p>Date:
-        <%= @current_request.date.strftime('%d-%m-%Y, %A') %>
+        <%= @current_request.date.strftime('%d %B %Y (%A)') %>
         <p>Time:
           <%= @current_request.start_time.strftime('%I:%M%p') %>
           to
@@ -33,3 +33,4 @@
       <i class="material-icons right">create</i>
     </button>
   </div>
+  <br>
