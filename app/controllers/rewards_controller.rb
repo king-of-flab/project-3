@@ -1,6 +1,7 @@
 class RewardsController < ApplicationController
 
   def index
+    @all_rewards = Reward.all
   end
 
   def create
@@ -13,18 +14,23 @@ class RewardsController < ApplicationController
     @new_reward = Reward.new
   end
 
-  def edit
-  end
-
   def show
     @current_reward = Reward.find(params[:id])
     @creator = Account.find(@current_reward.created_by)
   end
 
+  def edit
+    @current_reward = Reward.find(params[:id])
+  end
+
   def update
+
   end
 
   def destroy
+  end
+
+  def reward_update_params
   end
 
 end

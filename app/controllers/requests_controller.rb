@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
 
   def index
+    @all_requests = Request.all
   end
 
   def create
@@ -15,13 +16,13 @@ class RequestsController < ApplicationController
     @new_request = Request.new
   end
 
-  def edit
-    @current_request = Request.find(params[:id])
-  end
-
   def show
     @current_request = Request.find(params[:id])
     @creator = Account.find(@current_request.created_by)
+  end
+
+  def edit
+    @current_request = Request.find(params[:id])
   end
 
   def update
