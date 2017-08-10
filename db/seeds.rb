@@ -8,7 +8,7 @@
 
 5.times do |i|
   Request.create({
-  name: "Volunteer Work #{i}",
+  name: "Volunteer Work #{i+1}",
   date: :today,
   start_time: "08:30",
   end_time: "10:30",
@@ -24,7 +24,7 @@ end
 
 5.times do |i|
   Reward.create({
-  name: "Yoga Class #{i}",
+  name: "Yoga Class #{i+1}",
   date: :today,
   start_time: "18:30",
   end_time: "20:30",
@@ -41,7 +41,7 @@ end
 5.times do |i|
   Account.create({
   account_type: "individual",
-  name: "admin#{i}",
+  name: "admin#{i+1}",
   tel: "12345678",
   identification: "S1234567A",
   verify_image: "https://s-media-cache-ak0.pinimg.com/736x/07/dd/12/07dd1283d19211a46dbbb29ec4483fe8--drawings-faces-girl-art-drawings.jpg",

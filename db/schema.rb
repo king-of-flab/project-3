@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808215958) do
+ActiveRecord::Schema.define(version: 20170810141316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,20 +38,16 @@ ActiveRecord::Schema.define(version: 20170808215958) do
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
-  create_table "accounts_requests", force: :cascade do |t|
-    t.bigint "account_id"
-    t.bigint "request_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "accounts_requests", id: false, force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "request_id", null: false
     t.index ["account_id"], name: "index_accounts_requests_on_account_id"
     t.index ["request_id"], name: "index_accounts_requests_on_request_id"
   end
 
-  create_table "accounts_rewards", force: :cascade do |t|
-    t.bigint "account_id"
-    t.bigint "reward_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "accounts_rewards", id: false, force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "reward_id", null: false
     t.index ["account_id"], name: "index_accounts_rewards_on_account_id"
     t.index ["reward_id"], name: "index_accounts_rewards_on_reward_id"
   end
@@ -88,8 +84,4 @@ ActiveRecord::Schema.define(version: 20170808215958) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "accounts_requests", "accounts"
-  add_foreign_key "accounts_requests", "requests"
-  add_foreign_key "accounts_rewards", "accounts"
-  add_foreign_key "accounts_rewards", "rewards"
 end
