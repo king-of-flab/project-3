@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808215958) do
+ActiveRecord::Schema.define(version: 20170810141316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
-    t.string "type"
+    t.string "account_type"
     t.string "name"
     t.integer "tel"
     t.string "identification"
-    t.string "profile_image"
     t.integer "time_credit"
+    t.string "verify_image"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -38,20 +38,16 @@ ActiveRecord::Schema.define(version: 20170808215958) do
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
-  create_table "accounts_requests", force: :cascade do |t|
-    t.bigint "account_id"
-    t.bigint "request_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "accounts_requests", id: false, force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "request_id", null: false
     t.index ["account_id"], name: "index_accounts_requests_on_account_id"
     t.index ["request_id"], name: "index_accounts_requests_on_request_id"
   end
 
-  create_table "accounts_rewards", force: :cascade do |t|
-    t.bigint "account_id"
-    t.bigint "reward_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "accounts_rewards", id: false, force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "reward_id", null: false
     t.index ["account_id"], name: "index_accounts_rewards_on_account_id"
     t.index ["reward_id"], name: "index_accounts_rewards_on_reward_id"
   end
@@ -67,7 +63,7 @@ ActiveRecord::Schema.define(version: 20170808215958) do
     t.string "image"
     t.integer "opening"
     t.integer "unit_time_credit"
-    t.string "created_by"
+    t.bigint "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -83,13 +79,9 @@ ActiveRecord::Schema.define(version: 20170808215958) do
     t.string "image"
     t.integer "opening"
     t.integer "unit_time_credit"
-    t.string "created_by"
+    t.bigint "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "accounts_requests", "accounts"
-  add_foreign_key "accounts_requests", "requests"
-  add_foreign_key "accounts_rewards", "accounts"
-  add_foreign_key "accounts_rewards", "rewards"
 end

@@ -12,37 +12,74 @@
 
     <div class="navbar-fixed">
       <!-- Dropdown Structure -->
-          <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#!">Update Particulars</a></li>
-            <li><a href="/requests/new">Create Request</a></li>
-            <li><a href="#!">Requests done</a></li>
-            <li><a href="#!">Rewards redeemed</a></li>
-          </ul>
+      <ul id="dropdown1" class="dropdown-content">
+        <li>
+          <a href="#!">Update Particulars</a>
+        </li>
+        <li>
+          <a href="/requests/new">Create Request</a>
+        </li>
+        <li>
+          <a href="#!">Requests done</a>
+        </li>
+        <li>
+          <a href="#!">Rewards redeemed</a>
+        </li>
+      </ul>
       <nav>
         <div class="nav-wrapper">
           <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="/" class="logo-img"><img src="/assets/Logo.png"></a></li>
-            <li class="active"><a href="/requests">Requests</a></li>
-            <li class="active"><a href="/rewards">Rewards</a></li>
+            <li>
+              <a href="/" class="logo-img"><img src="/assets/Logo.png"></a>
+            </li>
+            <li class="active">
+              <a href="/requests">Requests</a>
+            </li>
+            <li class="active">
+              <a href="/rewards">Rewards</a>
+            </li>
           </ul>
 
           <ul id="nav-mobile" class="right hide-on-med-and-down">
+
             <!-- Dropdown Trigger -->
-            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Your Name<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li class="active"><a href="/accounts/sign_up">Signup</a></li>
-            <li class="active"><a href="/accounts/sign_in">Login</a></li>
-            <li class="active"><a href="/accounts/sign_out">Logout</a></li>
+            <% if current_account %>
+            <li>
+              <a class="dropdown-button" href="#!" data-activates="dropdown1">Hello, <%= current_account.name %><i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+
+            <li class="active">
+              <%= link_to "Logout", destroy_account_session_path, method: :delete %>
+            </li>
+          <% else %>
+            <li class="active">
+              <a class="modal-trigger" href="#modal1">Signup</a>
+            </li>
+            <li class="active">
+              <a href="/accounts/sign_in">Login</a>
+            </li>
+            <% end %>
+
           </ul>
         </div>
       </nav>
     </div>
 
+    <div id="modal1" class="modal center">
+      <div class="modal-content">
+        <h4>Sign up as</h4>
+        <%= link_to "Individual", "/accounts/sign_up?account_type=individual", class: "btn btn-primary" %>
+        <%= link_to "Organisation", "/accounts/sign_up?account_type=organisation", class: "btn btn-primary" %>
+      </div>
+    </div>
+
     <!-- devise configuration -->
     <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
+    <p class="alert alert-success"><%= notice %></p>
     <% end %>
     <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
+    <p class="alert alert-danger"><%= alert %></p>
     <% end %>
 
     <%= yield %>
@@ -52,7 +89,7 @@
         <div class="row">
           <div class="col l6 s12">
             <h5 class="white-text">Contact</h5>
-            <div class = "foot">
+            <div class="foot">
               <ul>
                 <li>
                   <i class="small material-icons">location_on</i>
@@ -68,10 +105,18 @@
           <div class="col l4 s12">
             <h5 class="white-text">Our Team</h5>
             <ul>
-              <li><a class="grey-text text-lighten-3" href="https://github.com/king-of-flab">Nawas</a></li>
-              <li><a class="grey-text text-lighten-3" href="https://github.com/ddanielnp">Daniel</a></li>
-              <li><a class="grey-text text-lighten-3" href="https://github.com/dreamz89">Jocelyn</a></li>
-              <li><a class="grey-text text-lighten-3" href="https://github.com/shumin13">Shumin</a></li>
+              <li>
+                <a class="grey-text text-lighten-3" href="https://github.com/king-of-flab">Nawas</a>
+              </li>
+              <li>
+                <a class="grey-text text-lighten-3" href="https://github.com/ddanielnp">Daniel</a>
+              </li>
+              <li>
+                <a class="grey-text text-lighten-3" href="https://github.com/dreamz89">Jocelyn</a>
+              </li>
+              <li>
+                <a class="grey-text text-lighten-3" href="https://github.com/shumin13">Shumin</a>
+              </li>
             </ul>
           </div>
         </div>
