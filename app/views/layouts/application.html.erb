@@ -29,13 +29,21 @@
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <!-- Dropdown Trigger -->
             <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Your Name<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li class="active"><a href="/accounts/sign_up">Signup</a></li>
+            <li class="active"><a class="modal-trigger" href="#modal1">Signup</a></li>
             <li class="active"><a href="/accounts/sign_in">Login</a></li>
             <li class="active"><a href="/accounts/sign_out">Logout</a></li>
           </ul>
         </div>
       </nav>
     </div>
+
+        <div id="modal1" class="modal center">
+            <div class="modal-content">
+              <h4>Sign up as</h4>
+              <%= link_to "Individual", "/accounts/sign_up", class: "btn btn-primary", id: "indvidual" %>
+              <%= link_to "Organisation", "/accounts/sign_up", class: "btn btn-primary" %>
+            </div>
+          </div>
 
     <!-- devise configuration -->
     <% if notice %>

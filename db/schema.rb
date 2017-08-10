@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170808215958) do
   enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
-    t.string "type"
+    t.string "account_type"
     t.string "name"
     t.integer "tel"
     t.string "identification"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20170808215958) do
     t.string "image"
     t.integer "opening"
     t.integer "unit_time_credit"
-    t.string "created_by"
+    t.bigint "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20170808215958) do
     t.string "image"
     t.integer "opening"
     t.integer "unit_time_credit"
-    t.string "created_by"
+    t.bigint "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

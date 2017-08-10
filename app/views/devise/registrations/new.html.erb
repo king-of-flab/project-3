@@ -1,14 +1,6 @@
-<div class="container center">
-  <h2>Sign up as</h2>
-<div class="row">
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Individual</a>
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Organisation</a>
-
-</div>
-</div>
 
 <!-- INDIVIDUAL SIGNUP FORM -->
-<div id="modal1" class="modal">
+<div class="container">
   <div class="modal-content">
     <h4>Individual signup</h4>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
