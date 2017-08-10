@@ -16,6 +16,7 @@ class RequestsController < ApplicationController
   end
 
   def edit
+    @current_request = Request.find(params[:id])
   end
 
   def show
@@ -24,9 +25,18 @@ class RequestsController < ApplicationController
   end
 
   def update
+    updated_request = Request.find(params[:id])
+    updated_request.update(request_update_params)
+    redirect_to request_path(updated_request) if updated_request.save
   end
 
   def destroy
+  end
+
+  private
+
+  def request_update_params
+    params.require(:request).permit(:name, :date, :start_time, :end_time, :address, :area, :opening, :unit_time_credit, :description, :image)
   end
 
 end
