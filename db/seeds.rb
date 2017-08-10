@@ -44,7 +44,6 @@ end
   name: "admin#{i+1}",
   tel: "12345678",
   identification: "S1234567A",
-  verify_image: "https://s-media-cache-ak0.pinimg.com/736x/07/dd/12/07dd1283d19211a46dbbb29ec4483fe8--drawings-faces-girl-art-drawings.jpg",
   time_credit: "100",
   email: "admin#{i}@gmail.com",
   password: "12345678"
