@@ -43,12 +43,12 @@
           <ul id="nav-mobile" class="right hide-on-med-and-down">
 
             <!-- Dropdown Trigger -->
+            <% if current_account %>
             <li>
               <a class="dropdown-button" href="#!" data-activates="dropdown1">Your Name<i class="material-icons right">arrow_drop_down</i>
               </a>
             </li>
 
-            <% if current_account %>
             <li class="active">
               <%= link_to "Logout", destroy_account_session_path, method: :delete %>
             </li>
