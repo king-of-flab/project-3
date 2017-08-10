@@ -8,6 +8,7 @@ class DeviseCreateAccounts < ActiveRecord::Migration[5.1]
       t.string :identification
       t.string :profile_image
       t.integer :time_credit
+      t.string :image
 
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""

@@ -1,96 +1,58 @@
-
 <!-- INDIVIDUAL SIGNUP FORM -->
 <div class="container">
-  <div class="modal-content">
-    <h4>Individual signup</h4>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= devise_error_messages! %>
+  <div class="row">
 
-    <div class="field">
-      <%= f.label :name %><br />
-      <%= f.text_field :name, autofocus: true %>
-    </div>
+      <h4 class="input-field col s6 offset-s3">Signup with GiftLoop</h4>
 
-    <div class="field">
-      <%= f.label :tel %><br />
-      <%= f.telephone_field :tel %>
-    </div>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
 
-    <div class="field">
-      <%= f.label :identification_number %><br />
+      <div class="input-field col s6 offset-s3">
+        <%= f.text_field :name, autofocus: true %>
+        <%= f.label :name %><br/>
+      </div>
+
+      <div class="input-field col s6 offset-s3">
+        <%= f.telephone_field :tel %>
+        <%= f.label :tel %><br/>
+      </div>
+
+    <div class="input-field col s6 offset-s3">
       <%= f.text_field :identification %>
+      <%= f.label :UEN_or_identification_number %><br/>
     </div>
 
-    <div class="field">
-      <%= f.label :email %><br />
+    <div class="file-field input-field col s6 offset-s3">
+      <div class="btn">
+        <span>Upload Identification</span>
+        <%= f.file_field :image %>
+      </div>
+
+      <div class="file-path-wrapper">
+        <%= f.text_field :image, class: 'file-path' %>
+      </div>
+    </div>
+
+    <div class="input-field col s6 offset-s3">
       <%= f.email_field :email %>
+      <%= f.label :email %><br/>
     </div>
 
-    <div class="field">
-      <%= f.label :password %>
+    <div class="input-field col s6 offset-s3">
       <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
+
       <%= f.password_field :password, autocomplete: "off" %>
+      <%= f.label :password_min_6_char %>
+      <% end %><br/>
     </div>
 
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
+    <div class="input-field col s6 offset-s3">
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      <%= f.label :password_confirmation %><br/>
     </div>
 
-    <div class="actions center">
-      <%= f.submit "Submit" %>
-    </div>
-    <% end %>
-
-    <!-- <%= render "devise/shared/links" %> -->
-  </div>
-</div>
-
-
-<!-- ORGANISATION SIGNUP FORM -->
-<div id="modal2" class="modal">
-  <div class="modal-content">
-    <h4>Organisation signup</h4>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= devise_error_messages! %>
-
-    <div class="field">
-      <%= f.label :name %><br />
-      <%= f.text_field :name, autofocus: true %>
-    </div>
-
-    <div class="field">
-      <%= f.label :tel %><br />
-      <%= f.telephone_field :tel %>
-    </div>
-
-    <div class="field">
-      <%= f.label :UEN_number %><br />
-      <%= f.text_field :identification %>
-    </div>
-
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
-
-    <div class="actions center">
-      <%= f.submit "Submit" %>
+    <div class="input-field actions col s6 offset-s3">
+      <%= f.submit "Submit", class: 'btn waves-effect waves-light right'%>
     </div>
     <% end %>
 
