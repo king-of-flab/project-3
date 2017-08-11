@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col s3 m3">
+      <input type="text" class="datepicker">
+    </div>
+    <div class="input-field col s3">
+      <select multiple>
+        <option value="" disabled selected>Location</option>
+        <option value="1">East</option>
+        <option value="2">West</option>
+        <option value="3">North</option>
+      </select>
+        <label>Filter location</label>
+    </div>
+
+
+<% @all_requests.each do |request| %>
+  <div class="col s3 m3">
+    <div class="card hoverable">
+      <%= link_to "", request_path(request) %>
+      <a href="/"><span class='div-link'></span></a>
+      <div class="card-image">
+        <img src="<%= request.image%>">
+      </div>
+      <div class="card-content">
+        <h5><%= request.name %></h5>
+        <p><%= request.date.strftime('%d %B %Y (%A)') %></p>
+        <p><%= request.start_time.strftime('%I:%M%p') %> to <%= request.end_time.strftime('%I:%M%p') %></p>
+        <p><%= request.area %></p>
+      </div>
+      <div class="card-action">
+       <p><%= request.opening %> Openings</p>
+      </div>
+    </div>
+  </div>
+  <% end %>
+ </div>
+</div>
