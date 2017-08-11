@@ -3,7 +3,6 @@ class RewardsController < ApplicationController
   before_action :authenticate_account!, except: [:index, :show]
 
   def index
-    @four_rewards = Reward.last(4).reverse
     @all_rewards = Reward.all
   end
 

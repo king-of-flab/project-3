@@ -12,7 +12,7 @@
         <%= link_to "", request_path(request) %>
         <a href="/"><span class='div-link'></span></a>
         <div class="card-image">
-          <img src="<%= request.image%>">
+          <img src="<%= request.image %>">
         </div>
         <div class="card-content">
           <h5><%= request.name %></h5>
@@ -26,7 +26,7 @@
       </div>
     </div>
     <% end %>
-    
+
     <br><br>
     <h3 class='mainLeft'>Rewards</h3>
     <a href="/rewards" class='mainRight'>See all >></a>
@@ -37,7 +37,7 @@
           <%= link_to "", reward_path(reward) %>
           <a href="/"><span class='div-link'></span></a>
           <div class="card-image">
-            <img src="<%= request.image%>">
+            <img src="<%= reward.image%>">
           </div>
           <div class="card-content">
             <h5><%= reward.name %></h5>

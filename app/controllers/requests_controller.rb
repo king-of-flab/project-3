@@ -3,8 +3,7 @@ class RequestsController < ApplicationController
   before_action :authenticate_account!, except: [:index, :show]
 
   def index
-    @four_requests = Request.last(4).reverse
-    @requests = Request.all
+    @all_requests = Request.all
   end
 
   def create
