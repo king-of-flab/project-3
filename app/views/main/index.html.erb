@@ -9,8 +9,7 @@
     <% @four_requests.each do |request| %>
     <div class="col s3 m3">
       <div class="card hoverable">
-        <%= link_to "", request_path(request) %>
-        <a href="/"><span class='div-link'></span></a>
+        <a href="/requests/<%= request.id %>"><span class='div-link'></span></a>
         <div class="card-image">
           <img src="<%= request.image %>">
         </div>
@@ -34,8 +33,7 @@
     <% @four_rewards.each do |reward| %>
       <div class="col s3 m3">
         <div class="card hoverable">
-          <%= link_to "", reward_path(reward) %>
-          <a href="/"><span class='div-link'></span></a>
+          <a href="/rewards/<%= reward.id %>"><span class='div-link'></span></a>
           <div class="card-image">
             <img src="<%= reward.image%>">
           </div>
