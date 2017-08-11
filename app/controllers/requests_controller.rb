@@ -3,7 +3,10 @@ class RequestsController < ApplicationController
   before_action :authenticate_account!, except: [:index, :show]
 
   def index
-    @all_requests = Request.all
+    @search = RequestSearch.new(params[:search])
+    @search_requests = @search.scope
+
+    @all_areas = Request.distinct.pluck(:area)
   end
 
   def create

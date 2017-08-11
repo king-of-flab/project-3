@@ -22,17 +22,6 @@
       <%= f.label :UEN_or_identification_number %><br/>
     </div>
 
-    <div class="file-field input-field col s6 offset-s3">
-      <div class="btn">
-        <span>Upload image</span>
-        <%= f.file_field :verify_image %>
-      </div>
-
-      <div class="file-path-wrapper">
-        <%= f.text_field :verify_image, class: 'file-path' %>
-      </div>
-    </div>
-
     <div class="input-field col s6 offset-s3">
       <%= f.email_field :email %>
       <%= f.label :email %><br/>
@@ -49,6 +38,17 @@
     <div class="input-field col s6 offset-s3">
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
       <%= f.label :password_confirmation %><br/>
+    </div>
+
+    <div class="file-field input-field col s6 offset-s3">
+      <div class="btn">
+        <span>Upload profile picture</span>
+        <%= f.file_field :profile_image %>
+      </div>
+
+      <div class="file-path-wrapper">
+        <%= f.text_field :profile_image, class: 'file-path' %>
+      </div>
     </div>
 
     <%= f.hidden_field(:account_type, :value => params[:account_type]) %>
