@@ -59,6 +59,12 @@
 
         <%= f.hidden_field :account_type, :value => params[:account_type] %>
 
+        <% if params[:account_type] == "organisation" %>
+          <%= f.hidden_field :time_credit, value: "1000" %>
+        <% else %>
+          <%= f.hidden_field :time_credit, value: "0" %>
+        <% end %>
+
         <div class="input-field col s8 offset-s2">
           <div class="actions">
             <%= f.submit "Submit", class: 'btn waves-effect waves-light right formbttn' %>
