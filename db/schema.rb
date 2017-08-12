@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20170810141316) do
     t.string "name"
     t.integer "tel"
     t.string "identification"
-    t.string "profile_image"
     t.integer "time_credit"
+    t.string "verify_image"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
