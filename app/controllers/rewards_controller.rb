@@ -42,6 +42,18 @@ class RewardsController < ApplicationController
     redirect_to my_rewards_path
   end
 
+  def redeem
+    current_reward = Reward.find(params[:id])
+    current_reward.accounts << current_account
+    current_reward.opening -= 1
+    current_account.time_credit -= current_reward.unit_time_credit
+    creator = Account.find(current_reward.created_by)
+    creator.time_credit += current_reward.unit_time_credit
+    if current_reward.save && current_account.save && creator.save
+      redirect_to my_rewards_path
+    end
+  end
+
   private
 
   def reward_params

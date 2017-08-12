@@ -48,6 +48,13 @@ class RequestsController < ApplicationController
     redirect_to my_requests_path
   end
 
+  def register
+    current_request = Request.find(params[:id])
+    current_request.accounts << current_account
+    current_request.opening -= 1
+    redirect_to my_requests_path if current_request.save
+  end
+
   private
 
   def request_params

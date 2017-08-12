@@ -13,4 +13,8 @@ Rails.application.routes.draw do
 
   get 'my_rewards', to: 'accounts#rewards'
 
+  post 'requests/:id/register', to: 'requests#register', as: 'register_request'
+
+  post 'rewards/:id/redeem', to: 'rewards#redeem', as: 'redeem_reward'
+
 end

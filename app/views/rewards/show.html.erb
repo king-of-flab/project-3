@@ -32,9 +32,7 @@
     <br>
 
     <% if @accountsid.select{ |accountid| accountid == current_account.id }.length == 0 && current_account.id != @creator.id && @current_reward.opening != 0 %>
-    <button class="btn waves-effect waves-light" type="submit" name="action">
-      Register<i class="material-icons right">create</i>
-    </button>
+    <%= button_to "redeem", redeem_reward_path, class: "btn waves-effect waves-light" %>
     <% end %>
 
     <% if current_account == @creator %>
