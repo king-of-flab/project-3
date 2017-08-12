@@ -1,58 +1,93 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container">
+  <div class="row">
+    <div class="section">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+      <div class="col s10 offset-s1 formtemplate">
+        <br>
+        <h4 class="center">Edit
+          <%= resource_name.to_s.humanize %></h4>
 
-  <div class="input-field col s6 offset-s3">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="input-field col s8 offset-s2">
+          <i class="material-icons prefix">email</i>
+          <%= f.email_field :email, autofocus: true %>
+          <%= f.label :email %><br/>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for:
+          <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="input-field col s8 offset-s2">
+          <i class="material-icons prefix">account_circle</i>
+          <%= f.text_field :name, autofocus: true %>
+          <%= f.label :name %><br/>
+        </div>
+
+        <div class="input-field col s8 offset-s2">
+          <i class="material-icons prefix">call</i>
+          <%= f.telephone_field :tel %>
+          <%= f.label :tel %><br/>
+        </div>
+
+        <div class="input-field col s8 offset-s2">
+          <i class="material-icons prefix">card_membership
+          </i>
+          <%= f.text_field :identification %>
+          <%= f.label :UEN_or_identification_number %><br/>
+        </div>
+
+        <div class="input-field col s8 offset-s2">
+          <i class="material-icons prefix">lock</i>
+          <%= f.label :password, "Password (leave blank if you don't want to change it)" %>
+          <%= f.password_field :password, autocomplete: "off" %>
+          <% if @minimum_password_length %>
+          <br/>
+          <em><%= @minimum_password_length %>
+            characters minimum</em>
+          <% end %>
+        </div>
+
+        <div class="input-field col s8 offset-s2">
+          <i class="material-icons prefix">lock</i>
+          <%= f.label :password_confirmation %><br/>
+          <%= f.password_field :password_confirmation, autocomplete: "off" %>
+        </div>
+
+        <div class="input-field col s8 offset-s2">
+          <i class="material-icons prefix">lock_outline</i>
+          <%= f.label :current_password, "Current Password (do not leave blank)" %>
+          <%= f.password_field :current_password, autocomplete: "off" %>
+        </div>
+
+        <div class="input-field col s8 offset-s2">
+          <div class="actions">
+            <%= f.submit "Update", class: 'btn waves-effect waves-light right formbttn' %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+
+    </div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="input-field col s6 offset-s3">
-    <%= f.text_field :name, autofocus: true %>
-    <%= f.label :name %><br/>
-  </div>
-
-  <div class="input-field col s6 offset-s3">
-    <%= f.telephone_field :tel %>
-    <%= f.label :tel %><br/>
-  </div>
-
-<div class="input-field col s6 offset-s3">
-  <%= f.text_field :identification %>
-  <%= f.label :UEN_or_identification_number %><br/>
 </div>
 
-  <div class="input-field col s6 offset-s3">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+<div class="container">
+  <div class="row">
+    <div class="section">
+
+      <div class="col s10 offset-s1 formtemplate center">
+        <br>
+        <h4>Delete Account</h4>
+
+        <p>Unhappy?
+          <%= button_to "Delete my account", registration_path(resource_name), class:'btn waves-effect waves-light center formbttn', data: { confirm: "Are you sure?" }, method: :delete %></p>
+        <!-- <%= link_to "Back", :back %> -->
+      </div>
+
+    </div>
   </div>
-
-  <div class="input-field col s6 offset-s3">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="input-field col s6 offset-s3">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
