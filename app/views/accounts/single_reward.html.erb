@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row">
 
+  <div class="row">
     <div class="col s12 m6">
       <div class="card">
         <div class="card-image">
@@ -31,29 +31,28 @@
     <p><%= @single_reward.description %></p>
 
     <div class="row">
-
+      <% if current_account == @creator %>
       <h4>List of people attending :</h4>
-      <% @reward_list.each do |list| %>
-      <ul>
-        <% if @current.name == list.name %>
-        <h5>
-          You are attending this event
-        </h5>
-        <% else %>
-        <li>
-          Name:
-          <%= list.name %>
-        </li>
-        <li>
-          Contact:
-          <%= list.tel %>
-        </li>
-        <li>
-          Email:
-          <%= list.email %>
-        </li>
-        <% end %>
-      </ul>
+      <table class="highlight">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @reward_list.each do |list| %>
+          <tr>
+            <td><%= list.name %></td>
+            <td><%= list.tel %></td>
+            <td><%= list.email %></td>
+          </tr>
+          <% end %>
+
+        </tbody>
+      </table>
       <% end %>
     </div>
 

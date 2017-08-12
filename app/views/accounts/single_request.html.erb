@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row">
 
+  <div class="row">
     <div class="col s12 m6">
       <div class="card">
         <div class="card-image">
@@ -32,30 +32,30 @@
 
     <div class="row">
 
-      <% if @current.name == @request_list.first.name %>
-      <h4>
-        <u>You are hosting this event</u>
-      </h4>
+      <% if current_account == @creator %>
+
+      <h4>List of people attending :</h4>
+
+      <table class="highlight">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @request_list.each do |list| %>
+          <tr>
+            <td><%= list.name %></td>
+            <td><%= list.tel %></td>
+            <td><%= list.email %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
       <% end %>
 
-      <h5>List of people attending :</h5>
-      <% @request_list.each do |list| %>
-      <ul>
-        <li>
-          Name:
-          <%= list.name %>
-        </li>
-        <li>
-          Contact:
-          <%= list.tel %>
-        </li>
-        <li>
-          Email:
-          <%= list.email %>
-        </li>
-        <% end %>
-      </ul>
     </div>
-
   </div>
-</div>
