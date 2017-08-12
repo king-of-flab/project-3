@@ -10,7 +10,7 @@ gem 'materialize-sass'
 gem 'jquery-rails'
 gem 'devise'
 gem 'cloudinary'
-# gem 'twilio-ruby'
+gem 'twilio-ruby'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'

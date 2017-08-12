@@ -1,5 +1,4 @@
 class AccountsController < ApplicationController
-<<<<<<< HEAD
 
   def show
   end
@@ -28,9 +27,4 @@ class AccountsController < ApplicationController
     @reward_list = @single_reward.accounts
   end
 
-=======
-  def show
-    @current_user = Account.find(params[:id])
-  end
->>>>>>> 2080fad9897482a233ab8b0908838daee859f24e
 end
