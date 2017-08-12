@@ -1,23 +1,15 @@
 class AccountsController < ApplicationController
 
   def requests
-    @all_requests = current_account.requests
-  end
-
-  def single_request
-    @single_request = Request.find(params[:id])
-    @creator = Account.find(@single_request.created_by)
-    @request_list = @single_request.accounts
+    all_requests = Request.all
+    @requests_created = all_requests.select { |request| request.created_by == current_account.id }
+    @requests_registered = current_account.requests
   end
 
   def rewards
-    @all_rewards = current_account.rewards
-  end
-
-  def single_reward
-    @single_reward = Reward.find(params[:id])
-    @creator = Account.find(@single_reward.created_by)
-    @reward_list = @single_reward.accounts
+    all_rewards = Reward.all
+    @rewards_created = all_rewards.select { |reward| reward.created_by == current_account.id }
+    @rewards_registered = current_account.rewards
   end
 
 end

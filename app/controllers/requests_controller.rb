@@ -25,6 +25,12 @@ class RequestsController < ApplicationController
   def show
     @current_request = Request.find(params[:id])
     @creator = Account.find(@current_request.created_by)
+    @accountsid = []
+    if @current_request.accounts.length != 0
+      @current_request.accounts.each do |account|
+        @accountsid << account.id
+      end
+    end
   end
 
   def edit
@@ -39,10 +45,7 @@ class RequestsController < ApplicationController
 
   def destroy
     Request.destroy(params[:id])
-    redirect_to requests_path
-    # redirect to profile page once profile page is up
-    # place the delete button in the profile page
-    # <%= button_to "delete", request_path(@current_request), method: :delete, class: "btn waves-effect waves-light" %>
+    redirect_to my_requests_path
   end
 
   private

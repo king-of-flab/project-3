@@ -2,31 +2,72 @@
   <div class="row">
     <h3>My Requests</h3>
 
-    <% @all_requests.each do |request| %>
-    <div class="col s3 m3">
-      <div class="card hoverable">
-        <%#= link_to "single", my_request_path %>
-        <a href="/my_requests/<%= request.id %>">
-
-          <span class='div-link'></span>
-        </a>
-        <div class="card-image">
-          <img src="<%= request.image %>">
-        </div>
-        <div class="card-content">
-          <h5><%= request.name %></h5>
-          <p><%= request.date.strftime('%d %B %Y (%A)') %></p>
-          <p><%= request.start_time.strftime('%I:%M%p') %>
-            to
-            <%= request.end_time.strftime('%I:%M%p') %></p>
-          <p><%= request.area %></p>
-        </div>
-        <div class="card-action">
-          <p><%= request.opening %>
-            Openings</p>
-        </div>
+    <div class="row">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s3">
+            <a href="#created">Created</a>
+          </li>
+          <li class="tab col s3">
+            <a href="#registered">Registered</a>
+          </li>
+        </ul>
       </div>
+
+      <div id="created" class="col s12">
+        <% @requests_created.each do |request| %>
+        <div class="col s3 m3">
+          <div class="card hoverable">
+            <a href="/requests/<%= request.id %>">
+              <span class='div-link'></span>
+            </a>
+            <div class="card-image">
+              <img src="<%= request.image %>">
+            </div>
+            <div class="card-content">
+              <h5><%= request.name %></h5>
+              <p><%= request.date.strftime('%d %B %Y (%A)') %></p>
+              <p><%= request.start_time.strftime('%I:%M%p') %>
+                to
+                <%= request.end_time.strftime('%I:%M%p') %></p>
+              <p><%= request.area %></p>
+            </div>
+            <div class="card-action">
+              <p><%= request.opening %>
+                Openings</p>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+
+      <div id="registered" class="col s12">
+        <% @requests_registered.each do |request| %>
+        <div class="col s3 m3">
+          <div class="card hoverable">
+            <a href="/requests/<%= request.id %>">
+              <span class='div-link'></span>
+            </a>
+            <div class="card-image">
+              <img src="<%= request.image %>">
+            </div>
+            <div class="card-content">
+              <h5><%= request.name %></h5>
+              <p><%= request.date.strftime('%d %B %Y (%A)') %></p>
+              <p><%= request.start_time.strftime('%I:%M%p') %>
+                to
+                <%= request.end_time.strftime('%I:%M%p') %></p>
+              <p><%= request.area %></p>
+            </div>
+            <div class="card-action">
+              <p><%= request.opening %>
+                Openings</p>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+
     </div>
-    <% end %>
   </div>
 </div>
