@@ -1,16 +1,16 @@
 <div class="container">
-
   <img src="/assets/Logo.png">
-
   <div class="row">
 
     <h3 class='mainLeft'>Rewards</h3>
-    <a href="/rewards" class='mainRight'>See all >></a>
+    <a href="#" class='mainRight'>See all</a>
 
     <% @all_rewards.each do |reward| %>
     <div class="col s3 m3">
       <div class="card hoverable">
-        <a href="/rewards/<%= reward.id %>">
+        <!-- <a href="/rewards/<%= reward.id %>"> -->
+        <a href="/my_rewards/<%= reward.id %>">
+
           <span class='div-link'></span>
         </a>
         <div class="card-image">

@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-image">
+          <img src="<%= @single_reward.image%>">
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m6">
+      <h3><%= @single_reward.name %></h3>
+      <p>Date:
+        <%= @single_reward.date.strftime('%d %B %Y (%A)') %>
+        <p>Time:
+          <%= @single_reward.start_time.strftime('%I:%M%p') %>
+          to
+          <%= @single_reward.end_time.strftime('%I:%M%p') %></p>
+        <p>Address:
+          <%= @single_reward.address %></p>
+        <p>Openings:
+          <%= @single_reward.opening %></p>
+        <p>Time Credits:
+          <%= @single_reward.unit_time_credit %></p>
+        <p>By:
+          <%= @creator.name %></p>
+      </div>
+    </div>
+
+    <p><%= @single_reward.description %></p>
+
+    <div class="row">
+
+      <h4>List of people attending :</h4>
+      <% @reward_list.each do |list| %>
+      <ul>
+        <% if @current.name == list.name %>
+        <h5>
+          You are attending this event
+        </h5>
+        <% else %>
+        <li>
+          Name:
+          <%= list.name %>
+        </li>
+        <li>
+          Contact:
+          <%= list.tel %>
+        </li>
+        <li>
+          Email:
+          <%= list.email %>
+        </li>
+        <% end %>
+      </ul>
+      <% end %>
+    </div>
+
+  </div>
+</div>

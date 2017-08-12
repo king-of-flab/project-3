@@ -7,16 +7,18 @@ Rails.application.routes.draw do
 
   devise_for :accounts
 
-  resources :rewards do
-    resources :accounts, only: [:show], to: 'accounts#show'
-  end
-
-  resources :'my_rewards', only: [:index], to: 'accounts#rewards'
-
   resources :requests do
     resources :accounts, only: [:show], to: 'accounts#show'
   end
 
-  resources :'my_requests', only: [:index], to: 'accounts#requests'
+  get 'my_requests', to: 'accounts#requests'
+  get 'my_requests/:id', to: 'accounts#single_request'
+
+  resources :rewards do
+    resources :accounts, only: [:show], to: 'accounts#show'
+  end
+
+  get 'my_rewards', to: 'accounts#rewards'
+  get 'my_rewards/:id', to: 'accounts#single_reward'
 
 end

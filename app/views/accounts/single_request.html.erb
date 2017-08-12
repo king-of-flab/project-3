@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-image">
+          <img src="<%= @single_request.image%>">
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m6">
+      <h3><%= @single_request.name %></h3>
+      <p>Date:
+        <%= @single_request.date.strftime('%d %B %Y (%A)') %>
+        <p>Time:
+          <%= @single_request.start_time.strftime('%I:%M%p') %>
+          to
+          <%= @single_request.end_time.strftime('%I:%M%p') %></p>
+        <p>Address:
+          <%= @single_request.address %></p>
+        <p>Openings:
+          <%= @single_request.opening %></p>
+        <p>Time Credits:
+          <%= @single_request.unit_time_credit %></p>
+        <p>By:
+          <%= @creator.name %></p>
+      </div>
+    </div>
+
+    <p><%= @single_request.description %></p>
+
+    <div class="row">
+
+      <% if @current.name == @request_list.first.name %>
+      <h4>
+        <u>You are hosting this event</u>
+      </h4>
+      <% end %>
+
+      <h5>List of people attending :</h5>
+      <% @request_list.each do |list| %>
+      <ul>
+        <li>
+          Name:
+          <%= list.name %>
+        </li>
+        <li>
+          Contact:
+          <%= list.tel %>
+        </li>
+        <li>
+          Email:
+          <%= list.email %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+
+  </div>
+</div>

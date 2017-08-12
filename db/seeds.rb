@@ -45,7 +45,7 @@ end
   tel: "12345678",
   identification: "S1234567A",
   time_credit: "100",
-  email: "admin#{i}@gmail.com",
+  email: "admin#{i+1}@gmail.com",
   password: "12345678"
   })
 end
