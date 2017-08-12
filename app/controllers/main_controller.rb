@@ -5,4 +5,9 @@ class MainController < ApplicationController
     @four_rewards = Reward.last(4).reverse
   end
 
+  def show
+    @request = Request.find(params[:id])
+    @reward = Reward.find(params[:id])
+  end
+
 end

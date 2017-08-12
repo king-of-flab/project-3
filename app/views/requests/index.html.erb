@@ -1,24 +1,34 @@
 <div class="container">
   <div class="row">
+
     <div class="col s3 m3">
-      <input type="text" class="datepicker">
+      <i class="material-icons prefix">date_range</i>
+      <%= form_tag requests_path, method: :get do %>
+      <%= text_field_tag('search[date_from]',
+      nil, placeholder: 'From date', class: 'datepicker')  %>
+      <%= text_field_tag 'search[date_to]', nil, placeholder: 'To date', class: 'datepicker' %>
+      <% end %>
+      <%= submit_tag 'Search', class: 'btn waves-effect waves-light formbttn' %>
     </div>
+
+
     <div class="input-field col s3">
       <select multiple>
         <option value="" disabled selected>Location</option>
-        <option value="1">East</option>
-        <option value="2">West</option>
-        <option value="3">North</option>
+          <% @all_areas.each do |area| %>
+          <option value="<%= area %>"><%= area %></option>
+          <% end %>
       </select>
         <label>Filter location</label>
     </div>
+  </div>
 
-
-<% @all_requests.each do |request| %>
-  <div class="col s3 m3">
-    <div class="card hoverable">
-      <%= link_to "", request_path(request) %>
-      <a href="/"><span class='div-link'></span></a>
+  <div class="row">
+    <% @search_requests.each do |request| %>
+    <div class="col s3 m3">
+      <div class="card hoverable">
+        <%= link_to "", request_path(request) %>
+        <a href="/requests/<%= request.id %>"><span class='div-link'></span></a>
       <div class="card-image">
         <img src="<%= request.image%>">
       </div>
