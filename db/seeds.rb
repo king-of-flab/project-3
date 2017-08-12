@@ -38,14 +38,14 @@ end
   })
 end
 
-5.times do |i|
-  Account.create({
-  account_type: "individual",
-  name: "admin#{i+1}",
-  tel: "12345678",
-  identification: "S1234567A",
-  time_credit: "100",
-  email: "admin#{i}@gmail.com",
-  password: "12345678"
-  })
-end
+# 5.times do |i|
+#   Account.create({
+#   account_type: "individual",
+#   name: "admin#{i+1}",
+#   tel: "12345678",
+#   identification: "S1234567A",
+#   time_credit: "100",
+#   email: "admin#{i}@gmail.com",
+#   password: "12345678"
+#   })
+# end
