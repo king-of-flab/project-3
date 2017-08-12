@@ -8,9 +8,11 @@
           <li class="tab col s3">
             <a href="#created">Created</a>
           </li>
+          <% if current_account.account_type == "individual" %>
           <li class="tab col s3">
             <a href="#registered">Registered</a>
           </li>
+          <% end %>
         </ul>
       </div>
 

@@ -1,5 +1,7 @@
 class AccountsController < ApplicationController
 
+  before_action :authenticate_account!
+
   def requests
     all_requests = Request.all
     @requests_created = all_requests.select { |request| request.created_by == current_account.id }

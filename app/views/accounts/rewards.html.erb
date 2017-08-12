@@ -5,12 +5,15 @@
     <div class="row">
       <div class="col s12">
         <ul class="tabs">
+          <% if current_account.account_type == "organisation" %>
           <li class="tab col s3">
             <a href="#created">Created</a>
           </li>
+          <% else %>
           <li class="tab col s3">
             <a href="#registered">Registered</a>
           </li>
+          <% end %>
         </ul>
       </div>
 

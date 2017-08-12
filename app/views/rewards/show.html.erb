@@ -31,7 +31,7 @@
     <p><%= @current_reward.description %></p>
     <br>
 
-    <% if @accountsid.select{ |accountid| accountid == current_account.id }.length == 0 && current_account.id != @creator.id %>
+    <% if @accountsid.select{ |accountid| accountid == current_account.id }.length == 0 && current_account.id != @creator.id && @current_reward.opening != 0 %>
     <button class="btn waves-effect waves-light" type="submit" name="action">
       Register<i class="material-icons right">create</i>
     </button>
@@ -59,7 +59,10 @@
       </tbody>
     </table>
     <br>
+
+    <% if @accountsid.length == 0 %>
     <%= button_to "delete reward", reward_path(@current_reward), method: :delete, class: "btn waves-effect waves-light" %>
+    <% end %>
     <% end %>
 
   </div>
