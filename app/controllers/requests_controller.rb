@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
 
-  before_action :authenticate_account!, except: [:index, :show]
+  before_action :authenticate_account!, except: [:index]
 
   def index
     @search = RequestSearch.new(params[:search])

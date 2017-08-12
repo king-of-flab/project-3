@@ -1,6 +1,6 @@
 class RewardsController < ApplicationController
 
-  before_action :authenticate_account!, except: [:index, :show]
+  before_action :authenticate_account!, except: [:index]
 
   def index
     @all_rewards = Reward.all
