@@ -8,45 +8,51 @@
       <%= devise_error_messages! %>
 
       <div class="input-field col s6 offset-s3">
+        <i class="material-icons prefix">account_circle</i>
         <%= f.text_field :name, autofocus: true %>
         <%= f.label :name %><br/>
       </div>
 
       <div class="input-field col s6 offset-s3">
+        <i class="material-icons prefix">contact_phone</i>
         <%= f.telephone_field :tel %>
         <%= f.label :tel %><br/>
       </div>
 
     <div class="input-field col s6 offset-s3">
+      <i class="material-icons prefix">perm_identity</i>
       <%= f.text_field :identification %>
       <%= f.label :UEN_or_identification_number %><br/>
     </div>
 
     <div class="input-field col s6 offset-s3">
+      <i class="material-icons prefix">email</i>
       <%= f.email_field :email %>
       <%= f.label :email %><br/>
     </div>
 
     <div class="input-field col s6 offset-s3">
       <% if @minimum_password_length %>
-
+      <i class="material-icons prefix">enhanced_encryption</i>
       <%= f.password_field :password, autocomplete: "off" %>
       <%= f.label :password_min_6_char %>
       <% end %><br/>
     </div>
 
     <div class="input-field col s6 offset-s3">
+      <i class="material-icons prefix">edit</i>
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
       <%= f.label :password_confirmation %><br/>
     </div>
 
     <div class="file-field input-field col s6 offset-s3">
-      <div class="btn">
+      <div class="btn right">
         <span>Upload profile picture</span>
         <%= f.file_field :profile_image %>
       </div>
 
       <div class="file-path-wrapper">
+        <i class="material-icons prefix">add_a_photo</i>
         <%= f.text_field :profile_image, class: 'file-path' %>
       </div>
     </div>
