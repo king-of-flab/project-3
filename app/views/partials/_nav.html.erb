@@ -33,10 +33,13 @@
         <!-- Dropdown Trigger -->
         <% if current_account %>
         <li>
-          <a class="dropdown-button" href="#!" data-activates="dropdown1">Hello, <%= current_account.name %><i class="material-icons right">arrow_drop_down</i>
+          <a class="dropdown-button" href="#!" data-activates="dropdown1">Hello,
+            <%= current_account.name %>
+            <i class="material-icons right">arrow_drop_down</i>
           </a>
         </li>
-        <li>&nbsp;<%= current_account.time_credit %> credits &nbsp;&nbsp;</li>
+        <li>&nbsp;<%= current_account.time_credit %>
+          credits &nbsp;&nbsp;</li>
 
         <li>
           <%= link_to "Logout", destroy_account_session_path, method: :delete %>
