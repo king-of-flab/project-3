@@ -8,8 +8,8 @@
         <%= form_for @new_request do |f| %>
 
         <div class="input-field col s8 offset-s2">
-          <i class="material-icons prefix">event</i>
-          <%= f.text_field :name, required: true %>
+          <i class="material-icons prefix">local_activity</i>
+          <%= f.text_field :name, required: true, autofocus: true %>
           <%= f.label :name %>
         </div>
 

@@ -7,6 +7,11 @@
     <li>
       <%= link_to "Create Request", new_request_path %>
     </li>
+    <% if current_account && current_account.account_type == "organisation" %>
+    <li>
+      <%= link_to "Create Reward", new_reward_path %>
+    </li>
+    <% end %>
     <li>
       <%= link_to "My Requests", my_requests_path %>
     </li>
