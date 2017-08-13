@@ -5,8 +5,16 @@ Rails.application.routes.draw do
 
   devise_for :accounts
 
+  resources :requests
+
   resources :rewards
 
-  resources :requests
+  get 'my_requests', to: 'accounts#requests'
+
+  get 'my_rewards', to: 'accounts#rewards'
+
+  post 'requests/:id/register', to: 'requests#register', as: 'register_request'
+
+  post 'rewards/:id/redeem', to: 'rewards#redeem', as: 'redeem_reward'
 
 end

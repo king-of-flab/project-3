@@ -1,6 +1,6 @@
 class RewardsController < ApplicationController
 
-  before_action :authenticate_account!, except: [:index, :show]
+  before_action :authenticate_account!, except: [:index]
 
   def index
     @all_rewards = Reward.all
@@ -19,6 +19,12 @@ class RewardsController < ApplicationController
   def show
     @current_reward = Reward.find(params[:id])
     @creator = Account.find(@current_reward.created_by)
+    @accountsid = []
+    if @current_reward.accounts.length != 0
+      @current_reward.accounts.each do |account|
+        @accountsid << account.id
+      end
+    end
   end
 
   def edit
@@ -33,10 +39,19 @@ class RewardsController < ApplicationController
 
   def destroy
     Reward.destroy(params[:id])
-    redirect_to rewards_path
-    # redirect to profile page once profile page is up
-    # place the delete button in the profile page
-    # <%= button_to "delete", reward_path(@current_reward), method: :delete, class: "btn waves-effect waves-light" %>
+    redirect_to my_rewards_path
+  end
+
+  def redeem
+    current_reward = Reward.find(params[:id])
+    current_reward.accounts << current_account
+    current_reward.opening -= 1
+    current_account.time_credit -= current_reward.unit_time_credit
+    creator = Account.find(current_reward.created_by)
+    creator.time_credit += current_reward.unit_time_credit
+    if current_reward.save && current_account.save && creator.save
+      redirect_to my_rewards_path
+    end
   end
 
   private

@@ -2,16 +2,21 @@
   <!-- Dropdown Structure -->
   <ul id="dropdown1" class="dropdown-content">
     <li>
-      <a href="#!">Update Particulars</a>
+      <%= link_to "Update Particulars", edit_account_registration_path %>
     </li>
     <li>
-      <a href="/requests/new">Create Request</a>
+      <%= link_to "Create Request", new_request_path %>
+    </li>
+    <% if current_account && current_account.account_type == "organisation" %>
+    <li>
+      <%= link_to "Create Reward", new_reward_path %>
+    </li>
+    <% end %>
+    <li>
+      <%= link_to "My Requests", my_requests_path %>
     </li>
     <li>
-      <a href="#!">My Requests</a>
-    </li>
-    <li>
-      <a href="#!">My Rewards</a>
+      <%= link_to "My Rewards", my_rewards_path %>
     </li>
   </ul>
   <nav>
@@ -33,10 +38,13 @@
         <!-- Dropdown Trigger -->
         <% if current_account %>
         <li>
-          <a class="dropdown-button" href="#!" data-activates="dropdown1">Hello, <%= current_account.name %><i class="material-icons right">arrow_drop_down</i>
+          <a class="dropdown-button" href="#!" data-activates="dropdown1">Hello,
+            <%= current_account.name %>
+            <i class="material-icons right">arrow_drop_down</i>
           </a>
         </li>
-        <li>&nbsp;<%= current_account.time_credit %> credits &nbsp;&nbsp;</li>
+        <li>&nbsp;<%= current_account.time_credit %>
+          credits &nbsp;&nbsp;</li>
 
         <li>
           <%= link_to "Logout", destroy_account_session_path, method: :delete %>
