@@ -8,14 +8,14 @@
         <%= form_for @new_reward do |f| %>
 
         <div class="input-field col s8 offset-s2">
-          <i class="material-icons prefix">event</i>
-          <%= f.text_field :name %>
+          <i class="material-icons prefix">local_activity</i>
+          <%= f.text_field :name, required: true, autofocus: true %>
           <%= f.label :name %>
         </div>
 
         <div class="input-field col s8 offset-s2">
           <i class="material-icons prefix">date_range</i>
-          <%= f.text_field :date, class: 'datepicker' %>
+          <%= f.text_field :date, required: true, class: 'datepicker' %>
           <%= f.label :date %>
         </div>
 
@@ -23,12 +23,12 @@
           <div class="row">
             <div class="input-field col s6">
               <i class="material-icons prefix">access_time</i>
-              <%= f.text_field :start_time, class: 'timepicker' %>
+              <%= f.text_field :start_time, required: true, class: 'timepicker' %>
               <%= f.label :start_time, "Start Time" %>
             </div>
 
             <div class="input-field col s6">
-              <%= f.text_field :end_time, class: 'timepicker' %>
+              <%= f.text_field :end_time, required: true, class: 'timepicker' %>
               <%= f.label :end_time, "End Time" %>
             </div>
           </div>
@@ -38,12 +38,12 @@
           <div class="row">
             <div class="input-field col s8">
               <i class="material-icons prefix">location_on</i>
-              <%= f.text_field :address %>
+              <%= f.text_field :address, required: true %>
               <%= f.label :address %>
             </div>
 
             <div class="input-field col s4">
-              <%= f.text_field :area, class: "autocomplete" %>
+              <%= f.text_field :area, required: true, class: "autocomplete" %>
               <%= f.label :area %>
             </div>
           </div>
@@ -51,26 +51,26 @@
 
         <div class="input-field col s8 offset-s2">
           <i class="material-icons prefix">people</i>
-          <%= f.number_field :opening, in: 1..500 %>
+          <%= f.number_field :opening, in: 1..500, required: true %>
           <%= f.label :opening, "No. of Openings" %>
         </div>
 
         <div class="input-field col s8 offset-s2">
           <i class="material-icons prefix">timer</i>
-          <%= f.number_field :unit_time_credit, in: 1..50 %>
+          <%= f.number_field :unit_time_credit, in: 1..50, required: true %>
           <%= f.label :unit_time_credit, "Time Credit Per Pax" %>
         </div>
 
         <div class="input-field col s8 offset-s2">
           <i class="material-icons prefix">description</i>
-          <%= f.text_area :description, class: 'materialize-textarea' %>
+          <%= f.text_area :description, required: true, class: 'materialize-textarea' %>
           <%= f.label :description %>
         </div>
 
         <div class="file-field input-field col s8 offset-s2">
           <div class="btn">
             <span>Image</span>
-            <%= f.file_field :image %>
+            <%= f.file_field :image, required: true %>
           </div>
 
           <div class="file-path-wrapper">
