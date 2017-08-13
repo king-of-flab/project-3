@@ -86,8 +86,9 @@
   margin: 0 auto
 }
 
-.slides img {
-  height: 450px
+.slider .slides li img {
+    background-size:100% auto !important;
+    background-position: no-repeat center center !important;
 }
 
 // Put Req/Rew left and SeeAll right
