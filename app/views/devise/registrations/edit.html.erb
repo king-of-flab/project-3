@@ -2,7 +2,7 @@
   <div class="row">
     <div class="section">
 
-      <div class="col s10 offset-s1 formtemplate">
+      <div class="col s8 offset-s2 formtemplate">
         <br>
         <h4 class="center">Edit
           <%= resource_name.to_s.humanize %></h4>
@@ -11,8 +11,14 @@
         <%= devise_error_messages! %>
 
         <div class="input-field col s8 offset-s2">
+          <i class="material-icons prefix">account_circle</i>
+          <%= f.text_field :name, required: true, autofocus: true %>
+          <%= f.label :name %><br/>
+        </div>
+
+        <div class="input-field col s8 offset-s2">
           <i class="material-icons prefix">email</i>
-          <%= f.email_field :email, autofocus: true %>
+          <%= f.email_field :email, required: true %>
           <%= f.label :email %><br/>
         </div>
 
@@ -22,45 +28,34 @@
         <% end %>
 
         <div class="input-field col s8 offset-s2">
-          <i class="material-icons prefix">account_circle</i>
-          <%= f.text_field :name, autofocus: true %>
-          <%= f.label :name %><br/>
-        </div>
-
-        <div class="input-field col s8 offset-s2">
           <i class="material-icons prefix">call</i>
-          <%= f.telephone_field :tel %>
-          <%= f.label :tel %><br/>
+          <%= f.telephone_field :tel, required: true %>
+          <%= f.label :tel, "Contact" %><br/>
         </div>
 
         <div class="input-field col s8 offset-s2">
           <i class="material-icons prefix">card_membership
           </i>
-          <%= f.text_field :identification %>
-          <%= f.label :UEN_or_identification_number %><br/>
+          <%= f.text_field :identification, required: true %>
+          <%= f.label :identification, "UEN or NRIC No" %><br/>
         </div>
 
         <div class="input-field col s8 offset-s2">
           <i class="material-icons prefix">lock</i>
-          <%= f.label :password, "Password (leave blank if you don't want to change it)" %>
           <%= f.password_field :password, autocomplete: "off" %>
-          <% if @minimum_password_length %>
-          <br/>
-          <em><%= @minimum_password_length %>
-            characters minimum</em>
-          <% end %>
+          <%= f.label :password, "New Password (min 6 chars)" %><br/>
         </div>
 
         <div class="input-field col s8 offset-s2">
           <i class="material-icons prefix">lock</i>
-          <%= f.label :password_confirmation %><br/>
           <%= f.password_field :password_confirmation, autocomplete: "off" %>
+          <%= f.label :password_confirmation, "New Password Confirmation" %><br/>
         </div>
 
         <div class="input-field col s8 offset-s2">
           <i class="material-icons prefix">lock_outline</i>
+          <%= f.password_field :current_password, required: true, autocomplete: "off" %>
           <%= f.label :current_password, "Current Password (do not leave blank)" %>
-          <%= f.password_field :current_password, autocomplete: "off" %>
         </div>
 
         <div class="input-field col s8 offset-s2">
@@ -79,7 +74,7 @@
   <div class="row">
     <div class="section">
 
-      <div class="col s10 offset-s1 formtemplate center">
+      <div class="col s8 offset-s2 formtemplate center">
         <br>
         <h4>Delete Account</h4>
 

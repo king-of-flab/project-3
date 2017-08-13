@@ -65,14 +65,16 @@ end
   })
 end
 
-5.times do |i|
-  account = Account.find(1)
-  reward = Reward.find(i+1)
-  account.rewards << reward
-end
-
-5.times do |i|
-  account = Account.find(1)
-  request = Request.find(i+1)
-  account.requests << request
-end
+# # participant 1 redeemed all 5 rewards
+# 5.times do |i|
+#   account = Account.find(1)
+#   reward = Reward.find(i+1)
+#   account.rewards << reward
+# end
+#
+# # participant 1 registered for all 5 requests
+# 5.times do |i|
+#   account = Account.find(1)
+#   request = Request.find(i+1)
+#   account.requests << request
+# end

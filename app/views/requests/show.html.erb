@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row">
 
+  <div class="row">
     <div class="col s12 m6">
       <div class="card">
         <div class="card-image">
@@ -29,8 +29,41 @@
     </div>
 
     <p><%= @current_request.description %></p>
-    <button class="btn waves-effect waves-light" type="submit" name="action">Register
-      <i class="material-icons right">create</i>
-    </button>
+    <br>
+
+    <% if @accountsid.select{ |accountid| accountid == current_account.id }.length == 0 && current_account.id != @creator.id && @current_request.opening != 0 %>
+    <%= button_to "register", register_request_path, class: "btn waves-effect waves-light" %>
+    <% end %>
+
+    <% if current_account == @creator %>
+    <h4>List of Attendees</h4>
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Contact</th>
+          <th>Email</th>
+          <th>Attendance</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @current_request.accounts.each do |account| %>
+        <tr>
+          <td><%= account.name %></td>
+          <td><%= account.tel %></td>
+          <td><%= account.email %></td>
+          <td><%= button_to "attended", "", class: "btn waves-effect waves-light" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+
+    <% if @accountsid.length == 0 %>
+    <%= button_to "delete request", request_path(@current_request), method: :delete, class: "btn waves-effect waves-light" %>
+    <% end %>
+    <% end %>
+
   </div>
   <br>

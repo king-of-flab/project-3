@@ -10,9 +10,11 @@ Rails.application.routes.draw do
   resources :rewards
 
   get 'my_requests', to: 'accounts#requests'
-  get 'my_requests/:id', to: 'accounts#single_request'
 
   get 'my_rewards', to: 'accounts#rewards'
-  get 'my_rewards/:id', to: 'accounts#single_reward'
+
+  post 'requests/:id/register', to: 'requests#register', as: 'register_request'
+
+  post 'rewards/:id/redeem', to: 'rewards#redeem', as: 'redeem_reward'
 
 end
