@@ -1,17 +1,20 @@
 class RequestSearch
   attr_reader :date_from, :date_to
 
-  def initialize(params)
-    params ||= {}
-    date_from = parsed_date(params[:date_from], Date.today.to_s)
-    date_to = parsed_date(params[:date_to], Date.today.to_s)
+  # use keyword args instead
+  def initialize(date_from: nil, date_to: nil, **kwargs)
+    # You need to use `@` to set instance vars
+    @date_from = parsed_date(date_from)
+    @date_to = parsed_date(date_to)
   end
 
   def scope
-    Request.where(:date => 'date_from'..'date_to')
+    Request.where(date: date_from..date_to)
   end
 
-  def parsed_date(date_string, default)
+  # reduce the arity by setting the default in the method
+  # definition
+  def parsed_date(date_string, default = Date.today.to_s)
     Date.parse(date_string)
   rescue ArgumentError, TypeError
     default

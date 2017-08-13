@@ -80,6 +80,16 @@
   z-index: 1;
 }
 
+.logo {
+  position: relative;
+  display: block;
+  margin: 0 auto
+}
+
+.slides img {
+  height: 450px
+}
+
 // Put Req/Rew left and SeeAll right
 .mainLeft {
   display: inline-block;

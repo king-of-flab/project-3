@@ -1,7 +1,17 @@
 <div class="container">
   <br>
-  <img src="/assets/Logo.png">
-  <br>
+  <img src="/assets/Logo.png", class ='logo'>
+  <div class="slider">
+    <ul class="slides">
+      <li>
+        <%= image_tag "Individual.png", height: '400' %>
+      </li>
+      <li>
+        <%= image_tag "Organisation.png" %>
+      </li>
+    </ul>
+  </div>
+
   <div class="row">
     <h3 class='mainLeft'>Requests</h3>
     <a href="/requests" class='mainRight'>See all >></a>
