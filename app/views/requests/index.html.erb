@@ -4,16 +4,16 @@
     <div class="input-field col s3">
       <select multiple>
         <option value="" disabled selected>Location</option>
-          <% @all_areas.each do |area| %>
-          <option value="<%= area %>"><%= area %></option>
-          <% end %>
+        <% @all_areas.each do |area| %>
+        <option value="<%= area %>"><%= area %></option>
+        <% end %>
       </select>
-        <label>Filter location</label>
+      <label>Filter location</label>
     </div>
     <br>
     <div class="col s3 m3">
-        <%= form_tag requests_path, method: :get do %>
-        <%= text_field_tag 'search[date_from]', @search.date_from, placeholder: 'From date', class: 'datepicker'  %>
+      <%= form_tag requests_path, method: :get do %>
+      <%= text_field_tag 'search[date_from]', @search.date_from, placeholder: 'From date', class: 'datepicker'  %>
     </div>
     <div class="col s3 m3">
       <%= text_field_tag 'search[date_to]', @search.date_to, placeholder: 'To date', class: 'datepicker' %>
@@ -29,21 +29,26 @@
     <div class="col s3 m3">
       <div class="card hoverable">
         <%= link_to "", request_path(request) %>
-        <a href="/requests/<%= request.id %>"><span class='div-link'></span></a>
-      <div class="card-image">
-        <img src="<%= request.image%>">
-      </div>
-      <div class="card-content">
-        <h5><%= request.name %></h5>
-        <p><%= request.date.strftime('%d %B %Y (%A)') %></p>
-        <p><%= request.start_time.strftime('%I:%M%p') %> to <%= request.end_time.strftime('%I:%M%p') %></p>
-        <p><%= request.area %></p>
-      </div>
-      <div class="card-action">
-       <p><%= request.opening %> Openings</p>
+        <a href="/requests/<%= request.id %>">
+          <span class='div-link'></span>
+        </a>
+        <div class="card-image">
+          <img src="<%= request.image%>">
+        </div>
+        <div class="card-content">
+          <h5><%= request.name %></h5>
+          <p><%= request.date.strftime('%d %B %Y (%A)') %></p>
+          <p><%= request.start_time.strftime('%I:%M%p') %>
+            to
+            <%= request.end_time.strftime('%I:%M%p') %></p>
+          <p><%= request.area %></p>
+        </div>
+        <div class="card-action">
+          <p><%= request.opening %>
+            Openings</p>
+        </div>
       </div>
     </div>
+    <% end %>
   </div>
-  <% end %>
- </div>
 </div>
