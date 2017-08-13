@@ -35,6 +35,10 @@
     <%= button_to "register", register_request_path, class: "btn waves-effect waves-light" %>
     <% end %>
 
+    <% if @accountsid.select{ |accountid| accountid == current_account.id }.length == 1%>
+    <%= button_to "Withdraw", withdraw_request_path, method: :delete, class: "btn waves-effect waves-light" %>
+    <% end %>
+
     <% if current_account == @creator %>
     <h4>List of Attendees</h4>
     <table class="striped">
@@ -60,10 +64,18 @@
     </table>
     <br>
 
-    <% if @accountsid.length == 0 %>
-    <%= button_to "delete request", request_path(@current_request), method: :delete, class: "btn waves-effect waves-light" %>
-    <% end %>
-    <% end %>
+    <div class="row">
 
-  </div>
+      <div class = "col s12 m3">
+        <%= button_to "edit request", edit_request_path(@current_request), method: :get, class: "btn waves-effect waves-light" %>
+      </div>
+
+      <div class = "col s12 m3">
+        <% if @accountsid.length == 0 %>
+        <%= button_to "delete request", request_path(@current_request), method: :delete, class: "btn waves-effect waves-light" %>
+        <% end %>
+        <% end %>
+      </div>
+
+    </div>
   <br>
