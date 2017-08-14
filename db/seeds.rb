@@ -7,6 +7,33 @@
 # #   Character.create(name: 'Luke', movie: movies.first)
 #
 
+<<<<<<< HEAD
+# 5.times do |i|
+#   Account.create({
+#   account_type: "individual",
+#   name: "admin#{i+1}",
+#   tel: "12345678",
+#   identification: "S1234567A",
+#   time_credit: "100",
+#   email: "admin#{i+1}@gmail.com",
+#   password: "12345678",
+#   profile_image: "https://s-media-cache-ak0.pinimg.com/736x/07/dd/12/07dd1283d19211a46dbbb29ec4483fe8--drawings-faces-girl-art-drawings.jpg",
+#   })
+# end
+#
+# 5.times do |i|
+#   Account.create({
+#   account_type: "organisation",
+#   name: "organisation #{i+1}",
+#   tel: "12345678",
+#   identification: "1234567",
+#   time_credit: "1000",
+#   email: "organisation#{i+1}@gmail.com",
+#   password: "12345678",
+#   profile_image: "https://pbs.twimg.com/profile_images/813584000082214912/5U3iZVs-.jpg",
+#   })
+# end
+=======
 5.times do |i|
   Account.create({
   account_type: "individual",
@@ -32,6 +59,7 @@ end
   profile_image: "https://pbs.twimg.com/profile_images/813584000082214912/5U3iZVs-.jpg",
   })
 end
+>>>>>>> upstream/master
 
 5.times do |i|
   Request.create({
@@ -65,6 +93,21 @@ end
   })
 end
 
+<<<<<<< HEAD
+# # # participant 1 redeemed all 5 rewards
+# 5.times do |i|
+#   account = Account.find(1)
+#   reward = Reward.find(i+1)
+#   account.rewards << reward
+# end
+#
+# # participant 1 registered for all 5 requests
+# 5.times do |i|
+#   account = Account.find(1)
+#   request = Request.find(i+1)
+#   account.requests << request
+# end
+=======
 
 # # participant 1 redeemed all 5 rewards
 5.times do |i|
@@ -79,3 +122,4 @@ end
   request = Request.find(i+1)
   account.requests << request
 end
+>>>>>>> upstream/master

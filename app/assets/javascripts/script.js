@@ -6,10 +6,14 @@ $(document).on('turbolinks:load', function () {
 
   $('select').material_select()
 
-  $('.slider').slider({
+  window.setInterval(function(){
+    $('.carousel').carousel('next')
+  }, 5000)
+
+  $('.carousel.carousel-slider').carousel({
     fullWidth: true,
-    interval: 10000,
-    height: 550
+    indicators: true,
+    height: 600
   })
 
   $('.datepicker').pickadate({
