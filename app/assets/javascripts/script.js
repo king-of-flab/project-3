@@ -8,12 +8,12 @@ $(document).on('turbolinks:load', function () {
 
   window.setInterval(function(){
     $('.carousel').carousel('next')
-  }, 3000)
+  }, 5000)
 
   $('.carousel.carousel-slider').carousel({
     fullWidth: true,
     indicators: true,
-    height: 550
+    height: 600
   })
 
   $('.datepicker').pickadate({

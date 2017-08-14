@@ -1,9 +1,9 @@
 <div class="container">
   <br>
   <div class="carousel carousel-slider center" data-indicators="true">
-    <div class="carousel-item" href="#one!"><%= image_tag "Giftloop-01.png" %></div>
-    <div class="carousel-item" href="#two!"><%= image_tag "Individual-01.png" %></div>
-    <div class="carousel-item" href="#three!"><%= image_tag "Organisation-01.png" %></div>
+    <div class="carousel-item"><%= image_tag "Giftloop-01.png" %></div>
+    <div class="carousel-item"><%= image_tag "Individual-01.png" %></div>
+    <div class="carousel-item"><%= image_tag "Organisation-01.png" %></div>
   </div>
 
   <div class="row">
@@ -12,7 +12,7 @@
   </div>
   <div class="row">
     <% @four_requests.each do |request| %>
-    <div class="col s3 m3">
+    <div class="col s12 m6 l3">
       <div class="card hoverable">
         <a href="/requests/<%= request.id %>">
           <span class='div-link'></span>
@@ -43,7 +43,7 @@
   </div>
   <div class="row">
     <% @four_rewards.each do |reward| %>
-    <div class="col s3 m3">
+    <div class="col s12 m6 l3">
       <div class="card hoverable">
         <a href="/rewards/<%= reward.id %>">
           <span class='div-link'></span>
