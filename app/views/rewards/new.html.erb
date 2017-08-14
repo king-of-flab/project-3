@@ -9,11 +9,11 @@
           <div class="col s12">
             <div class="input-field inline">
               <input disabled value="Upload event image" id="disabled" type="text" class="validate">
-
             </div>
             <a href="#" id="widget_opener">Event images</a>
           </div>
         </div>
+
         <%= form_for @new_reward do |f| %>
 
         <div class="input-field col s8 offset-s2">
@@ -76,16 +76,8 @@
           <%= f.label :description %>
         </div>
 
-        <div class="file-field input-field col s8 offset-s2">
-          <div class="btn">
-            <span>Image</span>
-            <%= f.file_field :image, required: true %>
-          </div>
+        <%= f.hidden_field :image, value: '' %>
 
-          <div class="file-path-wrapper">
-            <%= f.text_field :image, class: 'file-path' %>
-          </div>
-        </div>
 
         <div class="input-field col s8 offset-s2">
           <%= f.submit "Create", class: 'btn waves-effect waves-light right formbttn' %>

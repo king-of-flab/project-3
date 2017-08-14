@@ -36,8 +36,10 @@
     <% end %>
 
     <% if @accountsid.select{ |accountid| accountid == current_account.id }.length == 1%>
-    <%= button_to "Withdraw", withdraw_request_path, method: :delete, class: "btn waves-effect waves-light" %>
-    <% end %>
+
+    <%= button_to "Withdraw", withdraw_request_path, method: :delete, class: "btn waves-effect waves-light", data: {confirm: "Are you sure?"} %>
+
+  <% end %>
 
     <% if current_account == @creator %>
     <h4>List of Attendees</h4>
@@ -72,7 +74,9 @@
 
       <div class = "col s12 m3">
         <% if @accountsid.length == 0 %>
-        <%= button_to "delete request", request_path(@current_request), method: :delete, class: "btn waves-effect waves-light" %>
+
+        <%= button_to "delete request", request_path(@current_request), method: :delete, class: "btn waves-effect waves-light", data: {confirm: "Are you sure?"} %>
+
         <% end %>
         <% end %>
       </div>

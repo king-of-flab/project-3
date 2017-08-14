@@ -8,10 +8,20 @@ class RewardsController < ApplicationController
   end
 
   def create
-    new_reward = Reward.create(reward_params)
-    new_reward.created_by = current_account.id
-    redirect_to reward_path(new_reward) if new_reward.save
-  end
+      units_required = reward_params["unit_time_credit"].to_i * reward_params["opening"].to_i
+      units_balance = current_account["time_credit"].to_i
+
+      if units_balance >= units_required
+        new_reward = Reward.create(reward_params)
+        new_reward.created_by = current_account.id
+        current_account.time_credit -= new_reward.opening * new_reward.unit_time_credit
+        current_account.save
+        # deduct the time credit from creator's account
+        redirect_to reward_path(new_reward) if new_reward.save
+      else
+        render html: "not enough units to create this event"
+      end
+    end
 
   def new
     @new_reward = Reward.new
