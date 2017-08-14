@@ -10,7 +10,9 @@ class CreateRewards < ActiveRecord::Migration[5.1]
       t.text :description
       t.string :image
       t.integer :opening
+      t.integer :attendance, default: 0
       t.integer :unit_time_credit
+      t.boolean :completed, default: false
       t.bigint :created_by
       t.timestamps
     end

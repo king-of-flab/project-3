@@ -62,18 +62,15 @@ class RequestsController < ApplicationController
     current_request = Request.find(params[:id])
     current_request.accounts << current_account
     current_request.opening -= 1
-    redirect_to my_requests_path if current_request.save
+    redirect_to request_path if current_request.save
   end
 
   def withdraw
     request = Request.find(params[:id])
-    # account = request.accounts.find(current_account[:id])
     request.accounts.delete(current_account[:id])
-
-    redirect_to request_path
-
+    request.opening += 1
+    redirect_to request_path if request.save
   end
-
 
   private
 
