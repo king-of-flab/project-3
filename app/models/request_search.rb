@@ -1,20 +1,17 @@
 class RequestSearch
   attr_reader :date_from, :date_to
 
-  # use keyword args instead
-  def initialize(date_from: nil, date_to: nil, **kwargs)
-    # You need to use `@` to set instance vars
-    @date_from = parsed_date(date_from)
-    @date_to = parsed_date(date_to)
+  def initialize(params)
+    params ||= {}
+    @date_from = parsed_date(params[:date_from], 7.days.ago.to_date.to_s)
+    @date_to = parsed_date(params[:date_to], Date.today.to_s)
   end
 
   def scope
-    Request.where(date: date_from..date_to)
+    Request.where('date BETWEEN ? AND ?', @date_from, @date_to)
   end
 
-  # reduce the arity by setting the default in the method
-  # definition
-  def parsed_date(date_string, default = Date.today.to_s)
+  def parsed_date(date_string, default)
     Date.parse(date_string)
   rescue ArgumentError, TypeError
     default

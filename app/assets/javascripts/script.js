@@ -6,9 +6,13 @@ $(document).on('turbolinks:load', function () {
 
   $('select').material_select()
 
-  $('.slider').slider({
+  window.setInterval(function(){
+    $('.carousel').carousel('next')
+  }, 3000)
+
+  $('.carousel.carousel-slider').carousel({
     fullWidth: true,
-    interval: 10000,
+    indicators: true,
     height: 550
   })
 

@@ -3,9 +3,6 @@ class RequestsController < ApplicationController
   before_action :authenticate_account!, except: [:index]
 
   def index
-    # if params[:search] == nil
-    #   @all_requests = Request.all
-    # else
       @search = RequestSearch.new(params[:search])
       @all_requests = @search.scope
 
