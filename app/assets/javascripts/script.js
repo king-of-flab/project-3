@@ -7,8 +7,9 @@ $(document).on('turbolinks:load', function () {
   $('select').material_select()
 
   $('.slider').slider({
+    fullWidth: true,
     interval: 10000,
-    height: 450
+    height: 550
   })
 
   $('.datepicker').pickadate({
