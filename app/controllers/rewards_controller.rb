@@ -3,7 +3,7 @@ class RewardsController < ApplicationController
   before_action :authenticate_account!, except: [:index]
 
   def index
-    @all_rewards = Reward.all
+    @all_rewards = Reward.all.order(:date)
     @all_areas = Reward.distinct.pluck(:area)
   end
 

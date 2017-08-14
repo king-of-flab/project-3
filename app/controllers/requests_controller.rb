@@ -5,6 +5,7 @@ class RequestsController < ApplicationController
   def index
     @search = RequestSearch.new(params[:search])
     @all_requests = @search.scope
+    
     @all_areas = Request.distinct.pluck(:area)
   end
 
