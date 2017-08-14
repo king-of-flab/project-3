@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function () {
 
   $('select').material_select()
 
-  window.setInterval(function(){
+  window.setInterval(function () {
     $('.carousel').carousel('next')
   }, 5000)
 
@@ -200,8 +200,6 @@ $(document).on('turbolinks:load', function () {
       $('#request_image').val(result[0].url)
       $('#reward_image').val(result[0].url)
       $('#account_profile_image').val(result[0].url)
-
-    // console.log(error, result)
     })
   }
 })

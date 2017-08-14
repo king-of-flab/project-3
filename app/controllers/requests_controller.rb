@@ -5,29 +5,29 @@ class RequestsController < ApplicationController
   def index
     @search = RequestSearch.new(params[:search])
     @all_requests = @search.scope
-    
+
     @all_areas = Request.distinct.pluck(:area)
   end
 
   def create
-        units_required = request_params["unit_time_credit"].to_i * request_params["opening"].to_i
-        units_balance = current_account["time_credit"].to_i
+    units_required = request_params["unit_time_credit"].to_i * request_params["opening"].to_i
+    units_balance = current_account["time_credit"].to_i
 
-        if units_balance >= units_required
-          new_request = Request.create(request_params)
-          new_request.created_by = current_account.id
-          # deduct the time credit from creator's account
-          current_account.time_credit -= new_request.opening * new_request.unit_time_credit
-          current_account.save
-        if new_request.save
-          flash[:success] = "Successfully created new request!!"
-          redirect_to request_path(new_request)
-        end
-        else
-          flash[:error] = "Not enough credits to create event!"
-          redirect_to new_request_path
-        end
+    if units_balance >= units_required
+        new_request = Request.create(request_params)
+        new_request.created_by = current_account.id
+        # deduct the time credit from creator's account
+        current_account.time_credit -= new_request.opening * new_request.unit_time_credit
+        current_account.save
+      if new_request.save
+        flash[:success] = "Successfully created new request!!"
+        redirect_to request_path(new_request)
       end
+    else
+      flash[:error] = "Not enough credits to create event!"
+      redirect_to new_request_path
+    end
+  end
 
   def new
     @new_request = Request.new
@@ -72,16 +72,6 @@ class RequestsController < ApplicationController
     request.opening += 1
     redirect_to request_path if request.save
   end
-
-  def withdraw
-    request = Request.find(params[:id])
-    # account = request.accounts.find(current_account[:id])
-    request.accounts.delete(current_account[:id])
-
-    redirect_to request_path
-
-  end
-
 
   private
 
