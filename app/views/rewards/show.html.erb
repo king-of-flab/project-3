@@ -58,10 +58,20 @@
     </table>
     <br>
 
-    <% if @accountsid.length == 0 %>
-    <%= button_to "delete reward", reward_path(@current_reward), method: :delete, class: "btn waves-effect waves-light" %>
-    <% end %>
-    <% end %>
-
+<div class="row">
+  <div class = "col s12 m3">
+    <%= button_to "edit reward", edit_reward_path(@current_reward), method: :get, class: "btn waves-effect waves-light" %>
   </div>
+
+  <div class = "col s12 m3">
+        <% if @accountsid.length == 0 %>
+        <%= button_to "delete reward", reward_path(@current_reward), method: :delete, class: "btn waves-effect waves-light" %>
+        <% end %>
+    <% end %>
+  </div>
+
+</div>
+
+</div>
+
   <br>

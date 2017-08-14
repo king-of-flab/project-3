@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   post 'requests/:id/register', to: 'requests#register', as: 'register_request'
 
+  delete 'requests/:id/withdraw', to: 'requests#withdraw', as: 'withdraw_request'
+
   post 'rewards/:id/redeem', to: 'rewards#redeem', as: 'redeem_reward'
 
 end

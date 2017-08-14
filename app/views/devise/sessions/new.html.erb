@@ -1,15 +1,17 @@
 <div class="container">
   <div class="row">
 
-<h2 class="input-field col s6 offset-s3">Log in</h2>
+<h4 class="input-field col s6 offset-s3">Log in</h4>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="input-field col s6 offset-s3">
+    <i class="material-icons prefix">email</i>
     <%= f.email_field :email, autofocus: true %>
     <%= f.label :email %><br />
   </div>
 
   <div class="input-field col s6 offset-s3">
+    <i class="material-icons prefix">enhanced_encryption</i>
     <%= f.password_field :password, autocomplete: "off" %>
     <%= f.label :password %><br />
   </div>
