@@ -19,6 +19,7 @@
       <%= link_to "My Rewards", my_rewards_path %>
     </li>
   </ul>
+
   <nav>
     <div class="nav-wrapper">
       <ul id="nav-mobile" class="left hide-on-med-and-down">
@@ -37,6 +38,13 @@
 
         <!-- Dropdown Trigger -->
         <% if current_account %>
+        <li>
+
+          <a href="/" class="logo-img"><img class="circle" src="<%= current_account.profile_image %>", width= 35, height= 35></a>
+
+
+          <!-- <%= image_tag "#{current_account.profile_image}", width: 50, class: "logo-img circle" %> -->
+        </li>
         <li>
           <a class="dropdown-button" href="#!" data-activates="dropdown1">Hello,
             <%= current_account.name %>
@@ -61,8 +69,10 @@
       </ul>
     </div>
   </nav>
+
 </div>
 
+<!-- dropdown modal -->
 <div id="modal1" class="modal center">
   <div class="modal-content">
     <h4>Sign up as</h4>

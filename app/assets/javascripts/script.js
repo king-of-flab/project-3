@@ -195,6 +195,8 @@ $(document).on('turbolinks:load', function () {
       // console.log(error, result)
       $('#request_image').val(result[0].url)
       $('#reward_image').val(result[0].url)
+      $('#account_profile_image').val(result[0].url)
+
     // console.log(error, result)
     })
   }
