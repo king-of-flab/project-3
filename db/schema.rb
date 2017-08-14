@@ -62,7 +62,9 @@ ActiveRecord::Schema.define(version: 20170810141316) do
     t.text "description"
     t.string "image"
     t.integer "opening"
+    t.integer "attendance", default: 0
     t.integer "unit_time_credit"
+    t.boolean "completed", default: false
     t.bigint "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -78,7 +80,9 @@ ActiveRecord::Schema.define(version: 20170810141316) do
     t.text "description"
     t.string "image"
     t.integer "opening"
+    t.integer "attendance", default: 0
     t.integer "unit_time_credit"
+    t.boolean "completed", default: false
     t.bigint "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

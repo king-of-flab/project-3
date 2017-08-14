@@ -1,33 +1,38 @@
 <div class="container">
   <div class="row">
+    <div class="section">
 
-<h4 class="input-field col s6 offset-s3">Log in</h4>
+      <div class="col s8 offset-s2 formtemplate">
+        <br>
+        <h4 class="center">Log in</h4>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="input-field col s6 offset-s3">
-    <i class="material-icons prefix">email</i>
-    <%= f.email_field :email, autofocus: true %>
-    <%= f.label :email %><br />
-  </div>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="input-field col s6 offset-s3">
+          <i class="material-icons prefix">email</i>
+          <%= f.email_field :email, autofocus: true %>
+          <%= f.label :email %><br/>
+        </div>
 
-  <div class="input-field col s6 offset-s3">
-    <i class="material-icons prefix">enhanced_encryption</i>
-    <%= f.password_field :password, autocomplete: "off" %>
-    <%= f.label :password %><br />
-  </div>
+        <div class="input-field col s6 offset-s3">
+          <i class="material-icons prefix">enhanced_encryption</i>
+          <%= f.password_field :password, autocomplete: "off" %>
+          <%= f.label :password %><br/>
+        </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field col s6 offset-s3">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+        <% if devise_mapping.rememberable? -%>
+        <div class="field col s6 offset-s3">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+        <% end -%>
+
+        <div class="input-field actions col s6 offset-s3">
+          <%= f.submit "Log in", class: 'btn waves-effect waves-light right formbttn' %>
+        </div>
+        <% end %>
+
+        <!-- <%= render "devise/shared/links" %> -->
+      </div>
     </div>
-  <% end -%>
-
-  <div class="input-field actions col s6 offset-s3">
-    <%= f.submit "Log in", class: 'btn waves-effect waves-light right' %>
   </div>
-<% end %>
-
-<!-- <%= render "devise/shared/links" %> -->
-</div>
 </div>
