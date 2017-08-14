@@ -9,11 +9,15 @@
           <div class="col s12">
             <div class="input-field inline">
               <input disabled value="Upload event image" id="disabled" type="text" class="validate">
-
             </div>
             <a href="#" id="widget_opener">Event images</a>
           </div>
         </div>
+
+        <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
+
         <%= form_for @new_request do |f| %>
 
         <div class="input-field col s8 offset-s2">

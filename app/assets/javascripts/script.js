@@ -192,8 +192,9 @@ $(document).on('turbolinks:load', function () {
       upload_preset: 'c3bf2cga',
       cropping: 'server'
     }, function (error, result) {
-      console.log(error, result)
+      // console.log(error, result)
       $('#request_image').val(result[0].url)
+      $('#reward_image').val(result[0].url)
     // console.log(error, result)
     })
   }
