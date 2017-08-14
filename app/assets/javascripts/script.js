@@ -178,15 +178,21 @@ $(document).on('turbolinks:load', function () {
     minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
   })
 
-  if (document.getElementById('widget_opener')) {
-    $('#widget_opener').on('click', function () {
-      cloudinary.openUploadWidget({ cloud_name: 'ddanielnp', upload_preset: 'c3bf2cga'},
-      function (error, result) { console.log(error, result) })
-    }, false)
+  document.getElementById('widget_opener').addEventListener('click', function () {
+    cloudinary.openUploadWidget({ cloud_name: 'ddanielnp', upload_preset: 'c3bf2cga'},
+    function (error, result) {
+      console.log(error, result)
+    })
+  }, false)
 
-    $('#widget_opener').cloudinary_upload_widget(
-      { cloud_name: 'ddanielnp', theme: 'minimal', upload_preset: 'c3bf2cga',
-        cropping: 'server' },
-      function (error, result) { console.log(error, result) })
-  }
+  $('#widget_opener').cloudinary_upload_widget({
+    cloud_name: 'ddanielnp',
+    theme: 'minimal',
+    upload_preset: 'c3bf2cga',
+    cropping: 'server'
+  }, function (error, result) {
+    $('#request_image').val(result[0].url)
+    // console.log(error, result)
+  })
+
 })
