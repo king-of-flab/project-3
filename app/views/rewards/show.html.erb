@@ -65,7 +65,7 @@
 
   <div class = "col s12 m3">
         <% if @accountsid.length == 0 %>
-        <%= button_to "delete reward", reward_path(@current_reward), method: :delete, class: "btn waves-effect waves-light" %>
+        <%= button_to "delete reward", reward_path(@current_reward), method: :delete, class: "btn waves-effect waves-light", data: {confirm: "Are you sure?"} %>
         <% end %>
     <% end %>
   </div>
