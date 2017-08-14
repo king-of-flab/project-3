@@ -9,7 +9,7 @@ class RequestSearch
   end
 
   def scope
-    Request.where(date: date_from..date_to)
+    Request.where('date BETWEEN ? AND ?', @date_from, @date_to)
   end
 
   # reduce the arity by setting the default in the method
