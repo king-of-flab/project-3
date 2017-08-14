@@ -13,6 +13,7 @@ class RequestsController < ApplicationController
   end
 
   def create
+    # render json: params
       units_required = request_params["unit_time_credit"].to_i * request_params["opening"].to_i
       units_balance = current_account["time_credit"].to_i
 

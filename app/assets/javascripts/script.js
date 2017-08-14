@@ -179,11 +179,20 @@ $(document).on('turbolinks:load', function () {
 
   document.getElementById('widget_opener').addEventListener('click', function () {
     cloudinary.openUploadWidget({ cloud_name: 'ddanielnp', upload_preset: 'c3bf2cga'},
-    function (error, result) { console.log(error, result) })
+    function (error, result) {
+      console.log('test')
+      console.log(error, result)
+    })
   }, false)
 
-  $('#widget_opener').cloudinary_upload_widget(
-    { cloud_name: 'ddanielnp', theme: 'minimal', upload_preset: 'c3bf2cga',
-      cropping: 'server' },
-  function (error, result) { console.log(error, result) })
+  $('#widget_opener').cloudinary_upload_widget({
+    cloud_name: 'ddanielnp',
+    theme: 'minimal',
+    upload_preset: 'c3bf2cga',
+    cropping: 'server'
+  }, function (error, result) {
+    console.log('test2', result[0].url)
+    $('#request_image').val(result[0].url)
+    // console.log(error, result)
+  })
 })
