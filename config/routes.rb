@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   root 'main#index'
 
-  devise_for :accounts
+  devise_for :accounts, controllers: {
+    registrations: 'accounts/registrations'
+  }
 
   resources :requests
 
