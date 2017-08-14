@@ -4,6 +4,7 @@ class RewardsController < ApplicationController
 
   def index
     @all_rewards = Reward.all
+    @all_areas = Reward.distinct.pluck(:area)
   end
 
   def create

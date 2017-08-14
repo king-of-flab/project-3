@@ -1,11 +1,22 @@
 <div class="container">
   <br>
-  <img src="/assets/Logo.png">
-  <br>
+  <img src="/assets/Logo.png", class ='logo'>
+  <div class="slider">
+    <ul class="slides">
+      <li>
+        <%= image_tag "Individual.png" %>
+      </li>
+      <li>
+        <%= image_tag "Organisation.png" %>
+      </li>
+    </ul>
+  </div>
+
   <div class="row">
     <h3 class='mainLeft'>Requests</h3>
     <a href="/requests" class='mainRight'>See all >></a>
-
+  </div>
+  <div class="row">
     <% @four_requests.each do |request| %>
     <div class="col s3 m3">
       <div class="card hoverable">
@@ -30,11 +41,13 @@
       </div>
     </div>
     <% end %>
+    </div>
 
-    <br><br>
+  <div class="row">
     <h3 class='mainLeft'>Rewards</h3>
     <a href="/rewards" class='mainRight'>See all >></a>
-
+  </div>
+  <div class="row">
     <% @four_rewards.each do |reward| %>
     <div class="col s3 m3">
       <div class="card hoverable">
