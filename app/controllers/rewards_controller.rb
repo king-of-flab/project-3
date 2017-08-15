@@ -14,7 +14,7 @@ class RewardsController < ApplicationController
   end
 
   def create
-    if params[:request][:date] === ""
+    if params[:rewards][:date] === ""
       flash[:error] = "Please key in the date of event!"
       redirect_to new_reward_path
       else
