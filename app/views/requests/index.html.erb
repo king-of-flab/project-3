@@ -16,12 +16,11 @@
     <% @all_requests.each do |request| %>
     <div class="col s12 m6 l3">
       <div class="card hoverable">
-        <%= link_to "", request_path(request) %>
         <a href="/requests/<%= request.id %>">
           <span class='div-link'></span>
         </a>
         <div class="card-image">
-          <img src="<%= request.image%>">
+          <img src="<%= request.image %>">
         </div>
         <div class="card-content">
           <h5><%= request.name %></h5>
@@ -33,7 +32,8 @@
         </div>
         <div class="card-action">
           <p><%= request.opening %>
-            Openings</p>
+            Openings
+          </p>
         </div>
       </div>
     </div>

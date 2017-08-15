@@ -1,28 +1,30 @@
 class RequestsController < ApplicationController
 
   before_action :authenticate_account!, except: [:index]
+  before_action :set_request, except: [:index, :create, :new]
 
   def index
-    @all_requests = Request.all.order(:date)
     @all_areas = Request.distinct.pluck(:area)
+    @all_requests =
+    if params[:area]
+      Request.where("area = '#{params[:area]}'")
+    else
+      Request.all
+    end
   end
 
   def create
     units_required = request_params["unit_time_credit"].to_i * request_params["opening"].to_i
-    units_balance = current_account["time_credit"].to_i
+    units_balance = current_account.time_credit
 
     if units_balance >= units_required
-        new_request = Request.create(request_params)
-        new_request.created_by = current_account.id
-        # deduct the time credit from creator's account
-        current_account.time_credit -= new_request.opening * new_request.unit_time_credit
-        current_account.save
-      if new_request.save
-        flash[:success] = "Successfully created new request!!"
-        redirect_to request_path(new_request)
-      end
+      new_request = Request.create(request_params)
+      new_request.created_by = current_account.id
+      current_account.time_credit -= new_request.opening * new_request.unit_time_credit
+      current_account.save
+      redirect_to request_path(new_request) if new_request.save
     else
-      flash[:error] = "Not enough credits to create event!"
+      flash[:error] = "Not enough credits to create request!"
       redirect_to new_request_path
     end
   end
@@ -32,49 +34,75 @@ class RequestsController < ApplicationController
   end
 
   def show
-    @current_request = Request.find(params[:id])
-    @creator = Account.find(@current_request.created_by)
+    @creator = Account.find(@request.created_by)
     @accountsid = []
-    if @current_request.accounts.length != 0
-      @current_request.accounts.each do |account|
+    if @request.accounts.length != 0
+      @request.accounts.each do |account|
         @accountsid << account.id
       end
     end
   end
 
   def edit
-    @current_request = Request.find(params[:id])
   end
 
   def update
-    updated_request = Request.find(params[:id])
-    updated_request.update(request_params)
-    redirect_to request_path(updated_request) if updated_request.save
+    @request.update(update_request_params)
+    redirect_to request_path if @request.save
   end
 
   def destroy
-    Request.destroy(params[:id])
+    @request.destroy
     redirect_to my_requests_path
   end
 
   def register
-    current_request = Request.find(params[:id])
-    current_request.accounts << current_account
-    current_request.opening -= 1
-    redirect_to request_path if current_request.save
+    @request.accounts << current_account
+    @request.opening -= 1
+    redirect_to request_path if @request.save
   end
 
   def withdraw
-    request = Request.find(params[:id])
-    request.accounts.delete(current_account[:id])
-    request.opening += 1
-    redirect_to request_path if request.save
+    @request.accounts.delete(current_account)
+    @request.opening += 1
+    redirect_to request_path if @request.save
+  end
+
+  def attendance
+    account = @request.accounts.find(params[:account_id])
+    account.time_credit += @request.unit_time_credit
+    account.save
+    @request.attendance += 1
+    @request.save
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def completed
+    @request.completed = true
+    @request.save
+    creator = Account.find(@request.created_by)
+    vacancy = @request.opening - @request.attendance
+    creator.time_credit += vacancy * @request.unit_time_credit
+    creator.save
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
 
+  def set_request
+    @request = Request.find(params[:id])
+  end
+
   def request_params
     params.require(:request).permit(:name, :date, :start_time, :end_time, :address, :area, :opening, :unit_time_credit, :description, :image)
+  end
+
+  def update_request_params
+    params.require(:request).permit(:name, :date, :start_time, :end_time, :address, :area, :description, :image)
   end
 
 end
