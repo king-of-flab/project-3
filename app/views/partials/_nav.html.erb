@@ -22,27 +22,22 @@
 
   <nav>
     <div class="nav-wrapper">
+      <a href="/" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+      <ul id="nav-mobile" class="left">
+        <li><a href="/" class="logo-img"><img src="/assets/Logo.png"></a></li>
+      </ul>
+
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li>
-          <a href="/" class="logo-img"><img src="/assets/Logo.png"></a>
-        </li>
-        <li>
-          <a href="/requests">Requests</a>
-        </li>
-        <li>
-          <a href="/rewards">Rewards</a>
-        </li>
+        <li><a href="/requests">All Requests</a></li>
+        <li><a href="/rewards">All Rewards</a></li>
       </ul>
 
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-
         <!-- Dropdown Trigger -->
         <% if current_account %>
         <li>
-
           <a href="/" class="logo-img"><img class="circle" src="<%= current_account.profile_image %>", width= 35, height= 35></a>
-
-
           <!-- <%= image_tag "#{current_account.profile_image}", width: 50, class: "logo-img circle" %> -->
         </li>
         <li>
@@ -53,23 +48,36 @@
         </li>
         <li>&nbsp;<%= current_account.time_credit %>
           credits &nbsp;&nbsp;</li>
-
-        <li>
-          <%= link_to "Logout", destroy_account_session_path, method: :delete %>
-        </li>
+        <li><%= link_to "Logout", destroy_account_session_path, method: :delete %></li>
       <% else %>
-        <li>
-          <a class="modal-trigger" href="#modal1">Signup</a>
-        </li>
-        <li>
-          <a href="/accounts/sign_in">Login</a>
-        </li>
+        <li><a class="modal-trigger" href="#modal1">Signup</a></li>
+        <li><a href="/accounts/sign_in">Login</a></li>
         <% end %>
-
       </ul>
+
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="/requests">All Requests</a></li>
+        <li><a href="/rewards">All Rewards</a></li>
+        <!-- Dropdown Trigger -->
+        <% if current_account %>
+          <li><a href="#!" style="font-weight: bold">Hello, <%= current_account.name %></a></li>
+          <li><%= link_to "Update Particulars", edit_account_registration_path %></li>
+          <li><%= link_to "Create Request", new_request_path %></li>
+          <% if current_account && current_account.account_type == "organisation" %>
+            <li><%= link_to "Create Reward", new_reward_path %></li>
+          <% end %>
+          <li><%= link_to "My Requests", my_requests_path %></li>
+          <li><%= link_to "My Rewards", my_rewards_path %></li>
+          <li>&nbsp; <%= current_account.time_credit %> credits &nbsp;&nbsp; </li>
+          <li><%= link_to "Logout", destroy_account_session_path, method: :delete %></li>
+        <% else %>
+          <li><a class="modal-trigger" href="#modal1">Signup</a></li>
+          <li><a href="/accounts/sign_in">Login</a></li>
+        <% end %>
+      </ul>
+
     </div>
   </nav>
-
 </div>
 
 <!-- dropdown modal -->

@@ -26,7 +26,7 @@
 
   <div class="row">
     <% @all_requests.each do |request| %>
-    <div class="col s3 m3">
+    <div class="col s12 m6 l3">
       <div class="card hoverable">
         <%= link_to "", request_path(request) %>
         <a href="/requests/<%= request.id %>">
