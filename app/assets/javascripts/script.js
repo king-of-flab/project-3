@@ -197,8 +197,9 @@ function openUploadWidget() {
             console.log(error, result)
 
         //    $.each(result, function(index, value) {
-
-              $(".profile_image").attr("src", result[0].eager[0].secure_url);
+        console.log(result)
+              $(".profile_image").attr("src", result[0].eager[0].secure_url)
+              $("#account_profile_image").val(result[0].eager[0].secure_url)
 
           //  });
 
