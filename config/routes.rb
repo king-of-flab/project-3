@@ -19,6 +19,10 @@ Rails.application.routes.draw do
 
   delete 'requests/:id/withdraw', to: 'requests#withdraw', as: 'withdraw_request'
 
+  post 'requests/:id/attendance', to: 'requests#attendance', as: 'attendance'
+
+  post 'requests/:id/completed', to: 'requests#completed', as: 'completed'
+
   post 'rewards/:id/redeem', to: 'rewards#redeem', as: 'redeem_reward'
 
 end
