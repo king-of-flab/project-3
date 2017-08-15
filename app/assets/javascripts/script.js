@@ -22,7 +22,6 @@ $(document).on('turbolinks:load', function () {
   $('.carousel.carousel-slider').carousel({
     fullWidth: true,
     indicators: true,
-    height: 600
   })
 
   $('.datepicker').pickadate({

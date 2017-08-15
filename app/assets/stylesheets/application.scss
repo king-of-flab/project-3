@@ -88,14 +88,21 @@
 // Put Req/Rew left and SeeAll right
 .mainLeft {
   display: inline-block;
-  text-align: left
+  color: white;
+  font-size: 28px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: #308693
 }
 
 .mainRight {
   display: inline-block;
-  text-align: right;
-  font-size: 18px;
-  width:780px
+  font-size: 20px;
+  padding: 7px;
+  border-radius: 10px;
+  border: 3px solid #308693;
+  color: #308693;
 }
 
 .formtemplate {
