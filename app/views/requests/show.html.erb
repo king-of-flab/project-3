@@ -4,34 +4,34 @@
     <div class="col s12 m6">
       <div class="card">
         <div class="card-image">
-          <img src="<%= @current_request.image%>">
+          <img src="<%= @request.image%>">
         </div>
       </div>
     </div>
 
     <div class="col s12 m6">
-      <h3><%= @current_request.name %></h3>
+      <h3><%= @request.name %></h3>
       <p>Date:
-        <%= @current_request.date.strftime('%d %B %Y (%A)') %>
+        <%= @request.date.strftime('%d %B %Y (%A)') %>
         <p>Time:
-          <%= @current_request.start_time.strftime('%I:%M%p') %>
+          <%= @request.start_time.strftime('%I:%M%p') %>
           to
-          <%= @current_request.end_time.strftime('%I:%M%p') %></p>
+          <%= @request.end_time.strftime('%I:%M%p') %></p>
         <p>Address:
-          <%= @current_request.address %></p>
+          <%= @request.address %></p>
         <p>Openings:
-          <%= @current_request.opening %></p>
+          <%= @request.opening %></p>
         <p>Time Credits:
-          <%= @current_request.unit_time_credit %></p>
+          <%= @request.unit_time_credit %></p>
         <p>By:
           <%= @creator.name %></p>
       </div>
     </div>
 
-    <p><%= @current_request.description %></p>
+    <p><%= @request.description %></p>
     <br>
 
-    <% if @accountsid.select{ |accountid| accountid == current_account.id }.length == 0 && current_account.id != @creator.id && @current_request.opening != 0 %>
+    <% if @accountsid.select{ |accountid| accountid == current_account.id }.length == 0 && current_account.id != @creator.id && @request.opening != 0 %>
     <%= button_to "register", register_request_path, class: "btn waves-effect waves-light" %>
     <% end %>
 
@@ -39,7 +39,7 @@
 
     <%= button_to "Withdraw", withdraw_request_path, method: :delete, class: "btn waves-effect waves-light", data: {confirm: "Are you sure?"} %>
 
-  <% end %>
+    <% end %>
 
     <% if current_account == @creator %>
     <h4>List of Attendees</h4>
@@ -54,12 +54,12 @@
       </thead>
 
       <tbody>
-        <% @current_request.accounts.each do |account| %>
+        <% @request.accounts.each do |account| %>
         <tr>
           <td><%= account.name %></td>
           <td><%= account.tel %></td>
           <td><%= account.email %></td>
-          <td><%= button_to "attended", "", class: "btn waves-effect waves-light" %></td>
+          <td><%= button_to "present", attendance_path, remote: true, class: "btn waves-effect waves-light attendancebttn", params: { account_id: account.id }  %></td>
         </tr>
         <% end %>
       </tbody>
@@ -67,20 +67,19 @@
     <br>
 
     <div class="row">
-
-      <div class = "col s12 m3">
-        <%= button_to "edit request", edit_request_path(@current_request), method: :get, class: "btn waves-effect waves-light" %>
+      <div class="col s12 m3">
+        <%= button_to "edit request", edit_request_path(@request), method: :get, class: "btn waves-effect waves-light" %>
       </div>
 
-      <div class = "col s12 m3">
+      <div class="col s12 m3">
         <% if @accountsid.length == 0 %>
-
-        <%= button_to "delete request", request_path(@current_request), method: :delete, class: "btn waves-effect waves-light", data: {confirm: "Are you sure?"} %>
-
-        <% end %>
+          <%= button_to "delete request", request_path(@request), method: :delete, class: "btn waves-effect waves-light", data: {confirm: "Are you sure?"} %>
+        <% else %>
+          <%= button_to "request completed", completed_path, remote: true, class: "btn waves-effect waves-light" %>
         <% end %>
       </div>
-
     </div>
+
+    <% end %>
+  </div>
   <br>
-</div>

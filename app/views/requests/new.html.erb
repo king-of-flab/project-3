@@ -8,20 +8,19 @@
 
       <div class="col s10 offset-s1 formtemplate">
         <br>
-        <h4 class="center">Create Request</h4>
-
-        <div class="input-field center">
-          <div class="col s12">
-            <div class="input-field inline">
-              <input disabled value="Upload event image" id="disabled" type="text" class="validate">
-            </div>
-            <a href="#" id="widget_opener">Event images</a>
-          </div>
-        </div>
 
         <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
         <% end %>
+
+        <h4 class="center">Create Request</h4>
+
+        <div class="input-field col s8 offset-s2 center">
+          <div class="input-field inline">
+            <input disabled value="Upload event image" id="disabled" type="text" class="validate">
+          </div>
+          <a href="#" id="widget_opener">Event images</a>
+        </div>
 
         <%= form_for @new_request do |f| %>
 
@@ -69,7 +68,7 @@
 
         <div class="input-field col s8 offset-s2">
           <i class="material-icons prefix">people</i>
-          <%= f.number_field :opening, in: 1..500, required: true %>
+          <%= f.number_field :opening, required: true %>
           <%= f.label :opening, "No. of Openings" %>
         </div>
 
@@ -88,7 +87,7 @@
         <%= f.hidden_field :image, value: '' %>
 
         <div class="input-field col s8 offset-s2">
-          <%= f.submit "Create", class: 'btn waves-effect waves-light right formbttn' %>
+          <%= f.submit "Create", class: 'btn waves-effect waves-light right formbttn', data: {confirm: "Are you sure that the number of openings and time credit per pax are correct?"}  %>
         </div>
 
         <% end %>
