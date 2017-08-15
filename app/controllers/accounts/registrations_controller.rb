@@ -26,8 +26,10 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords resource
       set_minimum_password_length
-      # respond_with resource
-      redirect_to new_account_registration_path account_type: params[:account][:account_type]
+
+      flash[:resource] = flash[:resource].to_a.concat resource.errors.full_messages
+
+      redirect_to new_account_registration_path(account_type: params[:account][:account_type])
     end
   end
 

@@ -7,17 +7,34 @@
         <br>
         <h4 class="center">Signup with GiftLoop</h4>
 
+        <div align="center" class="row">
+          <%#= devise_error_messages! %>
+          <% flash.each do |name, msg| %>
+
+          <% if msg.class == Array %>
+          <% msg.each do |message| %>
+          <%= content_tag :div, message, :id => "flash_#{name}" %>
+          <% end %>
+        <% else %>
+
+          # old code
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+
+          <% end %>
+          <% end %>
+
+        </div>
+
         <div class="input-field center">
-          <div class="col s12">
-            <div class="input-field inline">
-              <input disabled value="Upload profile image" id="disabled" type="text" class="validate">
-            </div>
-            <a href="#" id="widget_opener">Event images</a>
+          <!-- <div class="col s12"> -->
+          <div class="input-field inline">
+            <input disabled value="Upload profile image" id="disabled" type="text" class="validate">
           </div>
+          <a href="#" id="widget_opener">Event images</a>
+          <!-- </div> -->
         </div>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= devise_error_messages! %>
 
         <%= f.hidden_field :profile_image, value: '' %>
 
@@ -60,9 +77,9 @@
         <%= f.hidden_field :account_type, :value => params[:account_type] %>
 
         <% if params[:account_type] == "organisation" %>
-          <%= f.hidden_field :time_credit, value: "1000" %>
-        <% else %>
-          <%= f.hidden_field :time_credit, value: "0" %>
+        <%= f.hidden_field :time_credit, value: "1000" %>
+      <% else %>
+        <%= f.hidden_field :time_credit, value: "0" %>
         <% end %>
 
         <div class="input-field col s8 offset-s2">
