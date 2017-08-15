@@ -14,7 +14,7 @@ class RequestsController < ApplicationController
   end
 
   def create
-    if params[:request][:date] === ""
+    if params[:request][:date] == ""
       flash[:error] = "Please key in the date of event!"
       redirect_to new_request_path
     else
@@ -74,9 +74,9 @@ class RequestsController < ApplicationController
   end
 
   def attendance
-    account = @request.accounts.find(params[:account_id])
-    account.time_credit += @request.unit_time_credit
-    account.save
+    @account = @request.accounts.find(params[:account_id])
+    @account.time_credit += @request.unit_time_credit
+    @account.save
     @request.attendance += 1
     @request.save
     respond_to do |format|
@@ -87,10 +87,10 @@ class RequestsController < ApplicationController
   def completed
     @request.completed = true
     @request.save
-    creator = Account.find(@request.created_by)
-    vacancy = @request.opening - @request.attendance
-    creator.time_credit += vacancy * @request.unit_time_credit
-    creator.save
+    @creator = Account.find(@request.created_by)
+    vacancy = @request.opening + @request.accounts.count - @request.attendance
+    @creator.time_credit += vacancy * @request.unit_time_credit
+    @creator.save
     respond_to do |format|
       format.js
     end

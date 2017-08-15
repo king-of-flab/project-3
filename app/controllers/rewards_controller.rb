@@ -14,7 +14,7 @@ class RewardsController < ApplicationController
   end
 
   def create
-    if params[:rewards][:date] === ""
+    if params[:reward][:date] == ""
       flash[:error] = "Please key in the date of event!"
       redirect_to new_reward_path
       else
@@ -31,7 +31,8 @@ class RewardsController < ApplicationController
         redirect_to new_reward_path
       end
     end
-end
+  end
+
   def new
     @new_reward = Reward.new
   end
@@ -68,6 +69,20 @@ end
     if @reward.save && current_account.save && creator.save
       redirect_to my_rewards_path
     end
+  end
+
+  def attendance
+    @account_id = params[:account_id]
+    @reward.attendance += 1
+    @reward.save
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def completed
+    @reward.completed = true
+    redirect_to my_rewards_path if @reward.save
   end
 
   private

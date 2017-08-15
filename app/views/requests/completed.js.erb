@@ -1,1 +1,3 @@
-alert('Request is completed!')
+$(".btn").addClass('disabled')
+Materialize.toast('Congratulations! Your request has been completed!', 3000)
+$(".timecredit").text("<%= @creator.time_credit %> credits")
