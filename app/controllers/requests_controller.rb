@@ -14,18 +14,23 @@ class RequestsController < ApplicationController
   end
 
   def create
-    units_required = request_params["unit_time_credit"].to_i * request_params["opening"].to_i
-    units_balance = current_account.time_credit
-
-    if units_balance >= units_required
-      new_request = Request.create(request_params)
-      new_request.created_by = current_account.id
-      current_account.time_credit -= new_request.opening * new_request.unit_time_credit
-      current_account.save
-      redirect_to request_path(new_request) if new_request.save
-    else
-      flash[:error] = "Not enough credits to create request!"
+    if params[:request][:date] === ""
+      flash[:error] = "Please key in the date of event!"
       redirect_to new_request_path
+    else
+      units_required = request_params["unit_time_credit"].to_i * request_params["opening"].to_i
+      units_balance = current_account.time_credit
+
+      if units_balance >= units_required
+        new_request = Request.create(request_params)
+        new_request.created_by = current_account.id
+        current_account.time_credit -= new_request.opening * new_request.unit_time_credit
+        current_account.save
+        redirect_to request_path(new_request) if new_request.save
+      else
+        flash[:error] = "Not enough credits to create request!"
+        redirect_to new_request_path
+      end
     end
   end
 

@@ -8,12 +8,13 @@
 
       <div class="col s10 offset-s1 formtemplate">
         <br>
-
-        <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-        <% end %>
-
         <h4 class="center">Create Request</h4>
+
+        <div class="center">
+          <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+          <% end %>
+        </div>
 
         <div class="input-field col s8 offset-s2 center">
           <div class="input-field inline">
