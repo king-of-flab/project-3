@@ -55,6 +55,11 @@
         <% end %>
       </ul>
 
+    </div>
+  </nav>
+</div>
+
+
       <ul class="side-nav" id="mobile-demo">
         <li><a href="/requests">All Requests</a></li>
         <li><a href="/rewards">All Rewards</a></li>
@@ -68,7 +73,7 @@
           <% end %>
           <li><%= link_to "My Requests", my_requests_path %></li>
           <li><%= link_to "My Rewards", my_rewards_path %></li>
-          <li>&nbsp; <%= current_account.time_credit %> credits &nbsp;&nbsp; </li>
+          <li><a href="#!"><%= current_account.time_credit %> credits </a></li>
           <li><%= link_to "Logout", destroy_account_session_path, method: :delete %></li>
         <% else %>
           <li><a class="modal-trigger" href="#modal1">Signup</a></li>
@@ -76,9 +81,6 @@
         <% end %>
       </ul>
 
-    </div>
-  </nav>
-</div>
 
 <!-- dropdown modal -->
 <div id="modal1" class="modal center">
