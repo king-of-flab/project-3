@@ -1,25 +1,31 @@
 class RewardsController < ApplicationController
 
   before_action :authenticate_account!, except: [:index]
+  before_action :set_reward, except: [:index, :create, :new]
 
   def index
-    @all_rewards = Reward.all.order(:date)
     @all_areas = Reward.distinct.pluck(:area)
+    @all_rewards =
+    if params[:area]
+      Reward.where("area = '#{params[:area]}'")
+    else
+      Reward.all
+    end
   end
 
   def create
     units_required = reward_params["unit_time_credit"].to_i * reward_params["opening"].to_i
-    units_balance = current_account["time_credit"].to_i
+    units_balance = current_account.time_credit
 
     if units_balance >= units_required
       new_reward = Reward.create(reward_params)
       new_reward.created_by = current_account.id
       current_account.time_credit -= new_reward.opening * new_reward.unit_time_credit
       current_account.save
-      # deduct the time credit from creator's account
       redirect_to reward_path(new_reward) if new_reward.save
     else
-      render html: "not enough units to create this event"
+      flash[:error] = "Not enough credits to create reward!"
+      redirect_to new_reward_path
     end
   end
 
@@ -28,47 +34,51 @@ class RewardsController < ApplicationController
   end
 
   def show
-    @current_reward = Reward.find(params[:id])
-    @creator = Account.find(@current_reward.created_by)
+    @creator = Account.find(@reward.created_by)
     @accountsid = []
-    if @current_reward.accounts.length != 0
-      @current_reward.accounts.each do |account|
+    if @reward.accounts.length != 0
+      @reward.accounts.each do |account|
         @accountsid << account.id
       end
     end
   end
 
   def edit
-    @current_reward = Reward.find(params[:id])
   end
 
   def update
-    updated_reward = Reward.find(params[:id])
-    updated_reward.update(reward_params)
-    redirect_to reward_path(updated_reward) if updated_reward.save
+    @reward.update(update_reward_params)
+    redirect_to reward_path if @reward.save
   end
 
   def destroy
-    Reward.destroy(params[:id])
+    @reward.destroy
     redirect_to my_rewards_path
   end
 
   def redeem
-    current_reward = Reward.find(params[:id])
-    current_reward.accounts << current_account
-    current_reward.opening -= 1
-    current_account.time_credit -= current_reward.unit_time_credit
-    creator = Account.find(current_reward.created_by)
-    creator.time_credit += current_reward.unit_time_credit
-    if current_reward.save && current_account.save && creator.save
+    @reward.accounts << current_account
+    @reward.opening -= 1
+    current_account.time_credit -= @reward.unit_time_credit
+    creator = Account.find(@reward.created_by)
+    creator.time_credit += @reward.unit_time_credit
+    if @reward.save && current_account.save && creator.save
       redirect_to my_rewards_path
     end
   end
 
   private
 
+  def set_reward
+    @reward = Reward.find(params[:id])
+  end
+
   def reward_params
     params.require(:reward).permit(:name, :date, :start_time, :end_time, :address, :area, :opening, :unit_time_credit, :description, :image)
+  end
+
+  def update_reward_params
+    params.require(:reward).permit(:name, :date, :start_time, :end_time, :address, :area, :description, :image)
   end
 
 end
