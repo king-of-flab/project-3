@@ -14,9 +14,6 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
     resource.save
     yield resource if block_given?
 
-
-
-
     if resource.persisted?
       if resource.active_for_authentication?
         new_account = Account.find_by(email: params[:account][:email])
