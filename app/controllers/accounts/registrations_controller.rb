@@ -16,16 +16,18 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
 
     new_account = Account.find_by(email: params[:account][:email])
     account_type = new_account[:account_type]
-      if account_type == "individual"
-        new_account.time_credit = 0
-        new_account.save
-      elsif account_type == "organisation"
-        new_account.time_credit = 1000
-        new_account.save
-      end
+
+    if account_type === "individual"
+      new_account.time_credit = 0
+      new_account.save
+    elsif account_type === "organisation"
+      new_account.time_credit = 1000
+      new_account.save
+    end
 
     if resource.persisted?
       if resource.active_for_authentication?
+
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
         respond_with resource, location: after_sign_up_path_for(resource)
