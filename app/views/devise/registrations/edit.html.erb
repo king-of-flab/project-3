@@ -1,3 +1,4 @@
+<!-- EDIT PROFILE FORM -->
 <div class="container">
   <div class="row">
     <div class="section">
@@ -7,8 +8,34 @@
         <h4 class="center">Edit
           <%= resource_name.to_s.humanize %></h4>
 
+          <div align="center" class="row">
+            <%#= devise_error_messages! %>
+            <% flash.each do |name, msg| %>
+
+            <% if msg.class == Array %>
+            <% msg.each do |message| %>
+            <%= content_tag :div, message, :id => "flash_#{name}" %>
+            <% end %>
+          <% else %>
+            # old code
+            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+            <% end %>
+            <% end %>
+          </div>
+
+          <div class="input-field center">
+            <div class="col s12">
+              <div class="input-field inline"></div>
+              <img onclick="openUploadEditWidget()" src="http://res.cloudinary.com/ddanielnp/image/upload/w_60,h_60/v1502786784/empty-profile_uhz90e.png" class="profile_image">
+              <p >Click to change</p>
+
+            </div>
+          </div>
+
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= devise_error_messages! %>
+        <!-- <%= devise_error_messages! %> -->
+
+        <%= f.hidden_field :profile_image, value: '' %>
 
         <div class="input-field col s8 offset-s2">
           <i class="material-icons prefix">account_circle</i>
