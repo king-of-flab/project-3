@@ -14,21 +14,24 @@ class RewardsController < ApplicationController
   end
 
   def create
-    units_required = reward_params["unit_time_credit"].to_i * reward_params["opening"].to_i
-    units_balance = current_account.time_credit
-
-    if units_balance >= units_required
-      new_reward = Reward.create(reward_params)
-      new_reward.created_by = current_account.id
-      current_account.time_credit -= new_reward.opening * new_reward.unit_time_credit
-      current_account.save
-      redirect_to reward_path(new_reward) if new_reward.save
-    else
-      flash[:error] = "Not enough credits to create reward!"
+    if params[:request][:date] === ""
+      flash[:error] = "Please key in the date of event!"
       redirect_to new_reward_path
+      else
+      units_required = reward_params["unit_time_credit"].to_i * reward_params["opening"].to_i
+      units_balance = current_account.time_credit
+      if units_balance >= units_required
+        new_reward = Reward.create(reward_params)
+        new_reward.created_by = current_account.id
+        current_account.time_credit -= new_reward.opening * new_reward.unit_time_credit
+        current_account.save
+        redirect_to reward_path(new_reward) if new_reward.save
+      else
+        flash[:error] = "Not enough credits to create reward!"
+        redirect_to new_reward_path
+      end
     end
-  end
-
+end
   def new
     @new_reward = Reward.new
   end
