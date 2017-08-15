@@ -26,6 +26,7 @@ class RequestsController < ApplicationController
         new_request.created_by = current_account.id
         current_account.time_credit -= new_request.opening * new_request.unit_time_credit
         current_account.save
+        new_request.image = "http://i.imgur.com/O6b9LqP.png" if new_request.image.blank?
         redirect_to request_path(new_request) if new_request.save
       else
         flash[:error] = "Not enough credits to create request!"

@@ -25,6 +25,7 @@ class RewardsController < ApplicationController
         new_reward.created_by = current_account.id
         current_account.time_credit -= new_reward.opening * new_reward.unit_time_credit
         current_account.save
+        new_reward.image = "http://i.imgur.com/O6b9LqP.png" if new_reward.image.blank?
         redirect_to reward_path(new_reward) if new_reward.save
       else
         flash[:error] = "Not enough credits to create reward!"
