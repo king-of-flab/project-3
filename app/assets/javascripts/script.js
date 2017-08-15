@@ -6,6 +6,15 @@ $(document).on('turbolinks:load', function () {
 
   $('select').material_select()
 
+  $('.button-collapse').sideNav({
+        menuWidth: 300, // Default is 300
+        edge: 'left', // Choose the horizontal origin
+        closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        draggable: true, // Choose whether you can drag to open on touch screens
+      }
+    )
+
+
   window.setInterval(function () {
     $('.carousel').carousel('next')
   }, 5000)
@@ -13,7 +22,6 @@ $(document).on('turbolinks:load', function () {
   $('.carousel.carousel-slider').carousel({
     fullWidth: true,
     indicators: true,
-    height: 600
   })
 
   $('.datepicker').pickadate({
