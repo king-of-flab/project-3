@@ -4,12 +4,12 @@ class RewardsController < ApplicationController
   before_action :set_reward, except: [:index, :create, :new]
 
   def index
-    @all_areas = Reward.distinct.pluck(:area)
+    @all_areas = Reward.distinct.pluck(:area).sort
     @all_rewards =
     if params[:area]
       Reward.where("area = '#{params[:area]}'")
     else
-      Reward.all
+      Reward.all.sort { |a,b| a.date <=> b.date }
     end
   end
 

@@ -4,12 +4,12 @@ class RequestsController < ApplicationController
   before_action :set_request, except: [:index, :create, :new]
 
   def index
-    @all_areas = Request.distinct.pluck(:area)
+    @all_areas = Request.distinct.pluck(:area).sort
     @all_requests =
     if params[:area]
       Request.where("area = '#{params[:area]}'")
     else
-      Request.all
+      Request.all.sort { |a,b| a.date <=> b.date }
     end
   end
 
