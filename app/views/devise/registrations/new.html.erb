@@ -7,34 +7,18 @@
         <br>
         <h4 class="center">Signup with GiftLoop</h4>
 
-        <div align="center" class="row">
-          <%#= devise_error_messages! %>
-          <% flash.each do |name, msg| %>
-
-          <% if msg.class == Array %>
-          <% msg.each do |message| %>
-          <%= content_tag :div, message, :id => "flash_#{name}" %>
-          <% end %>
-        <% else %>
-
-          # old code
-          <%= content_tag :div, msg, :id => "flash_#{name}" %>
-
-          <% end %>
-          <% end %>
-
-        </div>
-
         <div class="input-field center">
-          <!-- <div class="col s12"> -->
-          <div class="input-field inline">
-            <input disabled value="Upload profile image" id="disabled" type="text" class="validate">
+          <div class="col s12">
+            <div class="input-field inline">
+             </div> 
+             <img onclick="openUploadWidget()" src="http://res.cloudinary.com/ddanielnp/image/upload/w_60,h_60/v1502786784/empty-profile_uhz90e.png" class="profile_image">
+             <p  >Press the image to change</p>
+
           </div>
-          <a href="#" id="widget_opener">Event images</a>
-          <!-- </div> -->
         </div>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
 
         <%= f.hidden_field :profile_image, value: '' %>
 
