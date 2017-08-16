@@ -1,6 +1,7 @@
 class RewardsController < ApplicationController
 
   before_action :authenticate_account!, except: [:index]
+  before_action :is_organisation?
   before_action :set_reward, except: [:index, :create, :new]
 
   def index
@@ -105,6 +106,12 @@ class RewardsController < ApplicationController
 
   def update_reward_params
     params.require(:reward).permit(:name, :date, :start_time, :end_time, :address, :area, :description, :image)
+  end
+
+  def is_organisation?
+    if current_account.account_type == "individual"
+      redirect_to root_path
+    end
   end
 
 end
