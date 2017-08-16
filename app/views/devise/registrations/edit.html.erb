@@ -14,13 +14,15 @@
 
             <% if msg.class == Array %>
             <% msg.each do |message| %>
+            <% if message == "Tel is not a number" %>
+              <%= content_tag :div, "Contact number should not contain alphabets", :id => "flash_#{name}" %>
+            <% else %>
             <%= content_tag :div, message, :id => "flash_#{name}" %>
             <% end %>
-          <% else %>
-            # old code
-            <%= content_tag :div, msg, :id => "flash_#{name}" %>
             <% end %>
             <% end %>
+            <% end %>
+
           </div>
 
           <div class="input-field center">
