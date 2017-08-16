@@ -55,7 +55,7 @@
       <tbody>
         <% @request.accounts.each do |account| %>
         <tr>
-          <td><%= account.name %></td>
+          <td class="valign-wrapper"><img src="<%= account.profile_image%>" class="circle">&nbsp;&nbsp;<%= account.name %></td>
           <td><%= account.tel %></td>
           <td><%= account.email %></td>
           <% if @request.completed %>
@@ -101,9 +101,9 @@
         </div>
         <% end %>
       <% end %>
+    </div>
 
     <% end %>
 
-    </div>
   </div>
   <br>
