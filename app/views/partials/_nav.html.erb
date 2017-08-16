@@ -28,7 +28,9 @@
 
       <ul id="nav-mobile" class="left">
         <li>
-          <a href="/" class="logo-img"><img src="/assets/images/logo.png"></a>
+          <%= link_to root_path, class: "logo-img" do %>
+            <%= image_tag 'projectlogo.png' %>
+          <% end %>
         </li>
       </ul>
 
