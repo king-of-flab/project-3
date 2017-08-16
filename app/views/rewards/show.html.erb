@@ -1,5 +1,4 @@
 <div class="container">
-
   <div class="row">
     <div class="col s12 m6">
       <div class="card">
@@ -32,7 +31,7 @@
     <br>
 
     <% if @accountsid.select{ |accountid| accountid == current_account.id }.length == 0 && current_account.id != @creator.id && @reward.opening != 0 && !@reward.completed && current_account.account_type != "organisation" %>
-    <%= button_to "redeem", redeem_reward_path, class: "btn waves-effect waves-light" %>
+    <%= button_to "redeem", redeem_reward_path, class: "btn waves-effect waves-light", remote: true %>
     <% end %>
 
     <% if current_account == @creator %>
