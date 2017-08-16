@@ -11,24 +11,24 @@
           <%#= devise_error_messages! %>
           <% flash.each do |name, msg| %>
 
-          <% if msg.class == Array %>
-          <% msg.each do |message| %>
-          <% if message == "Tel is not a number" %>
-          <%= content_tag :div, "Contact number should not contain alphabets", :id => "flash_#{name}" %>
-        <% else %>
-          <%= content_tag :div, message, :id => "flash_#{name}" %>
-          <% end %>
-          <% end %>
-          <% end %>
+            <% if msg.class == Array %>
+              <% msg.each do |message| %>
+                <% if message == "Tel is not a number" %>
+                  <%= content_tag :div, "Contact number should not contain alphabets", :id => "flash_#{name}" %>
+                <% else %>
+                  <%= content_tag :div, message, :id => "flash_#{name}" %>
+                <% end %>
+              <% end %>
+            <% end %>
           <% end %>
         </div>
 
-        <div class="input-field center">
+        <div class="center">
           <div class="input-field inline">
           <img onclick="openUploadWidget()" src="http://res.cloudinary.com/ddanielnp/image/upload/w_60,h_60/v1502786784/empty-profile_uhz90e.png" class="profile_image">
           <p >Click to change</p>
+          </div>
         </div>
-      </div>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 

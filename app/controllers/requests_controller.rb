@@ -49,8 +49,13 @@ class RequestsController < ApplicationController
   end
 
   def update
-    @request.update(update_request_params)
-    redirect_to request_path if @request.save
+    if params[:request][:date] == ""
+      flash[:error] = "Please key in the date of event!"
+      redirect_to edit_request_path
+    else
+      @request.update(update_request_params)
+      redirect_to request_path if @request.save
+    end
   end
 
   def destroy

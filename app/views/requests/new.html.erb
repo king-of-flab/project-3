@@ -6,13 +6,14 @@
         <br>
         <h4 class="center">Create Request</h4>
 
-        <div class="center">
+        <div class="row" align="center">
           <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key %>"><%= value %></div>
+          <div class="alert alert-<%= key %>"><%= value %>
+          </div>
           <% end %>
         </div>
 
-        <div class="input-field col s8 offset-s2 center">
+        <div class="center">
           <div class="input-field inline">
             <img onclick="openUploadRequestsWidget()" src="http://res.cloudinary.com/ddanielnp/image/upload/c_scale,w_300/v1502804208/giftloop/ntbdvahkbycuxlecogcr.png" class="event_image">
             <p >Click to change</p>
@@ -22,7 +23,7 @@
         <%= form_for @new_request do |f| %>
 
         <div class="input-field col s8 offset-s2">
-          <i class="material-icons prefix">local_activity</i>
+          <i class="material-icons prefix">event</i>
           <%= f.text_field :name, required: true, autofocus: true %>
           <%= f.label :name %>
         </div>

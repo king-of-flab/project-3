@@ -13,7 +13,7 @@ class RewardsController < ApplicationController
     if params[:reward][:date] == ""
       flash[:error] = "Please key in the date of event!"
       redirect_to new_reward_path
-      else
+    else
       units_required = reward_params["unit_time_credit"].to_i * reward_params["opening"].to_i
       units_balance = current_account.time_credit
       if units_balance >= units_required
@@ -48,8 +48,13 @@ class RewardsController < ApplicationController
   end
 
   def update
-    @reward.update(update_reward_params)
-    redirect_to reward_path if @reward.save
+    if params[:reward][:date] == ""
+      flash[:error] = "Please key in the date of event!"
+      redirect_to edit_reward_path
+    else
+      @reward.update(update_reward_params)
+      redirect_to reward_path if @reward.save
+    end
   end
 
   def destroy
