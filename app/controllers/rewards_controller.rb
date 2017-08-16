@@ -4,17 +4,17 @@ class RewardsController < ApplicationController
   before_action :set_reward, except: [:index, :create, :new]
 
   def index
-    @all_areas = Reward.distinct.pluck(:area)
+    @all_areas = Reward.distinct.pluck(:area).sort
     @all_rewards =
     if params[:area]
       Reward.where("area = '#{params[:area]}'")
     else
-      Reward.all
+      Reward.all.sort { |a,b| a.date <=> b.date }
     end
   end
 
   def create
-    if params[:rewards][:date] === ""
+    if params[:reward][:date] == ""
       flash[:error] = "Please key in the date of event!"
       redirect_to new_reward_path
       else
@@ -25,13 +25,15 @@ class RewardsController < ApplicationController
         new_reward.created_by = current_account.id
         current_account.time_credit -= new_reward.opening * new_reward.unit_time_credit
         current_account.save
+        new_reward.image = "http://i.imgur.com/O6b9LqP.png" if new_reward.image.blank?
         redirect_to reward_path(new_reward) if new_reward.save
       else
         flash[:error] = "Not enough credits to create reward!"
         redirect_to new_reward_path
       end
     end
-end
+  end
+
   def new
     @new_reward = Reward.new
   end
@@ -68,6 +70,20 @@ end
     if @reward.save && current_account.save && creator.save
       redirect_to my_rewards_path
     end
+  end
+
+  def attendance
+    @account_id = params[:account_id]
+    @reward.attendance += 1
+    @reward.save
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def completed
+    @reward.completed = true
+    redirect_to my_rewards_path if @reward.save
   end
 
   private
