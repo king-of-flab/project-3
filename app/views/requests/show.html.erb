@@ -79,24 +79,32 @@
       <div class="col s12 m3">
         <% if @request.completed %>
         <%= button_to "edit request", edit_request_path(@request), method: :get, class: "btn waves-effect waves-light disabled" %>
-      <% else %>
+        <% else %>
         <%= button_to "edit request", edit_request_path(@request), method: :get, class: "btn waves-effect waves-light" %>
+        <% end %>
+      </div>
+
+      <div class="col s12 m3">
+        <% if @request.completed %>
+        <%= button_to "send sms", send_message_path, class: "btn waves-effect waves-light disabled" %>
+        <% else %>
+        <%= button_to "send sms", send_message_path, class: "btn waves-effect waves-light" %>
         <% end %>
       </div>
 
       <div class="col s12 m3">
         <% if @accountsid.length == 0 %>
         <%= button_to "delete request", request_path(@request), method: :delete, class: "btn waves-effect waves-light", data: {confirm: "Are you sure?"} %>
-      <% else %>
+        <% else %>
         <% if @request.completed %>
         <%= button_to "request completed", completed_path, remote: true, class: "btn waves-effect waves-light disabled" %>
-      <% else %>
+        <% else %>
         <%= button_to "request completed", completed_path, remote: true, class: "btn waves-effect waves-light" %>
         <% end %>
         <% end %>
       </div>
-    </div>
+     </div>
 
-    <% end %>
+  <% end %>
   </div>
   <br>

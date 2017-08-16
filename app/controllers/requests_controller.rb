@@ -98,6 +98,30 @@ class RequestsController < ApplicationController
     end
   end
 
+  def send_text_message
+    numbers = []
+
+    @request.accounts.each do |account|
+      numbers << "+65#{account.tel}"
+    end
+
+    numbers.each do |number|
+      number_to_send_to = number
+
+      twilio_sid = "ACf59cbcf94d9499de2bde0902b1a8f5eb"
+      twilio_token = "0f82d290b56df55ef4d2c3f08184610a"
+      twilio_phone_number = "+43676800200810"
+
+      @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+
+      @twilio_client.api.account.messages.create(
+        :from => "#{twilio_phone_number}",
+        :to => number_to_send_to,
+        :body => "#{@request.name} is coming up on #{@request.date.strftime('%d %B %Y (%A)')} at #{@request.start_time.strftime('%I:%M%p')}."
+      )
+    end
+  end
+
   private
 
   def set_request

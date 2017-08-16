@@ -29,4 +29,6 @@ Rails.application.routes.draw do
 
   post 'rewards/:id/completed', to: 'rewards#completed', as: 'reward_completed'
 
+  post 'requests/:id/sendmsg', to: 'requests#send_text_message', as: 'send_message'
+
 end
