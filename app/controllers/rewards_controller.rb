@@ -58,13 +58,19 @@ class RewardsController < ApplicationController
   end
 
   def redeem
-    @reward.accounts << current_account
-    @reward.opening -= 1
-    current_account.time_credit -= @reward.unit_time_credit
-    creator = Account.find(@reward.created_by)
-    creator.time_credit += @reward.unit_time_credit
-    if @reward.save && current_account.save && creator.save
-      redirect_to my_rewards_path
+    if current_account.time_credit < @reward.unit_time_credit
+      respond_to do |format|
+        format.js
+      end
+    else
+      @reward.accounts << current_account
+      @reward.opening -= 1
+      current_account.time_credit -= @reward.unit_time_credit
+      creator = Account.find(@reward.created_by)
+      creator.time_credit += @reward.unit_time_credit
+      if @reward.save && current_account.save && creator.save
+        redirect_to my_rewards_path
+      end
     end
   end
 
