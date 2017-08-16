@@ -10,6 +10,10 @@
 
     <div class="col s12 m6">
       <h3><%= @reward.name %></h3>
+      <p class="valign-wrapper">By:
+        <%= @creator.name %>&nbsp;&nbsp;
+        <%= image_tag @creator.profile_image %>
+      </p>
       <p>Date:
         <%= @reward.date.strftime('%d %B %Y (%A)') %>
         <p>Time:
@@ -22,8 +26,6 @@
           <%= @reward.opening %></p>
         <p>Time Credits:
           <%= @reward.unit_time_credit %></p>
-        <p>By:
-          <%= @creator.name %></p>
       </div>
     </div>
 

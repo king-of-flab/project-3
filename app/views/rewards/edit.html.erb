@@ -64,18 +64,6 @@
         </div>
 
         <div class="input-field col s8 offset-s2">
-          <i class="material-icons prefix">people</i>
-          <%= f.number_field :opening, required: true %>
-          <%= f.label :opening, "No. of Openings" %>
-        </div>
-
-        <div class="input-field col s8 offset-s2">
-          <i class="material-icons prefix">timer</i>
-          <%= f.number_field :unit_time_credit, in: 1..50, required: true %>
-          <%= f.label :unit_time_credit, "Time Credit Per Pax" %>
-        </div>
-
-        <div class="input-field col s8 offset-s2">
           <i class="material-icons prefix">description</i>
           <%= f.text_area :description, required: true, class: 'materialize-textarea' %>
           <%= f.label :description %>
