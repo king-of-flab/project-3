@@ -5,12 +5,8 @@ class RewardsController < ApplicationController
 
   def index
     @all_areas = Reward.distinct.pluck(:area).sort
-    @all_rewards =
-    if params[:area]
-      Reward.where("area = '#{params[:area]}'")
-    else
-      Reward.all.sort { |a,b| a.date <=> b.date }
-    end
+    @all_dates = Reward.distinct.pluck(:date).sort
+    @all_rewards = Reward.search(params[:area], params[:date]).all.sort { |a,b| a.date <=> b.date }
   end
 
   def create

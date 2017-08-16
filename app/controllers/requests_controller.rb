@@ -5,12 +5,8 @@ class RequestsController < ApplicationController
 
   def index
     @all_areas = Request.distinct.pluck(:area).sort
-    @all_requests =
-    if params[:area]
-      Request.where("area = '#{params[:area]}'")
-    else
-      Request.all.sort { |a,b| a.date <=> b.date }
-    end
+    @all_dates = Request.distinct.pluck(:date).sort
+    @all_requests = Request.search(params[:area], params[:date]).all.sort { |a,b| a.date <=> b.date }
   end
 
   def create
