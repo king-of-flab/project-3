@@ -71,7 +71,7 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
 
       flash[:resource] = flash[:resource].to_a.concat resource.errors.full_messages
 
-      respond_with resource
+      redirect_to edit_account_registration_path
     end
   end
 

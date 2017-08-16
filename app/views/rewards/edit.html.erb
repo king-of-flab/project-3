@@ -7,11 +7,12 @@
         <h4 class="center">Edit Reward</h4>
 
         <div class="input-field col s8 offset-s2 center">
+          <div class="col s12">
           <div class="input-field inline">
-            <input disabled value="Upload event image" id="disabled" type="text" class="validate">
-          </div>
-          <a href="#" id="widget_opener">Event images</a>
+            <img onclick="openUploadRewardsWidget()" src="<%= @reward.image %>" class="event_image">
+            <p >Click to change</p>
         </div>
+      </div>
 
         <%= form_for @reward do |f| %>
 
