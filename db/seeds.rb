@@ -43,7 +43,7 @@ end
   address: "8 Claymore Hill, Singapore 229572",
   area: "Orchard",
   description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  image: "https://static.independent.co.uk/s3fs-public/styles/article_small/public/thumbnails/image/2013/08/19/10/volunteering.jpg",
+  image: "https://res.cloudinary.com/ddanielnp/image/upload/c_scale,h_400/v1502873804/giftloop_events/amfbpxmph6vgdostjtj4.jpg",
   opening: "5",
   unit_time_credit: "10",
   created_by: "6"
@@ -59,7 +59,7 @@ end
   address: "8 Claymore Hill, Singapore 229572",
   area: "Orchard",
   description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  image: "https://static1.squarespace.com/static/561080bfe4b0827aaf02c999/t/561a4041e4b0dfaa034e562d/1444561223508/Yoga+class.jpg?format=1500w",
+  image: "https://res.cloudinary.com/ddanielnp/image/upload/c_scale,h_400/v1502873707/giftloop_events/tfvfmtemvqco63nh6slj.jpg",
   opening: "5",
   unit_time_credit: "10",
   created_by: "6"
