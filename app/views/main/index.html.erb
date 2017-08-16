@@ -28,6 +28,7 @@
           <p><%= request.date.strftime('%d %B %Y (%A)') %></p>
           <p><%= request.start_time.strftime('%I:%M%p') %> to
             <%= request.end_time.strftime('%I:%M%p') %></p>
+          <p><%= request.unit_time_credit %> credits per pax</p>
           <p><%= request.area %></p>
         </div>
         <div class="card-action">
@@ -56,9 +57,9 @@
         <div class="card-content">
           <h5><%= reward.name %></h5>
           <p><%= reward.date.strftime('%d %B %Y (%A)') %></p>
-          <p><%= reward.start_time.strftime('%I:%M%p') %>
-            to
+          <p><%= reward.start_time.strftime('%I:%M%p') %> to
             <%= reward.end_time.strftime('%I:%M%p') %></p>
+          <p><%= reward.unit_time_credit %> credits per pax</p>
           <p><%= reward.area %></p>
         </div>
         <div class="card-action">
