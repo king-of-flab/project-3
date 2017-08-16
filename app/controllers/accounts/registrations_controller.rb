@@ -19,7 +19,8 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
         new_account = Account.find_by(email: params[:account][:email])
         account_type = new_account[:account_type]
 
-        new_account.profile_image = "http://i.imgur.com/3itjB0k.png" if new_account.profile_image.blank?
+        new_account.profile_image = "http://res.cloudinary.com/ddanielnp/image/upload/c_scale,h_60,w_60/v1502786784/empty-profile_uhz90e.png
+" if new_account.profile_image.blank?
 
         if account_type == "individual"
           new_account.time_credit = 0
