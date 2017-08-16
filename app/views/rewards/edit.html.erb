@@ -6,24 +6,30 @@
         <br>
         <h4 class="center">Edit Reward</h4>
 
-        <div class="input-field col s8 offset-s2 center">
+        <div class="row" align="center">
+          <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+          <% end %>
+        </div>
+
+        <div class="center">
           <div class="input-field inline">
-            <input disabled value="Upload event image" id="disabled" type="text" class="validate">
+            <img onclick="openUploadRewardsWidget()" src="<%= @reward.image %>" class="event_image">
+            <p >Click to change</p>
           </div>
-          <a href="#" id="widget_opener">Event images</a>
         </div>
 
         <%= form_for @reward do |f| %>
 
         <div class="input-field col s8 offset-s2">
           <i class="material-icons prefix">event</i>
-          <%= f.text_field :name %>
+          <%= f.text_field :name, required: true %>
           <%= f.label :name %>
         </div>
 
         <div class="input-field col s8 offset-s2">
           <i class="material-icons prefix">date_range</i>
-          <%= f.text_field :date, class: 'datepicker', value: @reward.date.strftime('%d %B %Y') %>
+          <%= f.text_field :date, required: true, class: 'datepicker', value: @reward.date.strftime('%d %B %Y') %>
           <%= f.label :date %>
         </div>
 
@@ -31,12 +37,12 @@
           <div class="row">
             <div class="input-field col s6">
               <i class="material-icons prefix">access_time</i>
-              <%= f.text_field :start_time, class: 'timepicker', value: @reward.start_time.strftime('%I:%M%p') %>
+              <%= f.text_field :start_time, required: true, class: 'timepicker', value: @reward.start_time.strftime('%I:%M%p') %>
               <%= f.label :start_time, "Start Time" %>
             </div>
 
             <div class="input-field col s6">
-              <%= f.text_field :end_time, class: 'timepicker', value: @reward.end_time.strftime('%I:%M%p') %>
+              <%= f.text_field :end_time, required: true, class: 'timepicker', value: @reward.end_time.strftime('%I:%M%p') %>
               <%= f.label :end_time, "End Time" %>
             </div>
           </div>
@@ -46,24 +52,36 @@
           <div class="row">
             <div class="input-field col s8">
               <i class="material-icons prefix">location_on</i>
-              <%= f.text_field :address %>
+              <%= f.text_field :address, required: true %>
               <%= f.label :address %>
             </div>
 
             <div class="input-field col s4">
-              <%= f.text_field :area, class: "autocomplete" %>
+              <%= f.text_field :area, required: true, class: "autocomplete" %>
               <%= f.label :area %>
             </div>
           </div>
         </div>
 
         <div class="input-field col s8 offset-s2">
+          <i class="material-icons prefix">people</i>
+          <%= f.number_field :opening, required: true %>
+          <%= f.label :opening, "No. of Openings" %>
+        </div>
+
+        <div class="input-field col s8 offset-s2">
+          <i class="material-icons prefix">timer</i>
+          <%= f.number_field :unit_time_credit, in: 1..50, required: true %>
+          <%= f.label :unit_time_credit, "Time Credit Per Pax" %>
+        </div>
+
+        <div class="input-field col s8 offset-s2">
           <i class="material-icons prefix">description</i>
-          <%= f.text_area :description, class: 'materialize-textarea' %>
+          <%= f.text_area :description, required: true, class: 'materialize-textarea' %>
           <%= f.label :description %>
         </div>
 
-        <%= f.hidden_field :image, value: '' %>
+        <%= f.hidden_field :image %>
 
         <div class="input-field col s8 offset-s2">
           <%= f.submit "Update", class: 'btn waves-effect waves-light right formbttn' %>

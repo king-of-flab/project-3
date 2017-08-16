@@ -7,4 +7,6 @@ class Account < ApplicationRecord
   has_and_belongs_to_many :requests
   has_and_belongs_to_many :rewards
 
+  validates :tel, :numericality => {:only_integer => true}
+
 end

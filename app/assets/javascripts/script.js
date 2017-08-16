@@ -7,13 +7,12 @@ $(document).on('turbolinks:load', function () {
   $('select').material_select()
 
   $('.button-collapse').sideNav({
-        menuWidth: 300, // Default is 300
-        edge: 'left', // Choose the horizontal origin
-        closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-        draggable: true, // Choose whether you can drag to open on touch screens
-      }
+    menuWidth: 300, // Default is 300
+    edge: 'left', // Choose the horizontal origin
+    closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+    draggable: true // Choose whether you can drag to open on touch screens
+  }
     )
-
 
   window.setInterval(function () {
     $('.carousel').carousel('next')
@@ -21,7 +20,7 @@ $(document).on('turbolinks:load', function () {
 
   $('.carousel.carousel-slider').carousel({
     fullWidth: true,
-    indicators: true,
+    indicators: true
   })
 
   $('.datepicker').pickadate({
@@ -188,24 +187,52 @@ $(document).on('turbolinks:load', function () {
     minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
   })
 
-  if (document.getElementById('widget_opener')) {
-    document.getElementById('widget_opener').addEventListener('click', function () {
-      cloudinary.openUploadWidget({ cloud_name: 'ddanielnp', upload_preset: 'c3bf2cga'},
-    function (error, result) {
-      console.log(error, result)
-    })
-    }, false)
-
-    $('#widget_opener').cloudinary_upload_widget({
-      cloud_name: 'ddanielnp',
-      theme: 'minimal',
-      upload_preset: 'c3bf2cga',
-      cropping: 'server'
-    }, function (error, result) {
-      // console.log(error, result)
-      $('#request_image').val(result[0].url)
-      $('#reward_image').val(result[0].url)
-      $('#account_profile_image').val(result[0].url)
-    })
-  }
 })
+
+// Profile pic + edit pic widget
+function openUploadWidget() {
+    cloudinary.openUploadWidget({
+      cloud_name:'ddanielnp',
+      upload_preset: 'profile_preset', multiple:false
+},
+        function(error, result) {
+            console.log(error, result)
+        //    $.each(result, function(index, value) {
+        console.log(result)
+              $(".profile_image").attr("src", result[0].eager[0].secure_url)
+              $("#account_profile_image").val(result[0].eager[0].secure_url)
+          //  });
+        });
+}
+
+// Request pic widget
+function openUploadRequestsWidget() {
+    cloudinary.openUploadWidget({
+      cloud_name:'ddanielnp',
+      upload_preset: 'event_preset', multiple:false
+},
+        function(error, result) {
+            console.log(error, result)
+        //    $.each(result, function(index, value) {
+        console.log(result)
+              $(".event_image").attr("src", result[0].eager[0].secure_url)
+              $("#request_image").val(result[0].eager[0].secure_url)
+          //  });
+        });
+}
+
+// Reward pic widget
+function openUploadRewardsWidget() {
+    cloudinary.openUploadWidget({
+      cloud_name:'ddanielnp',
+      upload_preset: 'event_preset', multiple:false
+},
+        function(error, result) {
+            console.log(error, result)
+        //    $.each(result, function(index, value) {
+        console.log(result)
+              $(".event_image").attr("src", result[0].eager[0].secure_url)
+              $("#reward_image").val(result[0].eager[0].secure_url)
+          //  });
+        });
+}

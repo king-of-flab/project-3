@@ -11,80 +11,76 @@
           <%#= devise_error_messages! %>
           <% flash.each do |name, msg| %>
 
-          <% if msg.class == Array %>
-          <% msg.each do |message| %>
-          <%= content_tag :div, message, :id => "flash_#{name}" %>
+            <% if msg.class == Array %>
+              <% msg.each do |message| %>
+                <% if message == "Tel is not a number" %>
+                  <%= content_tag :div, "Contact number should not contain alphabets", :id => "flash_#{name}" %>
+                <% else %>
+                  <%= content_tag :div, message, :id => "flash_#{name}" %>
+                <% end %>
+              <% end %>
+            <% end %>
           <% end %>
-        <% else %>
-
-          # old code
-          <%= content_tag :div, msg, :id => "flash_#{name}" %>
-
-          <% end %>
-          <% end %>
-
         </div>
 
-        <div class="input-field center">
-          <!-- <div class="col s12"> -->
+        <div class="center">
           <div class="input-field inline">
-            <input disabled value="Upload profile image" id="disabled" type="text" class="validate">
-          </div>
-          <a href="#" id="widget_opener">Event images</a>
-          <!-- </div> -->
-        </div>
-
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
-        <%= f.hidden_field :profile_image, value: '' %>
-
-        <div class="input-field col s8 offset-s2">
-          <i class="material-icons prefix">account_circle</i>
-          <%= f.text_field :name, required: true, autofocus: true %>
-          <%= f.label :name %><br/>
-        </div>
-
-        <div class="input-field col s8 offset-s2">
-          <i class="material-icons prefix">email</i>
-          <%= f.email_field :email, required: true %>
-          <%= f.label :email %><br/>
-        </div>
-
-        <div class="input-field col s8 offset-s2">
-          <i class="material-icons prefix">call</i>
-          <%= f.telephone_field :tel, required: true %>
-          <%= f.label :tel, "Contact" %><br/>
-        </div>
-
-        <div class="input-field col s8 offset-s2">
-          <i class="material-icons prefix">card_membership</i>
-          <%= f.text_field :identification, required: true %>
-          <%= f.label :identification, "UEN or NRIC No" %><br/>
-        </div>
-
-        <div class="input-field col s8 offset-s2">
-          <i class="material-icons prefix">lock</i>
-          <%= f.password_field :password, required: true, autocomplete: "off" %>
-          <%= f.label :password, "Password (6 characters minimum)"%><br/>
-        </div>
-
-        <div class="input-field col s8 offset-s2">
-          <i class="material-icons prefix">lock</i>
-          <%= f.password_field :password_confirmation, required: true, autocomplete: "off" %>
-          <%= f.label :password_confirmation, "Password Confirmation" %><br/>
-        </div>
-
-        <%= f.hidden_field :account_type, :value => params[:account_type] %>
-
-        <div class="input-field col s8 offset-s2">
-          <div class="actions">
-            <%= f.submit "Submit", class: 'btn waves-effect waves-light right formbttn' %>
+          <img onclick="openUploadWidget()" src="http://res.cloudinary.com/ddanielnp/image/upload/w_60,h_60/v1502786784/empty-profile_uhz90e.png" class="profile_image">
+          <p >Click to change</p>
           </div>
         </div>
-        <% end %>
 
-        <!-- <%= render "devise/shared/links" %> -->
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+      <%= f.hidden_field :profile_image %>
+
+      <div class="input-field col s8 offset-s2">
+        <i class="material-icons prefix">account_circle</i>
+        <%= f.text_field :name, required: true, autofocus: true %>
+        <%= f.label :name %><br/>
       </div>
+
+      <div class="input-field col s8 offset-s2">
+        <i class="material-icons prefix">email</i>
+        <%= f.email_field :email, required: true %>
+        <%= f.label :email %><br/>
+      </div>
+
+      <div class="input-field col s8 offset-s2">
+        <i class="material-icons prefix">call</i>
+        <%= f.telephone_field :tel, required: true %>
+        <%= f.label :tel, "Contact" %><br/>
+      </div>
+
+      <div class="input-field col s8 offset-s2">
+        <i class="material-icons prefix">card_membership</i>
+        <%= f.text_field :identification, required: true %>
+        <%= f.label :identification, "UEN or NRIC No" %><br/>
+      </div>
+
+      <div class="input-field col s8 offset-s2">
+        <i class="material-icons prefix">lock</i>
+        <%= f.password_field :password, required: true, autocomplete: "off" %>
+        <%= f.label :password, "Password (6 characters minimum)"%><br/>
+      </div>
+
+      <div class="input-field col s8 offset-s2">
+        <i class="material-icons prefix">lock</i>
+        <%= f.password_field :password_confirmation, required: true, autocomplete: "off" %>
+        <%= f.label :password_confirmation, "Password Confirmation" %><br/>
+      </div>
+
+      <%= f.hidden_field :account_type, :value => params[:account_type] %>
+
+      <div class="input-field col s8 offset-s2">
+        <div class="actions">
+          <%= f.submit "Submit", class: 'btn waves-effect waves-light right formbttn' %>
+        </div>
+      </div>
+      <% end %>
+
+      <!-- <%= render "devise/shared/links" %> -->
     </div>
   </div>
+</div>
 </div>

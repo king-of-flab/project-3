@@ -11,6 +11,10 @@
 
     <div class="col s12 m6">
       <h3><%= @request.name %></h3>
+      <p class="valign-wrapper">By:
+        <%= @creator.name %>&nbsp;&nbsp;
+        <%= image_tag @creator.profile_image %>
+      </p>
       <p>Date:
         <%= @request.date.strftime('%d %B %Y (%A)') %>
         <p>Time:
@@ -23,19 +27,18 @@
           <%= @request.opening %></p>
         <p>Time Credits:
           <%= @request.unit_time_credit %></p>
-        <p>By:
-          <%= @creator.name %></p>
+
       </div>
     </div>
 
     <p><%= @request.description %></p>
     <br>
 
-    <% if @accountsid.select{ |accountid| accountid == current_account.id }.length == 0 && current_account.id != @creator.id && @request.opening != 0 %>
+    <% if @accountsid.select{ |accountid| accountid == current_account.id }.length == 0 && current_account.id != @creator.id && @request.opening != 0 && !@request.completed && current_account.account_type != "organisation" %>
     <%= button_to "register", register_request_path, class: "btn waves-effect waves-light" %>
     <% end %>
 
-    <% if @accountsid.select{ |accountid| accountid == current_account.id }.length == 1%>
+    <% if @accountsid.select{ |accountid| accountid == current_account.id }.length == 1 && !@request.completed %>
 
     <%= button_to "Withdraw", withdraw_request_path, method: :delete, class: "btn waves-effect waves-light", data: {confirm: "Are you sure?"} %>
 
@@ -59,7 +62,13 @@
           <td><%= account.name %></td>
           <td><%= account.tel %></td>
           <td><%= account.email %></td>
-          <td><%= button_to "present", attendance_path, remote: true, class: "btn waves-effect waves-light attendancebttn", params: { account_id: account.id }  %></td>
+          <% if @request.completed %>
+          <td id="table<%=account.id%>">
+            <%= button_to "present", attendance_path, remote: true, class: "btn waves-effect waves-light disabled", params: { account_id: account.id }  %></td>
+        <% else %>
+          <td id="table<%=account.id%>">
+            <%= button_to "present", attendance_path, remote: true, class: "btn waves-effect waves-light", params: { account_id: account.id } %></td>
+          <% end %>
         </tr>
         <% end %>
       </tbody>
@@ -68,28 +77,34 @@
 
     <div class="row">
       <div class="col s12 m3">
+        <% if @request.completed %>
+        <%= button_to "edit request", edit_request_path(@request), method: :get, class: "btn waves-effect waves-light disabled" %>
+        <% else %>
         <%= button_to "edit request", edit_request_path(@request), method: :get, class: "btn waves-effect waves-light" %>
+        <% end %>
       </div>
 
       <div class="col s12 m3">
+        <% if @request.completed %>
+        <%= button_to "send sms", send_message_path, class: "btn waves-effect waves-light disabled" %>
+        <% else %>
         <%= button_to "send sms", send_message_path, class: "btn waves-effect waves-light" %>
+        <% end %>
       </div>
 
       <div class="col s12 m3">
         <% if @accountsid.length == 0 %>
-          <%= button_to "delete request", request_path(@request), method: :delete, class: "btn waves-effect waves-light", data: {confirm: "Are you sure?"} %>
-
+        <%= button_to "delete request", request_path(@request), method: :delete, class: "btn waves-effect waves-light", data: {confirm: "Are you sure?"} %>
         <% else %>
-          <%= button_to "request completed", completed_path, remote: true, class: "btn waves-effect waves-light" %>
-
+        <% if @request.completed %>
+        <%= button_to "request completed", completed_path, remote: true, class: "btn waves-effect waves-light disabled" %>
+        <% else %>
+        <%= button_to "request completed", completed_path, remote: true, class: "btn waves-effect waves-light" %>
+        <% end %>
         <% end %>
       </div>
+     </div>
 
-
-
-    </div>
-
-
-    <% end %>
+  <% end %>
   </div>
   <br>

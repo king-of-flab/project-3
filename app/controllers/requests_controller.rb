@@ -4,17 +4,13 @@ class RequestsController < ApplicationController
   before_action :set_request, except: [:index, :create, :new]
 
   def index
-    @all_areas = Request.distinct.pluck(:area)
-    @all_requests =
-    if params[:area]
-      Request.where("area = '#{params[:area]}'")
-    else
-      Request.all
-    end
+    @all_areas = Request.distinct.pluck(:area).sort
+    @all_dates = Request.distinct.pluck(:date).sort
+    @all_requests = Request.search(params[:area], params[:date]).all.sort { |a,b| a.date <=> b.date }
   end
 
   def create
-    if params[:request][:date] === ""
+    if params[:request][:date] == ""
       flash[:error] = "Please key in the date of event!"
       redirect_to new_request_path
     else
@@ -26,6 +22,7 @@ class RequestsController < ApplicationController
         new_request.created_by = current_account.id
         current_account.time_credit -= new_request.opening * new_request.unit_time_credit
         current_account.save
+        new_request.image = "http://i.imgur.com/O6b9LqP.png" if new_request.image.blank?
         redirect_to request_path(new_request) if new_request.save
       else
         flash[:error] = "Not enough credits to create request!"
@@ -52,8 +49,13 @@ class RequestsController < ApplicationController
   end
 
   def update
-    @request.update(update_request_params)
-    redirect_to request_path if @request.save
+    if params[:request][:date] == ""
+      flash[:error] = "Please key in the date of event!"
+      redirect_to edit_request_path
+    else
+      @request.update(update_request_params)
+      redirect_to request_path if @request.save
+    end
   end
 
   def destroy
@@ -74,9 +76,9 @@ class RequestsController < ApplicationController
   end
 
   def attendance
-    account = @request.accounts.find(params[:account_id])
-    account.time_credit += @request.unit_time_credit
-    account.save
+    @account = @request.accounts.find(params[:account_id])
+    @account.time_credit += @request.unit_time_credit
+    @account.save
     @request.attendance += 1
     @request.save
     respond_to do |format|
@@ -87,10 +89,10 @@ class RequestsController < ApplicationController
   def completed
     @request.completed = true
     @request.save
-    creator = Account.find(@request.created_by)
-    vacancy = @request.opening - @request.attendance
-    creator.time_credit += vacancy * @request.unit_time_credit
-    creator.save
+    @creator = Account.find(@request.created_by)
+    vacancy = @request.opening + @request.accounts.count - @request.attendance
+    @creator.time_credit += vacancy * @request.unit_time_credit
+    @creator.save
     respond_to do |format|
       format.js
     end
