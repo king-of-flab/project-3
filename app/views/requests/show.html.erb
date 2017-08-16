@@ -72,13 +72,23 @@
       </div>
 
       <div class="col s12 m3">
+        <%= button_to "send sms", send_message_path, class: "btn waves-effect waves-light" %>
+      </div>
+
+      <div class="col s12 m3">
         <% if @accountsid.length == 0 %>
           <%= button_to "delete request", request_path(@request), method: :delete, class: "btn waves-effect waves-light", data: {confirm: "Are you sure?"} %>
+
         <% else %>
           <%= button_to "request completed", completed_path, remote: true, class: "btn waves-effect waves-light" %>
+
         <% end %>
       </div>
+
+
+
     </div>
+
 
     <% end %>
   </div>

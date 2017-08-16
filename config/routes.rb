@@ -25,4 +25,7 @@ Rails.application.routes.draw do
 
   post 'rewards/:id/redeem', to: 'rewards#redeem', as: 'redeem_reward'
 
+  post 'requests/:id/sendmsg', to: 'requests#send_text_message', as: 'send_message'
+
+
 end
