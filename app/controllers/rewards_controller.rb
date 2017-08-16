@@ -6,7 +6,8 @@ class RewardsController < ApplicationController
 
   def index
     @all_areas = Reward.distinct.pluck(:area).sort
-    @all_dates = Reward.distinct.pluck(:date).sort
+    dates = Reward.distinct.pluck(:date).sort
+    @all_dates = dates.map! { |date| date.strftime('%d %b %Y (%a)') }
     @all_rewards = Reward.search(params[:area], params[:date]).all.sort { |a,b| a.date <=> b.date }
   end
 
