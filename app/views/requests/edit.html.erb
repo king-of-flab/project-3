@@ -7,12 +7,11 @@
         <h4 class="center">Edit Request</h4>
 
         <div class="input-field col s8 offset-s2 center">
-          <div class="col s12">
           <div class="input-field inline">
             <img onclick="openUploadRequestsWidget()" src="<%= @request.image %>" class="event_image">
             <p >Click to change</p>
+          </div>
         </div>
-      </div>
 
         <%= form_for @request do |f| %>
 

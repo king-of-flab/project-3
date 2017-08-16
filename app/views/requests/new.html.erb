@@ -2,10 +2,6 @@
   <div class="row">
     <div class="section">
 
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
-
       <div class="col s10 offset-s1 formtemplate">
         <br>
         <h4 class="center">Create Request</h4>
@@ -17,12 +13,11 @@
         </div>
 
         <div class="input-field col s8 offset-s2 center">
-          <div class="col s12">
           <div class="input-field inline">
             <img onclick="openUploadRequestsWidget()" src="http://res.cloudinary.com/ddanielnp/image/upload/c_scale,w_300/v1502804208/giftloop/ntbdvahkbycuxlecogcr.png" class="event_image">
             <p >Click to change</p>
+          </div>
         </div>
-      </div>
 
         <%= form_for @new_request do |f| %>
 

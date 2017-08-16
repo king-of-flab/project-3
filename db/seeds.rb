@@ -16,7 +16,7 @@
   time_credit: "100",
   email: "admin#{i+1}@gmail.com",
   password: "12345678",
-  profile_image: "https://s-media-cache-ak0.pinimg.com/736x/07/dd/12/07dd1283d19211a46dbbb29ec4483fe8--drawings-faces-girl-art-drawings.jpg",
+  profile_image: "https://res.cloudinary.com/ddanielnp/image/upload/c_thumb,g_auto:faces,h_60,r_max,w_60/v1502872893/giftloop/sbrmer0u7neni0xw7yj9.jpg",
   })
 end
 
@@ -29,7 +29,7 @@ end
   time_credit: "1000",
   email: "organisation#{i+1}@gmail.com",
   password: "12345678",
-  profile_image: "https://pbs.twimg.com/profile_images/813584000082214912/5U3iZVs-.jpg",
+  profile_image: "https://res.cloudinary.com/ddanielnp/image/upload/c_thumb,g_auto:faces,h_60,r_max,w_60/v1502872830/giftloop/ifzviwcq3bnm6mtmdyqe.jpg",
   })
 end
 
