@@ -13,13 +13,9 @@ $(document).on('turbolinks:load', function() {
     draggable: true // Choose whether you can drag to open on touch screens
   })
 
-  window.setInterval(function() {
-    $('.carousel').carousel('next')
-  }, 5000)
-
-  $('.carousel.carousel-slider').carousel({
-    fullWidth: true,
-    indicators: true
+  $('.slider').slider({
+    height: 550,
+    interval: 6000
   })
 
   $('.datepicker').pickadate({

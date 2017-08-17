@@ -80,11 +80,6 @@
   z-index: 1;
 }
 
-.indicator-item {
-  background-color: #46BFD2 !important;
-}
-
-
 // Put Req/Rew left and SeeAll right
 .mainLeft {
   display: inline-block;
@@ -113,7 +108,6 @@
 }
 
 // changed color of the My Requests and My Rewards tabs
-
 .tabs .tab a{
     color:#308693 !important;
 }
@@ -128,6 +122,7 @@
 	background-color:#308693 !important;
 }
 
+// flash alert colors
 #flash_resource, .alert-danger, .alert-error {
   width: 400px;
   // border: 2px solid red;
