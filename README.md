@@ -1,39 +1,24 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #3: Gift Loop
 
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+![Website](http://imgur.com/ttLRttv.png)
 
 https://giftloop.herokuapp.com/
 
-## Getting Started
+## Description
 
-Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
+We want to enable Singapore to be a society where people volunteer for social causes, as well as help one another out in time of need. Instead of money, we will be using a digital currency called time credits. Organisations start out with 1000 time credits and can create requests to get volunteers for social causes, but will also have to give back by offering rewards like art classes. Individuals start out with 0 credits and will build up their credits by first volunteering for organisational events or helping other individuals out.
 
-### Prerequisites
+* Users can see their profile page
+![Profile Page](http://imgur.com/frrlaEE.png)
 
-What is needed to install and run the project, how do we install them
-
-```
-Code example
-```
-
-### How to Use
-
-A step by step guide on how to install and use the project, for example if this is a game, how do we play it.
-
-
-```
-Code example
-```
-
-More steps...
-
-```
-until finished
-```
+* Event requesters can see the attendance list and send sms reminders
+![Attendance](http://imgur.com/0u1igmj.png)
 
 ## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+![Giftloop ERD](http://i.imgur.com/juULYIt.jpg)
+
+* [Our wireframes](https://giftloop.mybalsamiq.com/projects/project3/grid)
 
 ## Authors
 
