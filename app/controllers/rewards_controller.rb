@@ -33,6 +33,7 @@ class RewardsController < ApplicationController
   end
 
   def new
+    gon.cloudinary = ENV['CLOUDINARY_CLOUDNAME']
     @new_reward = Reward.new
   end
 
@@ -47,6 +48,7 @@ class RewardsController < ApplicationController
   end
 
   def edit
+    gon.cloudinary = ENV['CLOUDINARY_CLOUDNAME']
   end
 
   def update

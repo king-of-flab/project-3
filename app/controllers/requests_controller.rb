@@ -34,6 +34,7 @@ class RequestsController < ApplicationController
   end
 
   def new
+    gon.cloudinary = ENV['CLOUDINARY_CLOUDNAME']
     @new_request = Request.new
   end
 
@@ -48,6 +49,7 @@ class RequestsController < ApplicationController
   end
 
   def edit
+    gon.cloudinary = ENV['CLOUDINARY_CLOUDNAME']
   end
 
   def update
@@ -105,12 +107,12 @@ class RequestsController < ApplicationController
     @request.accounts.each do |account|
       numbers << "+65#{account.tel}"
     end
-    
+
     numbers.each do |number|
-      if ["+6592385117", "+6597926982", "+6598242708", "+6598246595", "+6583387004"].include?(number)
-        
+      if ["+6592385117", "+6597926982", "+6598242708", "+6598246595", "+6583387004", "+6594513443"].include?(number)
+
         number_to_send_to = number
-        
+
         twilio_sid = ENV['TWILIO_ACCOUNT_SID']
         twilio_token = ENV['TWILIO_AUTH_TOKEN']
         twilio_phone_number = ENV['TWILIO_NUMBER']

@@ -1,3 +1,4 @@
+@import "https://fonts.googleapis.com/css?family=Cabin|Proza+Libre";
 @import "materialize/components/color";
 
 // change navbar color
@@ -22,6 +23,7 @@
   margin: 0 auto !important;
   max-width: 1280px !important;
   width: 80% !important;
+  font-family: 'Proza Libre', sans-serif;
 }
 
 // align icons and text next to each other in the footer
@@ -128,6 +130,11 @@
   // border: 2px solid red;
   padding: 7px;
   color: rgb(200, 70, 70);
+}
+
+p {
+  font-family: 'Cabin', sans-serif;
+  font-size: 20px;
 }
 
 .alert-success {
