@@ -24,10 +24,8 @@
         </div>
 
         <div class="center">
-          <div class="input-field inline">
-            <p>Profile Image</p>
-          <img onclick="openUploadWidget()" src="http://res.cloudinary.com/ddanielnp/image/upload/w_60,h_60/v1502786784/empty-profile_uhz90e.png" class="profile_image tooltipped" data-position="right" data-delay="50" data-tooltip="Click on image above to upload or change">
-          </div>
+          <p>Profile Image</p>
+          <img onclick="openUploadWidget()" src="http://res.cloudinary.com/ddanielnp/image/upload/w_60,h_60/v1502786784/empty-profile_uhz90e.png" class="profile_image tooltipped" data-position="right" data-delay="50" data-tooltip="Click to upload your profile image">
         </div>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
