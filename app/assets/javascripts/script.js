@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+$(document).on('turbolinks:load', function () {
   $('.dropdown-button').dropdown({
     hover: false
   })
@@ -36,7 +36,7 @@ $(document).on('turbolinks:load', function() {
     canceltext: 'Cancel', // Text for cancel-button
     autoclose: true, // automatic close timepicker
     ampmclickable: true, // make AM PM clickable
-    aftershow: function() {} // Function for after opening timepicker
+    aftershow: function () {} // Function for after opening timepicker
   })
 
   $('.dropdown-button').dropdown({
