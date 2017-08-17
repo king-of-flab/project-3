@@ -108,6 +108,7 @@ class RequestsController < ApplicationController
     end
 
     numbers.each do |number|
+      if ["+6592385117", "+6597926982", "+6598242708", "+6583666605", "+6598246595", "+6583387004"].include?(number)
       number_to_send_to = number
 
       twilio_sid = "ACf59cbcf94d9499de2bde0902b1a8f5eb"
@@ -121,6 +122,7 @@ class RequestsController < ApplicationController
         :to => number_to_send_to,
         :body => "#{@request.name} is coming up on #{@request.date.strftime('%d %B %Y (%A)')} at #{@request.start_time.strftime('%I:%M%p')}."
       )
+      end
     end
   end
 
