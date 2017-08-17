@@ -16,7 +16,7 @@ We want to enable Singapore to be a society where people volunteer for social ca
 
 ## Workflow
 
-![Giftloop ERD](http://imgur.com/sUWnveR.png)
+![Giftloop ERD](http://i.imgur.com/juULYIt.jpg)
 
 * [Our wireframes](https://giftloop.mybalsamiq.com/projects/project3/grid)
 
