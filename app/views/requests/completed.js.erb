@@ -1,3 +1,6 @@
-$(".btn").addClass('disabled')
-Materialize.toast('Congratulations! Your request has been completed!', 3000)
-$(".timecredit").text("<%= @creator.time_credit %> credits")
+$('.btn').addClass('disabled')
+$('.timecredit').text('<%= @creator.time_credit %> credits')
+
+$('#completedmodal').html("<%= escape_javascript(render partial: 'completed', locals: { request: @request } ) %>")
+
+$('#completedmodal').modal('open')
