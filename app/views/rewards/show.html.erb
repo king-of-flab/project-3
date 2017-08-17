@@ -1,5 +1,4 @@
 <div class="container">
-
   <div class="row">
     <div class="col s12 m6">
       <div class="card">
@@ -11,6 +10,10 @@
 
     <div class="col s12 m6">
       <h3><%= @reward.name %></h3>
+      <p class="valign-wrapper">By:
+        <%= @creator.name %>&nbsp;&nbsp;
+        <%= image_tag @creator.profile_image %>
+      </p>
       <p>Date:
         <%= @reward.date.strftime('%d %B %Y (%A)') %>
         <p>Time:
@@ -23,16 +26,14 @@
           <%= @reward.opening %></p>
         <p>Time Credits:
           <%= @reward.unit_time_credit %></p>
-        <p>By:
-          <%= @creator.name %></p>
       </div>
     </div>
 
     <p><%= @reward.description %></p>
     <br>
 
-    <% if @accountsid.select{ |accountid| accountid == current_account.id }.length == 0 && current_account.id != @creator.id && @reward.opening != 0 %>
-    <%= button_to "redeem", redeem_reward_path, class: "btn waves-effect waves-light" %>
+    <% if @accountsid.select{ |accountid| accountid == current_account.id }.length == 0 && current_account.id != @creator.id && @reward.opening != 0 && !@reward.completed && current_account.account_type != "organisation" %>
+    <%= button_to "redeem", redeem_reward_path, class: "btn waves-effect waves-light", remote: true %>
     <% end %>
 
     <% if current_account == @creator %>
@@ -43,15 +44,23 @@
           <th>Name</th>
           <th>Contact</th>
           <th>Email</th>
+          <th>Attendance</th>
         </tr>
       </thead>
 
       <tbody>
         <% @reward.accounts.each do |account| %>
         <tr>
-          <td><%= account.name %></td>
+          <td class="valign-wrapper"><img src="<%= account.profile_image%>" class="circle">&nbsp;&nbsp;<%= account.name %></td>
           <td><%= account.tel %></td>
           <td><%= account.email %></td>
+          <% if @reward.completed %>
+            <td id="table<%=account.id%>">
+            <%= button_to "present", reward_attendance_path, remote: true, class: "btn waves-effect waves-light disabled", params: { account_id: account.id } %></td>
+          <% else %>
+            <td id="table<%=account.id%>">
+            <%= button_to "present", reward_attendance_path, remote: true, class: "btn waves-effect waves-light", params: { account_id: account.id } %></td>
+          <% end %>
         </tr>
         <% end %>
       </tbody>
@@ -60,12 +69,22 @@
 
     <div class="row">
       <div class="col s12 m3">
+      <% if @reward.completed %>
+        <%= button_to "edit reward", edit_reward_path(@reward), method: :get, class: "btn waves-effect waves-light disabled" %>
+      <% else %>
         <%= button_to "edit reward", edit_reward_path(@reward), method: :get, class: "btn waves-effect waves-light" %>
+      <% end %>
       </div>
 
       <div class="col s12 m3">
         <% if @accountsid.length == 0 %>
         <%= button_to "delete reward", reward_path(@reward), method: :delete, class: "btn waves-effect waves-light", data: {confirm: "Are you sure?"} %>
+        <% else %>
+          <% if @reward.completed %>
+            <%= button_to "reward completed", completed_path, class: "btn waves-effect waves-light disabled" %>
+          <% else %>
+            <%= button_to "reward completed", reward_completed_path, class: "btn waves-effect waves-light" %>
+          <% end %>
         <% end %>
       </div>
     </div>

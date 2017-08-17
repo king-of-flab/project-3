@@ -22,23 +22,32 @@
 
   <nav>
     <div class="nav-wrapper">
-      <a href="/" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="/" data-activates="mobile-demo" class="button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
 
       <ul id="nav-mobile" class="left">
-        <li><a href="/" class="logo-img"><img src="/assets/Logo.png"></a></li>
+        <li>
+          <%= link_to root_path, class: "logo-img" do %>
+            <%= image_tag 'projectlogo.png' %>
+          <% end %>
+        </li>
       </ul>
 
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="/requests">All Requests</a></li>
-        <li><a href="/rewards">All Rewards</a></li>
+        <li>
+          <a href="/requests">All Requests</a>
+        </li>
+        <li>
+          <a href="/rewards">All Rewards</a>
+        </li>
       </ul>
 
       <ul id="nav-mobile" class="right">
         <!-- Dropdown Trigger -->
         <% if current_account %>
         <li>
-          <a href="/" class="logo-img"><img class="circle" src="<%= current_account.profile_image %>", width= 35, height= 35></a>
-          <!-- <%= image_tag "#{current_account.profile_image}", width: 50, class: "logo-img circle" %> -->
+          <a href="/" class="logo-img"><img class="circle" src="<%= current_account.profile_image %>" , width=35, height=35></a>
         </li>
         <li>
           <a class="dropdown-button" href="#!" data-activates="dropdown1">Hello,
@@ -46,12 +55,16 @@
             <i class="material-icons right">arrow_drop_down</i>
           </a>
         </li>
-        <li>&nbsp;<%= current_account.time_credit %>
+        <li class="timecredit">&nbsp;<%= current_account.time_credit %>
           credits &nbsp;&nbsp;</li>
         <li><%= link_to "Logout", destroy_account_session_path, method: :delete %></li>
       <% else %>
-        <li><a class="modal-trigger" href="#modal1">Signup</a></li>
-        <li><a href="/accounts/sign_in">Login</a></li>
+        <li>
+          <a class="modal-trigger" href="#modal1">Signup</a>
+        </li>
+        <li>
+          <a href="/accounts/sign_in">Login</a>
+        </li>
         <% end %>
       </ul>
 
@@ -59,10 +72,14 @@
   </nav>
 </div>
 
-      <ul class="side-nav" id="mobile-demo">
-        <li><a href="/requests">All Requests</a></li>
-        <li><a href="/rewards">All Rewards</a></li>
-      </ul>
+<ul class="side-nav" id="mobile-demo">
+  <li>
+    <a href="/requests">All Requests</a>
+  </li>
+  <li>
+    <a href="/rewards">All Rewards</a>
+  </li>
+</ul>
 
 <!-- dropdown modal -->
 <div id="modal1" class="modal center">

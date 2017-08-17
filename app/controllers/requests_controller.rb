@@ -4,17 +4,14 @@ class RequestsController < ApplicationController
   before_action :set_request, except: [:index, :create, :new]
 
   def index
-    @all_areas = Request.distinct.pluck(:area)
-    @all_requests =
-    if params[:area]
-      Request.where("area = '#{params[:area]}'")
-    else
-      Request.all
-    end
+    @all_areas = Request.distinct.pluck(:area).sort
+    dates = Request.distinct.pluck(:date).sort
+    @all_dates = dates.map! { |date| date.strftime('%d %b %Y (%a)') }
+    @all_requests = Request.search(params[:area], params[:date]).all.sort { |a,b| a.date <=> b.date }
   end
 
   def create
-    if params[:request][:date] === ""
+    if params[:request][:date] == ""
       flash[:error] = "Please key in the date of event!"
       redirect_to new_request_path
     else
@@ -26,6 +23,8 @@ class RequestsController < ApplicationController
         new_request.created_by = current_account.id
         current_account.time_credit -= new_request.opening * new_request.unit_time_credit
         current_account.save
+        new_request.image = "http://res.cloudinary.com/ddanielnp/image/upload/v1502880975/giftloop_events/uni5ivykikxba7sj257n.png
+" if new_request.image.blank?
         redirect_to request_path(new_request) if new_request.save
       else
         flash[:error] = "Not enough credits to create request!"
@@ -52,8 +51,13 @@ class RequestsController < ApplicationController
   end
 
   def update
-    @request.update(update_request_params)
-    redirect_to request_path if @request.save
+    if params[:request][:date] == ""
+      flash[:error] = "Please key in the date of event!"
+      redirect_to edit_request_path
+    else
+      @request.update(update_request_params)
+      redirect_to request_path if @request.save
+    end
   end
 
   def destroy
@@ -74,9 +78,9 @@ class RequestsController < ApplicationController
   end
 
   def attendance
-    account = @request.accounts.find(params[:account_id])
-    account.time_credit += @request.unit_time_credit
-    account.save
+    @account = @request.accounts.find(params[:account_id])
+    @account.time_credit += @request.unit_time_credit
+    @account.save
     @request.attendance += 1
     @request.save
     respond_to do |format|
@@ -87,12 +91,36 @@ class RequestsController < ApplicationController
   def completed
     @request.completed = true
     @request.save
-    creator = Account.find(@request.created_by)
-    vacancy = @request.opening - @request.attendance
-    creator.time_credit += vacancy * @request.unit_time_credit
-    creator.save
+    @creator = Account.find(@request.created_by)
+    vacancy = @request.opening + @request.accounts.count - @request.attendance
+    @creator.time_credit += vacancy * @request.unit_time_credit
+    @creator.save
     respond_to do |format|
       format.js
+    end
+  end
+
+  def send_text_message
+    numbers = []
+
+    @request.accounts.each do |account|
+      numbers << "+65#{account.tel}"
+    end
+
+    numbers.each do |number|
+      number_to_send_to = number
+
+      twilio_sid = "ACf59cbcf94d9499de2bde0902b1a8f5eb"
+      twilio_token = "0f82d290b56df55ef4d2c3f08184610a"
+      twilio_phone_number = "+43676800200810"
+
+      @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+
+      @twilio_client.api.account.messages.create(
+        :from => "#{twilio_phone_number}",
+        :to => number_to_send_to,
+        :body => "#{@request.name} is coming up on #{@request.date.strftime('%d %B %Y (%A)')} at #{@request.start_time.strftime('%I:%M%p')}."
+      )
     end
   end
 
