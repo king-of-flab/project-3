@@ -107,6 +107,7 @@ class RequestsController < ApplicationController
     
     numbers.each do |number|
       if ["+6592385117", "+6597926982", "+6598242708", "+6598246595", "+6583387004"].include?(number)
+        
         number_to_send_to = number
         
         twilio_sid = ENV['TWILIO_ACCOUNT_SID']
