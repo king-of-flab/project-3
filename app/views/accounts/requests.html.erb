@@ -6,15 +6,21 @@
       <div class="col s12">
         <ul class="tabs">
           <% if current_account.account_type == "individual" %>
-          <li class="tab col s6">
+          <li class="tab col s4">
             <a href="#created">Created</a>
           </li>
-          <li class="tab col s6">
+          <li class="tab col s4">
             <a href="#registered">Registered</a>
           </li>
+          <li class="tab col s4">
+            <a href="#completed">Completed</a>
+          </li>
           <% else %>
-          <li class="tab col s12">
+          <li class="tab col s6">
             <a href="#created">Created</a>
+          </li>
+          <li class="tab col s6">
+            <a href="#completed">Completed</a>
           </li>
           <% end %>
         </ul>
@@ -22,58 +28,93 @@
 
       <div id="created" class="col s12">
         <% @requests_created.each do |request| %>
-        <div class="col s12 m6 l3">
-          <div class="card hoverable">
-            <a href="/requests/<%= request.id %>">
-              <span class='div-link'></span>
-            </a>
-            <div class="card-image">
-              <img src="<%= request.image %>">
-            </div>
-            <div class="card-content">
+        <% if !request.completed %>
+          <div class="col s12 m6 l3">
+            <div class="card hoverable">
+              <a href="/requests/<%= request.id %>">
+                <span class='div-link'></span>
+              </a>
+              <div class="card-image">
+                <img src="<%= request.image %>">
+              </div>
+              <div class="card-content">
 
-              <h5 class="truncate"><%= request.name %></h5>
-              <p><%= request.date.strftime('%d %B %Y (%A)') %></p>
-              <p><%= request.start_time.strftime('%I:%M%p') %> to
-                <%= request.end_time.strftime('%I:%M%p') %></p>
-              <p><%= request.unit_time_credit %> credits per pax</p>
-              <p><%= request.area %></p>
-            </div>
-            <div class="card-action">
-              <p><%= request.opening %>
-                Openings</p>
+                <h5 class="truncate"><%= request.name %></h5>
+                <p><%= request.date.strftime('%d %B %Y (%A)') %></p>
+                <p><%= request.start_time.strftime('%I:%M%p') %> to
+                  <%= request.end_time.strftime('%I:%M%p') %></p>
+                <p><%= request.unit_time_credit %> credits per pax</p>
+                <p><%= request.area %></p>
+              </div>
+              <div class="card-action">
+                <p><%= request.opening %>
+                  Openings</p>
+              </div>
             </div>
           </div>
-        </div>
+          <% end %>
         <% end %>
       </div>
 
       <div id="registered" class="col s12">
         <% @requests_registered.each do |request| %>
-        <div class="col s12 m6 l3">
-          <div class="card hoverable">
-            <a href="/requests/<%= request.id %>">
-              <span class='div-link'></span>
-            </a>
-            <div class="card-image">
-              <img src="<%= request.image %>">
-            </div>
-            <div class="card-content">
+        <% if !request.completed %>
+          <div class="col s12 m6 l3">
+            <div class="card hoverable">
+              <a href="/requests/<%= request.id %>">
+                <span class='div-link'></span>
+              </a>
+              <div class="card-image">
+                <img src="<%= request.image %>">
+              </div>
+              <div class="card-content">
 
-              <h5 class="truncate"><%= request.name %></h5>
-              <p><%= request.date.strftime('%d %B %Y (%A)') %></p>
-              <p><%= request.start_time.strftime('%I:%M%p') %>
-                to
-                <%= request.end_time.strftime('%I:%M%p') %></p>
-              <p><%= request.unit_time_credit %> credits per pax</p>
-              <p><%= request.area %></p>
-            </div>
-            <div class="card-action">
-              <p><%= request.opening %>
-                Openings</p>
+                <h5 class="truncate"><%= request.name %></h5>
+                <p><%= request.date.strftime('%d %B %Y (%A)') %></p>
+                <p><%= request.start_time.strftime('%I:%M%p') %>
+                  to
+                  <%= request.end_time.strftime('%I:%M%p') %></p>
+                <p><%= request.unit_time_credit %> credits per pax</p>
+                <p><%= request.area %></p>
+              </div>
+              <div class="card-action">
+                <p><%= request.opening %>
+                  Openings</p>
+              </div>
             </div>
           </div>
-        </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div id="completed" class="col s12">
+        <% @all_requests.each do |request| %>
+        <% if request.completed %>
+          <div class="col s12 m6 l3">
+            <div class="card hoverable">
+              <a href="/requests/<%= request.id %>">
+                <span class='div-link'></span>
+              </a>
+              <div class="card-image">
+                <img src="<%= request.image %>">
+              </div>
+              <div class="card-content">
+
+                <h5 class="truncate"><%= request.name %></h5>
+                <p><%= request.date.strftime('%d %B %Y (%A)') %></p>
+                <p><%= request.start_time.strftime('%I:%M%p') %>
+                  to
+                  <%= request.end_time.strftime('%I:%M%p') %></p>
+                <p><%= request.unit_time_credit %> credits per pax</p>
+                <p><%= request.area %></p>
+              </div>
+              <div class="card-action">
+                <p><%= request.opening %>
+                  Openings</p>
+              </div>
+            </div>
+          </div>
+          <% end %>
         <% end %>
       </div>
 

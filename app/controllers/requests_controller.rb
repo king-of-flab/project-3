@@ -105,7 +105,7 @@ class RequestsController < ApplicationController
     @request.accounts.each do |account|
       numbers << "+65#{account.tel}"
     end
-    
+
     numbers.each do |number|
       if ["+6592385117", "+6597926982", "+6598242708", "+6598246595", "+6583387004"].include?(number)
         
@@ -123,6 +123,10 @@ class RequestsController < ApplicationController
           :body => "#{@request.name} is coming up on #{@request.date.strftime('%d %B %Y (%A)')} at #{@request.start_time.strftime('%I:%M%p')}."
         )
       end
+    end
+    respond_to do |format|
+      format.js
+
     end
   end
 

@@ -87,14 +87,14 @@
       <% else %>
         <% if @request.completed %>
         <div class="col s12 m3">
-          <%= button_to "send sms", send_message_path, class: "btn waves-effect waves-light disabled" %>
+          <%= button_to "send sms", send_message_path, remote: true, class: "btn waves-effect waves-light disabled" %>
         </div>
         <div class="col s12 m3">
           <%= button_to "request completed", completed_path, remote: true, class: "btn waves-effect waves-light disabled" %>
         </div>
         <% else %>
         <div class="col s12 m3">
-          <%= button_to "send sms", send_message_path, class: "btn waves-effect waves-light" %>
+          <%= button_to "send sms reminder", send_message_path, remote: true, class: "btn waves-effect waves-light" %>
         </div>
         <div class="col s12 m3">
           <%= button_to "request completed", completed_path, remote: true, class: "btn waves-effect waves-light" %>
