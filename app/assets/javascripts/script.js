@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function () {
+$(document).on('turbolinks:load', function() {
   $('.dropdown-button').dropdown({
     hover: false
   })
@@ -13,13 +13,9 @@ $(document).on('turbolinks:load', function () {
     draggable: true // Choose whether you can drag to open on touch screens
   })
 
-  window.setInterval(function () {
-    $('.carousel').carousel('next')
-  }, 5000)
-
-  $('.carousel.carousel-slider').carousel({
-    fullWidth: true,
-    indicators: true
+  $('.slider').slider({
+    height: 550,
+    interval: 6000
   })
 
   $('.datepicker').pickadate({
@@ -40,7 +36,7 @@ $(document).on('turbolinks:load', function () {
     canceltext: 'Cancel', // Text for cancel-button
     autoclose: true, // automatic close timepicker
     ampmclickable: true, // make AM PM clickable
-    aftershow: function () {} // Function for after opening timepicker
+    aftershow: function() {} // Function for after opening timepicker
   })
 
   $('.dropdown-button').dropdown({

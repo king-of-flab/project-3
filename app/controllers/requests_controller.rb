@@ -5,7 +5,8 @@ class RequestsController < ApplicationController
 
   def index
     @all_areas = Request.distinct.pluck(:area).sort
-    @all_dates = Request.distinct.pluck(:date).sort
+    dates = Request.distinct.pluck(:date).sort
+    @all_dates = dates.map! { |date| date.strftime('%d %b %Y (%a)') }
     @all_requests = Request.search(params[:area], params[:date]).all.sort { |a,b| a.date <=> b.date }
   end
 

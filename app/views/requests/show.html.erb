@@ -37,9 +37,7 @@
     <% end %>
 
     <% if @accountsid.select{ |accountid| accountid == current_account.id }.length == 1 && !@request.completed %>
-
     <%= button_to "Withdraw", withdraw_request_path, method: :delete, class: "btn waves-effect waves-light", data: {confirm: "Are you sure?"} %>
-
     <% end %>
 
     <% if current_account == @creator %>
@@ -57,13 +55,13 @@
       <tbody>
         <% @request.accounts.each do |account| %>
         <tr>
-          <td><%= account.name %></td>
+          <td class="valign-wrapper"><img src="<%= account.profile_image%>" class="circle">&nbsp;&nbsp;<%= account.name %></td>
           <td><%= account.tel %></td>
           <td><%= account.email %></td>
           <% if @request.completed %>
           <td id="table<%=account.id%>">
             <%= button_to "present", attendance_path, remote: true, class: "btn waves-effect waves-light disabled", params: { account_id: account.id }  %></td>
-        <% else %>
+          <% else %>
           <td id="table<%=account.id%>">
             <%= button_to "present", attendance_path, remote: true, class: "btn waves-effect waves-light", params: { account_id: account.id } %></td>
           <% end %>
@@ -82,27 +80,30 @@
         <% end %>
       </div>
 
+      <% if @accountsid.length == 0 %>
       <div class="col s12 m3">
-        <% if @request.completed %>
-        <%= button_to "send sms", send_message_path, class: "btn waves-effect waves-light disabled" %>
-        <% else %>
-        <%= button_to "send sms", send_message_path, class: "btn waves-effect waves-light" %>
-        <% end %>
-      </div>
-
-      <div class="col s12 m3">
-        <% if @accountsid.length == 0 %>
         <%= button_to "delete request", request_path(@request), method: :delete, class: "btn waves-effect waves-light", data: {confirm: "Are you sure?"} %>
-        <% else %>
-        <% if @request.completed %>
-        <%= button_to "request completed", completed_path, remote: true, class: "btn waves-effect waves-light disabled" %>
-        <% else %>
-        <%= button_to "request completed", completed_path, remote: true, class: "btn waves-effect waves-light" %>
-        <% end %>
-        <% end %>
       </div>
-     </div>
+      <% else %>
+        <% if @request.completed %>
+        <div class="col s12 m3">
+          <%= button_to "send sms", send_message_path, class: "btn waves-effect waves-light disabled" %>
+        </div>
+        <div class="col s12 m3">
+          <%= button_to "request completed", completed_path, remote: true, class: "btn waves-effect waves-light disabled" %>
+        </div>
+        <% else %>
+        <div class="col s12 m3">
+          <%= button_to "send sms", send_message_path, class: "btn waves-effect waves-light" %>
+        </div>
+        <div class="col s12 m3">
+          <%= button_to "request completed", completed_path, remote: true, class: "btn waves-effect waves-light" %>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
 
-  <% end %>
+    <% end %>
+
   </div>
   <br>
