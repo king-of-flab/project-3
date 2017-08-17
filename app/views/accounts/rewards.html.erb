@@ -6,11 +6,11 @@
       <div class="col s12">
         <ul class="tabs">
           <% if current_account.account_type == "organisation" %>
-          <li class="tab col s3">
+          <li class="tab col s12">
             <a href="#created">Created</a>
           </li>
         <% else %>
-          <li class="tab col s3">
+          <li class="tab col s12">
             <a href="#registered">Registered</a>
           </li>
           <% end %>
@@ -19,7 +19,7 @@
 
       <div id="created" class="col s12">
         <% @rewards_created.each do |reward| %>
-        <div class="col s3 m3">
+        <div class="col s12 m6 l3">
           <div class="card hoverable">
             <a href="/rewards/<%= reward.id %>">
               <span class='div-link'></span>
@@ -28,7 +28,9 @@
               <img src="<%= reward.image %>">
             </div>
             <div class="card-content">
-              <h5 class = 'truncate'><%= reward.name %></h5>
+
+              <h5 class="truncate"><%= reward.name %></h5>
+
               <p><%= reward.date.strftime('%d %B %Y (%A)') %></p>
               <p><%= reward.start_time.strftime('%I:%M%p') %>
                 to
@@ -47,7 +49,7 @@
 
       <div id="registered" class="col s12">
         <% @rewards_registered.each do |reward| %>
-        <div class="col s3 m3">
+        <div class="col s12 m6 l3">
           <div class="card hoverable">
             <a href="/rewards/<%= reward.id %>">
               <span class='div-link'></span>
@@ -56,7 +58,9 @@
               <img src="<%= reward.image %>">
             </div>
             <div class="card-content">
-              <h5 class = 'truncate'><%= reward.name %></h5>
+
+              <h5 class="truncate"><%= reward.name %></h5>
+
               <p><%= reward.date.strftime('%d %B %Y (%A)') %></p>
               <p><%= reward.start_time.strftime('%I:%M%p') %>
                 to
