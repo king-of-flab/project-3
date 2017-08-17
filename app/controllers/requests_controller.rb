@@ -91,10 +91,11 @@ class RequestsController < ApplicationController
   def completed
     @request.completed = true
     @request.save
-    @creator = Account.find(@request.created_by)
+    creator = Account.find(@request.created_by)
     vacancy = @request.opening + @request.accounts.count - @request.attendance
-    @creator.time_credit += vacancy * @request.unit_time_credit
-    @creator.save
+    @reimbursement = vacancy * @request.unit_time_credit
+    creator.time_credit += @reimbursement
+    creator.save
     respond_to do |format|
       format.js
     end
