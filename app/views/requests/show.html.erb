@@ -3,7 +3,7 @@
     <div class="col s12 m6">
       <div class="card">
         <div class="card-image">
-          <img src="<%= @request.image%>">
+          <img class="materialboxed" src="<%= @request.image %>">
         </div>
       </div>
     </div>
@@ -12,7 +12,7 @@
       <h3><%= @request.name %></h3>
       <p class="valign-wrapper">By:
         <%= @creator.name %>&nbsp;&nbsp;
-        <%= image_tag @creator.profile_image %>
+        <%= image_tag @creator.profile_image, size: "35" %>
       </p>
       <p>Date:
         <%= @request.date.strftime('%d %B %Y (%A)') %>
