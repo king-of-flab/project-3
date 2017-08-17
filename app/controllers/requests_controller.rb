@@ -105,14 +105,15 @@ class RequestsController < ApplicationController
     @request.accounts.each do |account|
       numbers << "+65#{account.tel}"
     end
+
     numbers.each do |number|
-      if ["+6592385117", "+6597926982", "+6598242708", "+6583666605", "+6598246595", "+6583387004"].include?(number)
-
+      if ["+6592385117", "+6597926982", "+6598242708", "+6598246595", "+6583387004"].include?(number)
+        
         number_to_send_to = number
-
-        twilio_sid = "ACf59cbcf94d9499de2bde0902b1a8f5eb"
-        twilio_token = "0f82d290b56df55ef4d2c3f08184610a"
-        twilio_phone_number = "+43676800200810"
+        
+        twilio_sid = ENV['TWILIO_ACCOUNT_SID']
+        twilio_token = ENV['TWILIO_AUTH_TOKEN']
+        twilio_phone_number = ENV['TWILIO_NUMBER']
 
         @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
@@ -125,6 +126,7 @@ class RequestsController < ApplicationController
     end
     respond_to do |format|
       format.js
+
     end
   end
 

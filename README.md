@@ -2,6 +2,8 @@
 
 This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
 
+https://giftloop.herokuapp.com/
+
 ## Getting Started
 
 Provide instructions here about how to get your project running on our local machine. Do we just need to clone and open a certain file or do we need to install anything first.
@@ -29,26 +31,6 @@ More steps...
 until finished
 ```
 
-
-## Tests
-
-Did you write automated tests? If so, how do we run them.
-
-
-```
-Code example
-```
-
-## Live Version
-
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
-
-## Built With
-
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
-
 ## Workflow
 
 Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
@@ -62,4 +44,14 @@ Did you write user stories, draw wireframes, use task tracking, produce ERDs? Di
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+* Icons in the main page from [Icons8](www.icons8.com)
+* Curly Loop by Prosymbols from [The Noun Project](https://thenounproject.com)
+* Arrow by Ersin from [The Noun Project](https://thenounproject.com)
+* Blue watercolor background [Designed by Freepik](http://www.freepik.com/free-vector/soft-background-with-a-cute-blue-watercolor-stain_1064674.htm)
+
+#### Built With
+* [jQuery](http://jquery.com/)
+* [Twilio API](www.twilio.com)
+* [Cloudinary API](www.cloudinary.com) with help from Cloudinary support staff Yakir Perlin
+* [Materialize CSS Framework](http://materializecss.com/)
+*  Ruby on Rails
