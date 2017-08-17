@@ -3,15 +3,15 @@ class AccountsController < ApplicationController
   before_action :authenticate_account!
 
   def requests
-    all_requests = Request.all
-    @requests_created = all_requests.select { |request| request.created_by == current_account.id }
-    @requests_registered = current_account.requests
+    @requests_created = Request.all.select { |request| request.created_by == current_account.id }.sort { |a,b| a.date <=> b.date }
+    @requests_registered = current_account.requests.sort { |a,b| a.date <=> b.date }
+    @all_requests = @requests_created + @requests_registered
   end
 
   def rewards
-    all_rewards = Reward.all
-    @rewards_created = all_rewards.select { |reward| reward.created_by == current_account.id }
-    @rewards_registered = current_account.rewards
+    @rewards_created = Reward.all.select { |reward| reward.created_by == current_account.id }.sort { |a,b| a.date <=> b.date }
+    @rewards_registered = current_account.rewards.sort { |a,b| a.date <=> b.date }
+    @all_rewards = @rewards_created + @rewards_registered
   end
 
 end
