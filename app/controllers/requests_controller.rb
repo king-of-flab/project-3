@@ -100,16 +100,15 @@ class RequestsController < ApplicationController
   end
 
   def send_text_message
-      numbers = []
-
-      @request.accounts.each do |account|
-        numbers << "+65#{account.tel}"
-      end
-
-      numbers.each do |number|
-        if ["+6592385117", "+6597926982", "+6598242708", "+6598246595", "+6583387004"].include?(number)
+    numbers = []
+    @request.accounts.each do |account|
+      numbers << "+65#{account.tel}"
+    end
+    
+    numbers.each do |number|
+      if ["+6592385117", "+6597926982", "+6598242708", "+6598246595", "+6583387004"].include?(number)
         number_to_send_to = number
-
+        
         twilio_sid = ENV['TWILIO_ACCOUNT_SID']
         twilio_token = ENV['TWILIO_AUTH_TOKEN']
         twilio_phone_number = ENV['TWILIO_NUMBER']
@@ -121,8 +120,8 @@ class RequestsController < ApplicationController
           :to => number_to_send_to,
           :body => "#{@request.name} is coming up on #{@request.date.strftime('%d %B %Y (%A)')} at #{@request.start_time.strftime('%I:%M%p')}."
         )
-        end
       end
+    end
   end
 
   private
