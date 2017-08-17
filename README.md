@@ -8,6 +8,12 @@ https://giftloop.herokuapp.com/
 
 We want to enable Singapore to be a society where people volunteer for social causes, as well as help one another out in time of need. Instead of money, we will be using a digital currency called time credits. Organisations start out with 1000 time credits and can create requests to get volunteers for social causes, but will also have to give back by offering rewards like art classes. Individuals start out with 0 credits and will build up their credits by first volunteering for organisational events or helping other individuals out.
 
+* Users can see their profile page
+![Profile Page](http://imgur.com/frrlaEE.png)
+
+* Event requesters can see the attendance list and send sms reminders
+![Attendance](http://imgur.com/0u1igmj.png)
+
 ## Workflow
 
 ![Giftloop ERD](http://imgur.com/sUWnveR.png)
