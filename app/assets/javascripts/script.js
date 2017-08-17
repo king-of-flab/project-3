@@ -13,13 +13,9 @@ $(document).on('turbolinks:load', function() {
     draggable: true // Choose whether you can drag to open on touch screens
   })
 
-  window.setInterval(function() {
-    $('.carousel').carousel('next')
-  }, 5000)
-
-  $('.carousel.carousel-slider').carousel({
-    fullWidth: true,
-    indicators: true
+  $('.slider').slider({
+    height: 550,
+    interval: 6000
   })
 
   $('.datepicker').pickadate({
@@ -179,7 +175,7 @@ $(document).on('turbolinks:load', function() {
       'Yishun': null
     },
     limit: 10, // The max amount of results that can be shown at once. Default: Infinity.
-    onAutocomplete: function(val) {
+    onAutocomplete: function (val) {
       // Callback function when value is autcompleted.
     },
     minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
@@ -187,52 +183,37 @@ $(document).on('turbolinks:load', function() {
 })
 
 // Profile pic + edit pic widget
-function openUploadWidget() {
+function openUploadWidget () {
   cloudinary.openUploadWidget({
-      cloud_name: 'ddanielnp',
-      upload_preset: 'profile_preset',
-      multiple: false
-    },
-    function(error, result) {
-      console.log(error, result)
-      //    $.each(result, function(index, value) {
-      console.log(result)
-      $(".profile_image").attr("src", result[0].eager[0].secure_url)
-      $("#account_profile_image").val(result[0].eager[0].secure_url)
-      //  })
-    })
+    cloud_name: 'ddanielnp',
+    upload_preset: 'profile_preset',
+    multiple: false
+  }, function (error, result) {
+    $('.profile_image').attr('src', result[0].eager[0].secure_url)
+    $('#account_profile_image').val(result[0].eager[0].secure_url)
+  })
 }
 
 // Request pic widget
-function openUploadRequestsWidget() {
+function openUploadRequestsWidget () {
   cloudinary.openUploadWidget({
-      cloud_name: 'ddanielnp',
-      upload_preset: 'event_preset',
-      multiple: false
-    },
-    function(error, result) {
-      console.log(error, result)
-      //    $.each(result, function(index, value) {
-      console.log(result)
-      $(".event_image").attr("src", result[0].eager[0].secure_url)
-      $("#request_image").val(result[0].eager[0].secure_url)
-      //  })
-    })
+    cloud_name: 'ddanielnp',
+    upload_preset: 'event_preset',
+    multiple: false
+  }, function (error, result) {
+    $('.event_image').attr('src', result[0].eager[0].secure_url)
+    $('#request_image').val(result[0].eager[0].secure_url)
+  })
 }
 
 // Reward pic widget
-function openUploadRewardsWidget() {
+function openUploadRewardsWidget () {
   cloudinary.openUploadWidget({
-      cloud_name: 'ddanielnp',
-      upload_preset: 'event_preset',
-      multiple: false
-    },
-    function(error, result) {
-      console.log(error, result)
-      //    $.each(result, function(index, value) {
-      console.log(result)
-      $(".event_image").attr("src", result[0].eager[0].secure_url)
-      $("#reward_image").val(result[0].eager[0].secure_url)
-      //  })
-    })
+    cloud_name: 'ddanielnp',
+    upload_preset: 'event_preset',
+    multiple: false
+  }, function (error, result) {
+    $('.event_image').attr('src', result[0].eager[0].secure_url)
+    $('#reward_image').val(result[0].eager[0].secure_url)
+  })
 }
