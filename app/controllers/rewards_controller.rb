@@ -1,7 +1,7 @@
 class RewardsController < ApplicationController
 
   before_action :authenticate_account!, except: [:index]
-  before_action :is_organisation?
+  before_action :is_organisation?, except: [:index, :show, :redeem]
   before_action :set_reward, except: [:index, :create, :new]
 
   def index
