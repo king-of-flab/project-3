@@ -1,11 +1,13 @@
 class RewardsController < ApplicationController
 
   before_action :authenticate_account!, except: [:index]
+  before_action :is_organisation?, except: [:index, :show, :redeem]
   before_action :set_reward, except: [:index, :create, :new]
 
   def index
     @all_areas = Reward.distinct.pluck(:area).sort
-    @all_dates = Reward.distinct.pluck(:date).sort
+    dates = Reward.distinct.pluck(:date).sort
+    @all_dates = dates.map! { |date| date.strftime('%d %b %Y (%a)') }
     @all_rewards = Reward.search(params[:area], params[:date]).all.sort { |a,b| a.date <=> b.date }
   end
 
@@ -105,6 +107,10 @@ class RewardsController < ApplicationController
 
   def update_reward_params
     params.require(:reward).permit(:name, :date, :start_time, :end_time, :address, :area, :description, :image)
+  end
+
+  def is_organisation?
+    redirect_to root_path if current_account.account_type == "individual"
   end
 
 end

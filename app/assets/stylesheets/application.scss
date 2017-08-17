@@ -1,4 +1,15 @@
+@import "https://fonts.googleapis.com/css?family=Cabin|Proza+Libre";
 @import "materialize/components/color";
+
+body {
+   display: flex;
+   min-height: 100vh;
+   flex-direction: column;
+ }
+
+ main {
+   flex: 1 0 auto;
+ }
 
 // change navbar color
 .nav-wrapper {
@@ -22,6 +33,7 @@
   margin: 0 auto !important;
   max-width: 1280px !important;
   width: 80% !important;
+  font-family: 'Proza Libre', sans-serif;
 }
 
 // align icons and text next to each other in the footer
@@ -130,6 +142,11 @@
   color: rgb(200, 70, 70);
 }
 
+p {
+  font-family: 'Cabin', sans-serif;
+  font-size: 20px;
+}
+
 .alert-success {
   color: #219091;
   text-align: right;
@@ -137,5 +154,9 @@
   margin-right: 20px;
 }
 
+#ourteam li {
+  padding-bottom: 8px;
+
+}
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import "materialize";

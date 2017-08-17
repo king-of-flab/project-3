@@ -1,0 +1,47 @@
+  <div class="modal-content">
+    <h4>Summary</h4>
+    <p>Your request has been completed!</p>
+    <table class="bordered">
+
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>No. of Openings</td>
+          <td><%= request.opening + request.accounts.count %></td>
+        </tr>
+
+        <tr>
+          <td>No. of Signups</td>
+          <td><%= request.accounts.count %></td>
+        </tr>
+
+        <tr>
+          <td>No. of Pax who Attended</td>
+          <td><%= request.attendance %></td>
+        </tr>
+
+        <tr>
+          <td>Time Credits Paid</td>
+          <td><%= request.attendance * request.unit_time_credit %></td>
+        </tr>
+
+        <tr>
+          <td>Time Credits Reimbursed</td>
+          <td>
+            <% @vacancy = request.opening + request.accounts.count - request.attendance %>
+            <%= @vacancy * request.unit_time_credit %></td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+  </div>

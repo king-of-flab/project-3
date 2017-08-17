@@ -5,7 +5,8 @@ class RequestsController < ApplicationController
 
   def index
     @all_areas = Request.distinct.pluck(:area).sort
-    @all_dates = Request.distinct.pluck(:date).sort
+    dates = Request.distinct.pluck(:date).sort
+    @all_dates = dates.map! { |date| date.strftime('%d %b %Y (%a)') }
     @all_requests = Request.search(params[:area], params[:date]).all.sort { |a,b| a.date <=> b.date }
   end
 
@@ -100,14 +101,14 @@ class RequestsController < ApplicationController
   end
 
   def send_text_message
-      numbers = []
+    numbers = []
+    @request.accounts.each do |account|
+      numbers << "+65#{account.tel}"
+    end
 
-      @request.accounts.each do |account|
-        numbers << "+65#{account.tel}"
-      end
+    numbers.each do |number|
+      if ["+6592385117", "+6597926982", "+6598242708", "+6598246595", "+6583387004", "+6594513443"].include?(number)
 
-      numbers.each do |number|
-        if ["+6592385117", "+6597926982", "+6598242708", "+6598246595", "+6583387004"].include?(number)
         number_to_send_to = number
 
         twilio_sid = ENV['TWILIO_ACCOUNT_SID']
@@ -121,8 +122,12 @@ class RequestsController < ApplicationController
           :to => number_to_send_to,
           :body => "#{@request.name} is coming up on #{@request.date.strftime('%d %B %Y (%A)')} at #{@request.start_time.strftime('%I:%M%p')}."
         )
-        end
       end
+    end
+    respond_to do |format|
+      format.js
+
+    end
   end
 
   private

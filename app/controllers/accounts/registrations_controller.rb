@@ -49,9 +49,9 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  def edit
-    render :edit
-  end
+  # def edit
+  #   super
+  # end
 
   # PUT /resource
   def update
