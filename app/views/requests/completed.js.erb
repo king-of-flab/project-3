@@ -1,5 +1,5 @@
 $('.btn').addClass('disabled')
-$('.timecredit').text('<%= @creator.time_credit %> credits')
+$('.timecredit').append('<span class="new badge red" data-badge-caption="+<%= @reimbursement %>"></span>')
 
 $('#completedmodal').html("<%= escape_javascript(render partial: 'completed', locals: { request: @request } ) %>")
 
