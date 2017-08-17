@@ -23,12 +23,8 @@
             <% end %>
           </div>
 
-
         <div class="center">
-          <div class="input-field inline">
-            <img onclick="openUploadWidget()" src="<%= current_account.profile_image %>" class="profile_image">
-            <p>Click on image above to upload or change</p>
-          </div>
+          <img onclick="openUploadWidget()" src="<%= current_account.profile_image %>" class="profile_image tooltipped" data-position="right" data-delay="50" data-tooltip="Click to upload new profile image">
         </div>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
