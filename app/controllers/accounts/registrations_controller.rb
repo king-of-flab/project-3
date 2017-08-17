@@ -3,10 +3,9 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  def new
-    gon.cloudinary = ENV['CLOUDINARY_CLOUDNAME']
-    super
-  end
+  # def new
+  #   super
+  # end
 
   # POST /resource
   def create
@@ -50,10 +49,9 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  def edit
-    gon.cloudinary = ENV['CLOUDINARY_CLOUDNAME']
-    super
-  end
+  # def edit
+  #   super
+  # end
 
   # PUT /resource
   def update

@@ -34,7 +34,6 @@ class RequestsController < ApplicationController
   end
 
   def new
-    gon.cloudinary = ENV['CLOUDINARY_CLOUDNAME']
     @new_request = Request.new
   end
 
@@ -49,7 +48,6 @@ class RequestsController < ApplicationController
   end
 
   def edit
-    gon.cloudinary = ENV['CLOUDINARY_CLOUDNAME']
   end
 
   def update

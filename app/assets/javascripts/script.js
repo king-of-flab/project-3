@@ -185,7 +185,7 @@ $(document).on('turbolinks:load', function() {
 // Profile pic + edit pic widget
 function openUploadWidget () {
   cloudinary.openUploadWidget({
-    cloud_name: gon.cloudinary,
+    cloud_name: 'ddanielnp',
     upload_preset: 'profile_preset',
     multiple: false
   }, function (error, result) {
@@ -197,7 +197,7 @@ function openUploadWidget () {
 // Request pic widget
 function openUploadRequestsWidget () {
   cloudinary.openUploadWidget({
-    cloud_name: gon.cloudinary,
+    cloud_name: 'ddanielnp',
     upload_preset: 'event_preset',
     multiple: false
   }, function (error, result) {
@@ -209,7 +209,7 @@ function openUploadRequestsWidget () {
 // Reward pic widget
 function openUploadRewardsWidget () {
   cloudinary.openUploadWidget({
-    cloud_name: gon.cloudinary,
+    cloud_name: 'ddanielnp',
     upload_preset: 'event_preset',
     multiple: false
   }, function (error, result) {
