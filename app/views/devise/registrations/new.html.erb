@@ -25,8 +25,8 @@
 
         <div class="center">
           <div class="input-field inline">
-          <img onclick="openUploadWidget()" src="http://res.cloudinary.com/ddanielnp/image/upload/w_60,h_60/v1502786784/empty-profile_uhz90e.png" class="profile_image">
-          <p >Click to change</p>
+            <p>Profile Image</p>
+          <img onclick="openUploadWidget()" src="http://res.cloudinary.com/ddanielnp/image/upload/w_60,h_60/v1502786784/empty-profile_uhz90e.png" class="profile_image tooltipped" data-position="right" data-delay="50" data-tooltip="Click on image above to upload or change">
           </div>
         </div>
 
@@ -35,7 +35,7 @@
       <%= f.hidden_field :profile_image %>
 
       <div class="input-field col s8 offset-s2">
-        <i class="material-icons prefix">account_circle</i>
+        <i class="material-icons prefix" data-position="right" data-delay="50" data-tooltip="Click on image above to upload or change">account_circle</i>
         <%= f.text_field :name, required: true, autofocus: true %>
         <%= f.label :name %><br/>
       </div>
