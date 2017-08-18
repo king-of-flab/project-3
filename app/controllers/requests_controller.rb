@@ -108,7 +108,7 @@ class RequestsController < ApplicationController
     end
 
     numbers.each do |number|
-      if ["+6592385117", "+6597926982", "+6598242708", "+6598246595", "+6583387004", "+6594513443"].include?(number)
+      if ["+6592385117", "+6597926982", "+6598242708", "+6598246595", "+6583387004", "+6594513443", "+6583666605"].include?(number)
 
         number_to_send_to = number
 
