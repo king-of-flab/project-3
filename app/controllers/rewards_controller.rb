@@ -2,6 +2,7 @@ class RewardsController < ApplicationController
 
   before_action :authenticate_account!, except: [:index]
   before_action :is_organisation?, except: [:index, :show, :redeem]
+  before_action :is_creator?, only: [:edit, :update, :destroy]
   before_action :set_reward, except: [:index, :create, :new]
 
   def index
@@ -16,19 +17,10 @@ class RewardsController < ApplicationController
       flash[:error] = "Please key in the date of event!"
       redirect_to new_reward_path
     else
-      units_required = reward_params["unit_time_credit"].to_i * reward_params["opening"].to_i
-      units_balance = current_account.time_credit
-      if units_balance >= units_required
-        new_reward = Reward.create(reward_params)
-        new_reward.created_by = current_account.id
-        current_account.time_credit -= new_reward.opening * new_reward.unit_time_credit
-        current_account.save
-        new_reward.image = "http://res.cloudinary.com/ddanielnp/image/upload/v1502880975/giftloop_events/uni5ivykikxba7sj257n.png" if new_reward.image.blank?
-        redirect_to reward_path(new_reward) if new_reward.save
-      else
-        flash[:error] = "Not enough credits to create reward!"
-        redirect_to new_reward_path
-      end
+      new_reward = Reward.create(reward_params)
+      new_reward.created_by = current_account.id
+      new_reward.image = "http://res.cloudinary.com/ddanielnp/image/upload/v1502880975/giftloop_events/uni5ivykikxba7sj257n.png" if new_reward.image.blank?
+      redirect_to reward_path(new_reward) if new_reward.save
     end
   end
 
@@ -111,6 +103,12 @@ class RewardsController < ApplicationController
 
   def is_organisation?
     redirect_to root_path if current_account.account_type == "individual"
+  end
+
+  def is_creator?
+    if Reward.find(params[:id]).created_by != current_account.id
+      redirect_to root_path
+    end
   end
 
 end

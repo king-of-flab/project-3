@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
 
   before_action :authenticate_account!, except: [:index]
+  before_action :is_creator?, only: [:edit, :update, :destroy]
   before_action :set_request, except: [:index, :create, :new]
 
   def index
@@ -61,6 +62,8 @@ class RequestsController < ApplicationController
   end
 
   def destroy
+    current_account.time_credit += @request.opening * @request.unit_time_credit
+    current_account.save
     @request.destroy
     redirect_to my_requests_path
   end
@@ -143,6 +146,12 @@ class RequestsController < ApplicationController
 
   def update_request_params
     params.require(:request).permit(:name, :date, :start_time, :end_time, :address, :area, :description, :image)
+  end
+
+  def is_creator?
+    if Request.find(params[:id]).created_by != current_account.id
+      redirect_to root_path
+    end
   end
 
 end
